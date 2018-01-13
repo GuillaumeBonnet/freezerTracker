@@ -1,0 +1,26 @@
+.maincontent {
+    text-align:center;
+    display: flex;
+    justify-content: space-between;
+    min-height: 400px;
+}
+
+.freezer {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    border: solid black 2px;
+    background-color: aqua;
+}
+
+.shop {
+    width: 40%;
+    display: flex;
+    justify-content: center;    
+    flex-wrap: wrap;
+    border-radius: 5px;
+    border: solid black 2px;
+    background-color: rgb(136, 115, 98);
+}

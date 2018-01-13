@@ -1,0 +1,15 @@
+.container {
+    display :flex;
+    width: 100px;
+    height: 100px;
+    background-color: silver;
+    border: solid black 1px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+
+    &__svg {
+        width: 80%;
+        margin: auto;
+    }
+}

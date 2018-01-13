@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import './fonts/style.css';
+@import './variables';
+@import './mixins';
 
+* {
+    box-sizing: border-box;
+}
 svg {
     fill:black !important;
 }
