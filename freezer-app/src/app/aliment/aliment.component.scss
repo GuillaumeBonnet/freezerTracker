@@ -1,11 +1,19 @@
+:host {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$container__margin: 5px;
 .container {
     display :flex;
-    width: 100px;
-    height: 100px;
+    width: 20px;
+    height: calc(100% - #{$container__margin});
     background-color: silver;
     border: solid black 1px;
     border-radius: 5px;
-    margin: 5px;
+    margin: $container__margin;
     cursor: pointer;
 
     &__svg {

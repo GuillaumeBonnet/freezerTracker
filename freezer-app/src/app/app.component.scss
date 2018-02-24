@@ -1,8 +1,38 @@
 .maincontent {
-    text-align:center;
-    display: flex;
-    justify-content: space-between;
-    min-height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 100vh;
+}
+
+
+.menuheader {
+  grid-column: 1/13;   
+  grid-row: 1/2;
+  border: solid black 1px;
+  margin: 5px;  
+}
+.menuside {
+    display: none;
+  grid-column: 1/1;
+  grid-row: 3/11;
+  border: solid black 1px;
+
+  margin: 5px;  
+}
+.page {
+    grid-column: 1 /13;
+    grid-row: 2/12;
+    border: solid black 1px;
+    margin: 5px;  
+    overflow-y: scroll;
+}
+
+.footer {
+  grid-column: 1/13;   
+  grid-row: 12/13;
+  display: flex;
+  align-items: center;
 }
 
 .freezer {

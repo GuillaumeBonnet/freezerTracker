@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 95.250004 169.33334"
+   height="640"
+   width="360">
+  <defs
+     id="defs2">
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient6602">
+      <stop
+         id="stop6600"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient6568">
+      <stop
+         id="stop6566"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient6146">
+      <stop
+         id="stop6144"
+         offset="0"
+         style="stop-color:#0000ff;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient6138">
+      <stop
+         id="stop6136"
+         offset="0"
+         style="stop-color:#0000ff;stop-opacity:1;" />
+    </linearGradient>
+    <meshgradient
+       gradientTransform="translate(0.26726545,25.657874)"
+       y="40.102135"
+       x="45.254436"
+       gradientUnits="userSpaceOnUse"
+       id="meshgradient50">
+      <meshrow
+         id="meshrow62">
+        <meshpatch
+           id="meshpatch60">
+          <stop
+             path="c 95.25,0  63.5,0  95.25,0"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop52" />
+          <stop
+             path="c -0.377978,12.5992  0,112.889  0,169.333"
+             style="stop-color:#008080;stop-opacity:1"
+             id="stop54" />
+          <stop
+             path="c -31.75,0  -63.5,0  -95.25,0"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop56" />
+          <stop
+             path="c -0.377976,-24.3164  0,-112.889  0,-169.333"
+             style="stop-color:#008080;stop-opacity:1"
+             id="stop58" />
+        </meshpatch>
+      </meshrow>
+    </meshgradient>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     style="display:inline"
+     transform="translate(-45.521706,-65.76001)"
+     id="layer1">
+    <g
+       id="g4614">
+      <rect
+         ry="0"
+         style="fill:url(#meshgradient50);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.46500003;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="65.76001"
+         x="45.521706"
+         height="169.33333"
+         width="95.25"
+         id="rect48" />
+    </g>
+    <g
+       style="display:inline"
+       id="layer3" />
+    <g
+       id="layer2" />
+  </g>
+</svg>

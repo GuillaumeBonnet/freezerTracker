@@ -1,0 +1,68 @@
+.this {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.iconband {
+    border: solid black 1px;
+    grid-column: 1/13;   
+    grid-row: 8/10;
+    position: relative;
+    width: 100%;
+    
+
+    &__sideshadow {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 10px;
+        &--left {
+            box-shadow: inset 4px 0px 8px 0px white;
+            left: 0;
+        }
+
+        &--right {
+            box-shadow: inset -4px 0px 8px 0px white;
+            right: 0;
+        }
+    }
+
+    &__scrollable {
+        overflow-x: scroll;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+.icon {
+    height: 20px;
+    border: solid black 1px;
+    width: 20px;
+    margin: auto;
+}
+
+.content1 {
+    background-color: greenyellow;
+    padding: 2px;
+    grid-column: 1/13;   
+    grid-row: 1/8;
+}
+
+.content1::before {
+    content:"inside";
+    display: block;
+    border: solid black 1px;
+    width: 50px;
+    height: 50px;
+}
+.content2 {
+    background-color: greenyellow;
+    padding: 2px;
+    grid-column: 1/13;   
+    grid-row: 10/13;
+}

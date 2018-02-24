@@ -8,3 +8,19 @@
 svg {
     fill:black !important;
 }
+
+body {
+    margin: 0px;
+}
+
+li {
+    display: block;
+}
+
+html {
+    background-image: url(../assets/radialbackground.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+}

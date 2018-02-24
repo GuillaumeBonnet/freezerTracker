@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         },
         default : {
           files: {
-            '../dest.svg': ['../svg/*.svg'],
+            '../dest.svg': ['../svg/*/*.svg'],
           },
         },
            

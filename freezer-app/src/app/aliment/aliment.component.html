@@ -1,6 +1,7 @@
-  <div class="container">
+  <div appSquarify="5px" class="container">
+        <!-- appSquarify directive will add 5px margin, not to put in css  -->
       <svg viewBox="0 0 100 100" class="container__svg">
-          <use xlink:href="#icon-batch1_butter"/>
+          <use [attr.xlink:href]="'#' + aliment.iconicFontName"/>
       </svg>
   </div>  
 

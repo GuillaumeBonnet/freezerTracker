@@ -1,0 +1,15 @@
+<div class="this">
+  
+    <div class="content1"></div>
+    <div class="iconband">
+        <div class="iconband__sideshadow iconband__sideshadow--left"></div>
+        <div class="iconband__sideshadow iconband__sideshadow--right"></div>
+        <ul class="iconband__scrollable">
+            <li *ngFor="let elem of listAliments; index as i">
+                <app-aliment [aliment]="elem"></app-aliment>
+            </li>
+        </ul>
+    </div>
+    <div class="content2"></div>
+
+</div>
