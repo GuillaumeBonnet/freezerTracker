@@ -1,8 +1,9 @@
-  <div appSquarify="5px" class="container">
+  <div (click)="elementSelected()" appSquarify="5px" [class]="isSelected ? 'aliment-card aliment-card--selected' : 'aliment-card'">
         <!-- appSquarify directive will add 5px margin, not to put in css  -->
-      <svg viewBox="0 0 100 100" class="container__svg">
+      <svg viewBox="0 0 100 100" class="aliment-card__svg">
           <use [attr.xlink:href]="'#' + aliment.iconicFontName"/>
       </svg>
+      <h1 class="aliment-card__title">{{aliment.name}}</h1>
   </div>
 
 

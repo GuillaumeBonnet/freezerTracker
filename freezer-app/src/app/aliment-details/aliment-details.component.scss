@@ -1,0 +1,44 @@
+:host {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  border-radius: 50% 20% / 10% 40%;
+  background-color: #008B8B;
+  padding: 10px;
+  box-shadow: 1px 1px 4px, -1px -0.5px 4px;
+  overflow-y: hidden;
+}
+
+.aliment__svg {
+  width: 20%;
+  float: left;
+  border: solid #089846 2px;
+  box-shadow: 1px 1px 4px;
+  background-color: white;
+  margin: 10px;
+  padding: 2px;
+}
+
+.line {
+  font-family: 'Indie Flower', cursive;
+  font-size: 16px;
+  color: white;
+  margin: 7px;
+  padding: 2px;
+  border-radius: 1px;
+}
+.line__label {
+  font-weight: 700;
+  color: #3E1700  ;
+}
+
+.line__separator {
+  width: 90%;
+  height: 0%;
+  margin: 2px;
+  border: solid #089846 1px;
+  box-shadow: 1px 1px 4px;
+  margin: auto;
+}

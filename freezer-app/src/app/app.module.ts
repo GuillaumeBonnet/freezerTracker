@@ -7,6 +7,7 @@ import { AlimentComponent } from './aliment/aliment.component';
 import { Page1Component } from './page1/page1.component';
 import { SquarifyDirective } from './squarify.directive';
 import {MainServiceService} from './main-service.service';
+import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
 
 
 
@@ -15,7 +16,8 @@ import {MainServiceService} from './main-service.service';
     AppComponent,
     AlimentComponent,
     Page1Component,
-    SquarifyDirective
+    SquarifyDirective,
+    AlimentDetailsComponent
   ],
   imports: [
     BrowserModule

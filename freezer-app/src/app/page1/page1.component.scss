@@ -1,22 +1,40 @@
 .this {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-areas:
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      " .   .   .   .   .   .   .   .   .   .   .   . "
+      "lst lst lst lst lst lst lst lst lst lst lst lst"
+      "lst lst lst lst lst lst lst lst lst lst lst lst"
+      " .   .   .   .   .   .   .   .   .   .   .   . "
+      " .   .   .   .   .   .   .   .   .   .   .   . "
+      " .   .   .   .   .   .   .   .   .   .   .   . ";
+}
+
+.aliment-details {
+  grid-area: sel;
+  padding: 10px;
 }
 
 .iconband {
-    border: solid black 1px;
-    grid-column: 1/13;   
-    grid-row: 8/10;
+    grid-area: lst;
     position: relative;
     width: 100%;
-    
+    overflow: hidden;
+
 
     &__sideshadow {
         position: absolute;
-        top: 0;
-        bottom: 0;
+        z-index: 100;
+        top: -3px;
+        bottom: -3px;
         width: 10px;
         &--left {
             box-shadow: inset 4px 0px 8px 0px white;
@@ -44,25 +62,4 @@
     border: solid black 1px;
     width: 20px;
     margin: auto;
-}
-
-.content1 {
-    background-color: greenyellow;
-    padding: 2px;
-    grid-column: 1/13;   
-    grid-row: 1/8;
-}
-
-.content1::before {
-    content:"inside";
-    display: block;
-    border: solid black 1px;
-    width: 50px;
-    height: 50px;
-}
-.content2 {
-    background-color: greenyellow;
-    padding: 2px;
-    grid-column: 1/13;   
-    grid-row: 10/13;
 }

@@ -10,10 +10,16 @@ const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 export class Page1Component implements OnInit {
 
   listAliments: Aliment[] = MOCK_ALIMENTS;
+  indexSelectedAliment: number=0;
+  selectedAliment: Aliment=this.listAliments[0];
   constructor() { }
 
   ngOnInit() {
     console.log("listAliment", this.listAliments);
   }
 
+  posElementSelected(event: number) {
+    this.indexSelectedAliment = event;
+    this.selectedAliment = this.listAliments[event];
+  }
 }

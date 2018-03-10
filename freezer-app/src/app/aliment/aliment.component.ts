@@ -1,6 +1,7 @@
-import { 
-  Component, OnInit, Inject, AfterViewInit 
-  , Input
+import {
+  Component, OnInit, Inject, AfterViewInit
+  , EventEmitter
+  , Input, Output
 } from '@angular/core';
 import {DOCUMENT} from '@angular/platform-browser';
 import { Aliment } from '../Class/Aliment';
@@ -17,6 +18,16 @@ export class AlimentComponent implements OnInit, AfterViewInit {
   @Input()
   aliment: Aliment;
 
+  @Input()
+  i: Number;
+
+  @Input()
+  isSelected: Boolean;
+
+  @Output()
+  posAlimentSelected = new EventEmitter<Number>();
+
+
   constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
@@ -24,6 +35,10 @@ export class AlimentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+  }
+
+  elementSelected() {
+    this.posAlimentSelected.emit(this.i);
   }
 
 }
