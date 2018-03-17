@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+const ICON_ARRAY: any = require('../iconList.json');
 
 @Component({
   selector: 'app-aliment-form',
@@ -10,7 +12,10 @@ export class AlimentFormComponent implements OnInit {
   @Output()
   abortCreation = new EventEmitter();
 
-  constructor() { }
+
+  iconList: String[] = ICON_ARRAY;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

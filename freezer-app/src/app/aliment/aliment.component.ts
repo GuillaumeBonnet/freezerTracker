@@ -31,7 +31,6 @@ export class AlimentComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
-    console.log("aliment", this.aliment.name);
   }
 
   ngAfterViewInit() {

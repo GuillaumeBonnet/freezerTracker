@@ -12,7 +12,8 @@ import { AlimentFormComponent } from './aliment-form/aliment-form.component';
 
 import  { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewAlimentComponent } from './new-aliment/new-aliment.component';
-
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/throttleTime";
 
 @NgModule({
   declarations: [

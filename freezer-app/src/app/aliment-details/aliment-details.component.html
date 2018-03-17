@@ -3,13 +3,31 @@
       <use [attr.xlink:href]="'#' + aliment?.iconicFontName"/>
   </svg>
 
-  <div class="line"><span class="line__label">Name: </span>{{ aliment?.name }}</div>
+  <div class="line__containor">
+    <div class="line"><span class="line__label">Name : </span>{{ aliment?.name }}</div>
+  </div>
+
   <div class="line__separator"></div>
-  <div class="line"><span class="line__label">Category: </span>{{ aliment?.category }}</div>
+
+  <div class="line__containor">
+    <div class="line"><span class="line__label">Category : </span>{{ aliment?.category }}</div>
+  </div>
+
   <div class="line__separator"></div>
-  <div class="line"><span class="line__label">Expiration date: </span>{{ aliment?.expirationDate }}</div>
+
+  <div class="line__containor">
+    <div class="line"><span class="line__label">Expiration date : </span>{{ aliment?.expirationDate }}</div>
+  </div>
+
   <div class="line__separator"></div>
-  <div class="line"><span class="line__label">Stored date: </span>{{ aliment?.storedDate }}</div>
+
+  <div class="line__containor">
+    <div class="line"><span class="line__label">Stored date : </span>{{ aliment?.storedDate }}</div>
+  </div>
+
   <div class="line__separator"></div>
-  <div class="line"><span class="line__label">Quanitity: </span>{{ aliment?.quantity + ' ' + aliment?.quantityUnit }}</div>
+
+  <div class="line__containor">
+    <div class="line"><span class="line__label">Quanitity : </span>{{ aliment?.quantity + ' ' + aliment?.quantityUnit }}</div>
+  </div>
 </div>

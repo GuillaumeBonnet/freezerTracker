@@ -1,13 +1,22 @@
 import {
   Directive,  ElementRef,
   AfterViewInit, OnInit, OnChanges
-  , Input, AfterViewChecked
+  , Input, AfterViewChecked, HostListener
 } from '@angular/core';
+
 import {MainServiceService} from './main-service.service';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs/Subscription';
+import { debounceTime, throttleTime } from 'rxjs/operators';
+
 @Directive({
   selector: '[appSquarify]'
 })
-export class SquarifyDirective implements AfterViewChecked, OnChanges {
+export class SquarifyDirective implements AfterViewChecked {
+
+  subscription: Subscription;
 
   @Input()
   appSquarify: String;
@@ -15,14 +24,21 @@ export class SquarifyDirective implements AfterViewChecked, OnChanges {
   constructor(public el: ElementRef, private utils: MainServiceService) {
   }
 
-  ngAfterViewChecked() {
-    this.squarifyWithMargin();
-
+  @HostListener('window:resize')
+  resized() {
+    //I think that since this function is call, ngOnChanges is triggered
   }
 
-  //TODO event cordova onLandScape
-  ngOnChanges() {
+
+  ngAfterViewChecked() {
     this.squarifyWithMargin();
+    // this.subscription = Observable.fromEvent(window, 'resize')
+    // // .throttleTime(200)
+    // .debounceTime(200)
+    // .subscribe(() => {
+    //   console.log("resize2");
+    //   this.squarifyWithMargin();
+    // });
   }
 
   squarifyWithMargin() {

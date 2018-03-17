@@ -1,0 +1,31 @@
+:host {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-template-areas:
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "frm frm frm frm frm frm frm frm frm frm frm frm "
+  "frm frm frm frm frm frm frm frm frm frm frm frm "
+  "frm frm frm frm frm frm frm frm frm frm frm frm"
+  "frm frm frm frm frm frm frm frm frm frm frm frm"
+  "frm frm frm frm frm frm frm frm frm frm frm frm";
+}
+
+.aliment-details {
+  grid-area: sel;
+  padding: 10px;
+}
+
+.formgrid {
+  grid-area: frm;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

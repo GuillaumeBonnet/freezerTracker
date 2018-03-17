@@ -1,40 +1,20 @@
-<div [class]="isCreatingNewAliment ? 'this this--formlayout' : 'this'">
+<app-aliment-details [aliment]="selectedAliment" class="aliment-details">
+</app-aliment-details>
 
-    <app-aliment-details [aliment]="selectedAliment" class="aliment-details">
-    </app-aliment-details>
-
-    <div *ngIf="!isCreatingNewAliment" class="iconband">
-        <div (resize)="toto()" class="iconband__sideshadow iconband__sideshadow--left"></div>
-        <div class="iconband__sideshadow iconband__sideshadow--right"></div>
-        <ul class="iconband__scrollable">
-            <li *ngFor="let elem of listAliments; index as i">
-                <app-aliment [aliment]="elem" [i]="i" [isSelected]="i==indexSelectedAliment" (posAlimentSelected)="posElementSelected($event)"></app-aliment>
-            </li>
-        </ul>
-    </div>
-
-    <div [class]="isCreatingNewAliment ? 'formgrid' : 'crossgridcontainer'" [ngSwitch]="stepNewAliment">
-      <!-- <svg viewBox="0 0 100 100" class="arrow arrow--right">
-          <use xlink:href="#icon-roundedTailLessArow"/>
-      </svg> -->
-      <div #viewvar [class]="startCrossAnimation ? 'cross cross--clicked' : 'cross'" (click)="startCrossAnimation = true" (animationend)="isCreatingNewAliment = true">
-          <svg viewBox="0 0 100 100" class="cross__svg">
-              <use xlink:href="#icon-newCross"/>
-          </svg>
-      </div>
-
-      <app-aliment-form *ngIf="isCreatingNewAliment" (abortCreation)="abortCreation()" class="frm"></app-aliment-form>
-
-      <!-- <ul *ngSwitchCase="'category'" class="iconcard__container">
-        <li *ngFor="let elem of iconList; index as i">
-          <div class="iconcard" (click)="nextStepNewAliment()">
-            <svg viewBox="0 0 100 100" class="iconcard__svg">
-                <use [attr.xlink:href]="'#' + elem"/>
-            </svg>
-          </div>
+<div class="iconband">
+    <div class="iconband__sideshadow iconband__sideshadow--left"></div>
+    <div class="iconband__sideshadow iconband__sideshadow--right"></div>
+    <ul class="iconband__scrollable">
+        <li *ngFor="let elem of listAliments; index as i">
+            <app-aliment [aliment]="elem" [i]="i" [isSelected]="i==indexSelectedAliment" (posAlimentSelected)="posElementSelected($event)"></app-aliment>
         </li>
-      </ul> -->
-
-    </div>
-
+    </ul>
 </div>
+
+  <div [class]="startCrossAnimation ? 'cross cross--clicked' : 'cross'" (click)="startCrossAnimation = true" (animationend)="router.navigate(['new-aliment'])">
+      <svg viewBox="0 0 100 100" class="cross__svg">
+          <use xlink:href="#icon-newCross"/>
+      </svg>
+  </div>
+
+
