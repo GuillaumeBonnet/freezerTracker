@@ -8,7 +8,10 @@ import { Page1Component } from './page1/page1.component';
 import { SquarifyDirective } from './squarify.directive';
 import {MainServiceService} from './main-service.service';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
+import { AlimentFormComponent } from './aliment-form/aliment-form.component';
 
+import  { AppRoutingModule } from './app-routing/app-routing.module';
+import { NewAlimentComponent } from './new-aliment/new-aliment.component';
 
 
 @NgModule({
@@ -17,10 +20,13 @@ import { AlimentDetailsComponent } from './aliment-details/aliment-details.compo
     AlimentComponent,
     Page1Component,
     SquarifyDirective,
-    AlimentDetailsComponent
+    AlimentDetailsComponent,
+    AlimentFormComponent,
+    NewAlimentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [MainServiceService],
   bootstrap: [AppComponent]

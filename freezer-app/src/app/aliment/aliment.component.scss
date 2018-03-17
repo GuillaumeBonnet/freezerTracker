@@ -10,6 +10,8 @@ $aliment-card__margin: 5px;
     position:relative;
     display :flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     width: 20px;
     height: calc(100% - #{$aliment-card__margin});
     background-color: #0879A2;
@@ -20,7 +22,6 @@ $aliment-card__margin: 5px;
 
     &__svg {
         width: 60%;
-        margin: auto;
     }
 
     &__title {
@@ -32,8 +33,12 @@ $aliment-card__margin: 5px;
         color: white;
         font-size: 14px;
         text-align: center;
-        margin: 5px;
-        padding: 1px;
+        padding: 1px 0px 1px 0px;
+        width: 90%;
+
+        &--selected {
+          color: #FFF2C3;
+        }
     }
 }
 

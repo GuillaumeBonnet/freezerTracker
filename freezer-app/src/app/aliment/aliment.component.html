@@ -3,7 +3,7 @@
       <svg viewBox="0 0 100 100" class="aliment-card__svg">
           <use [attr.xlink:href]="'#' + aliment.iconicFontName"/>
       </svg>
-      <h1 class="aliment-card__title">{{aliment.name}}</h1>
+      <h1 [class]="isSelected ? 'aliment-card__title aliment-card__title--selected' : 'aliment-card__title'">{{aliment.name}}</h1>
   </div>
 
 

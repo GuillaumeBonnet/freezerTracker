@@ -1,6 +1,7 @@
 .this {
     height: 100%;
     display: grid;
+    overflow: hidden;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
     grid-template-areas:
@@ -10,18 +11,136 @@
       "sel sel sel sel sel sel sel sel sel sel sel sel"
       "sel sel sel sel sel sel sel sel sel sel sel sel"
       "sel sel sel sel sel sel sel sel sel sel sel sel"
-      " .   .   .   .   .   .   .   .   .   .   .   . "
-      "lst lst lst lst lst lst lst lst lst lst lst lst"
-      "lst lst lst lst lst lst lst lst lst lst lst lst"
-      " .   .   .   .   .   .   .   .   .   .   .   . "
-      " .   .   .   .   .   .   .   .   .   .   .   . "
-      " .   .   .   .   .   .   .   .   .   .   .   . ";
+      "sel sel sel sel sel sel sel sel sel sel sel sel"
+      "lst lst lst lst lst lst lst lst lst lst lst lst "
+      "lst lst lst lst lst lst lst lst lst lst lst lst "
+      "new new new new new new new new new new new new"
+      "new new new new new new new new new new new new"
+      "new new new new new new new new new new new new";
+}
+
+.this--formlayout {
+  grid-template-areas:
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "sel sel sel sel sel sel sel sel sel sel sel sel"
+  "frm frm frm frm frm frm frm frm frm frm frm frm "
+  "frm frm frm frm frm frm frm frm frm frm frm frm "
+  "frm frm frm frm frm frm frm frm frm frm frm frm"
+  "frm frm frm frm frm frm frm frm frm frm frm frm"
+  "frm frm frm frm frm frm frm frm frm frm frm frm";
 }
 
 .aliment-details {
   grid-area: sel;
   padding: 10px;
 }
+
+.arrow {
+  width: 100%;
+  height: 100%;
+}
+
+.crossgridcontainer {
+  grid-area: new;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.formgrid {
+  grid-area: frm;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+@keyframes implode {
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+  25% {
+    width: 55px;
+    height: 55px;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+.cross {
+  position: absolute;
+  background-color: #084C98;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 50px;
+  height: 50px;
+}
+
+.cross--clicked {
+  animation: implode 0.7s;
+  width: 0px;
+  height: 0px;
+  border: none;
+}
+
+.cross__svg {
+  margin: auto;
+}
+
+.new-aliment__cross use {
+  color: #084C98;
+  fill: currentColor;
+}
+
+.arrow use {
+  color: #084C98;
+  fill: currentColor;
+}
+
+.iconcard__container {
+  overflow-x: scroll;
+  padding: 0px;
+  display :flex;
+  width: 100%;
+}
+
+.iconcard {
+  width: 50px;
+  height: 50px;
+  background-color: #0879A2;
+  border: solid white 3px;
+  border-radius: 10px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconcard::before {
+  content: " ";
+    position: absolute;
+    z-index: -1;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.iconcard__svg {
+  width: 80%;
+}
+
 
 .iconband {
     grid-area: lst;

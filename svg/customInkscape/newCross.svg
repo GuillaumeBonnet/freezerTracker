@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -9,33 +7,46 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
-   version="1.1"
    id="svg8"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="newCross.svg">
-  <defs
-     id="defs2" />
+   version="1.1"
+   viewBox="0 0 60.854164 60.854164"
+   height="60.854164mm"
+   width="60.854164mm"
+   sodipodi:docname="newCross.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
   <sodipodi:namedview
-     id="base"
      pagecolor="#ffffff"
      bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.955229"
-     inkscape:cx="341.09015"
-     inkscape:cy="728.26205"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
-     showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1018"
+     id="namedview833"
+     showgrid="true"
+     inkscape:pagecheckerboard="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.8911111"
+     inkscape:cx="191.03388"
+     inkscape:cy="153.55364"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8">
+    <inkscape:grid
+       type="xygrid"
+       id="grid835"
+       originx="0.661458"
+       originy="0.66145626" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -49,37 +60,34 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="cercle"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     transform="translate(-82.587794,-83.254458)"
+     style="display:inline;stroke:#ffffff;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="layer2">
     <circle
-       style="fill:#267cb5;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
-       id="path1057"
-       cx="113.01488"
+       r="29.765625"
        cy="113.68154"
-       r="29.765625" />
+       cx="113.01488"
+       id="path1057"
+       style="fill:#267cb5;fill-opacity:1;stroke:#ffffff;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
-     inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="barres"
-     style="display:inline">
+     transform="translate(-82.587794,-83.254458)"
+     style="display:inline"
+     id="layer3">
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
-       id="rect1063"
-       width="6.614583"
-       height="37.32515"
+       y="95.018974"
        x="109.70759"
-       y="95.018974" />
-    <rect
-       y="-131.67746"
-       x="110.37426"
        height="37.32515"
        width="6.614583"
-       id="rect1065"
+       id="rect1063"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1" />
+    <rect
+       transform="rotate(90)"
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
-       transform="rotate(90)" />
+       id="rect1065"
+       width="6.614583"
+       height="37.32515"
+       x="110.37426"
+       y="-131.67746" />
   </g>
 </svg>

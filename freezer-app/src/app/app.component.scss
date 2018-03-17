@@ -5,52 +5,15 @@
     height: 100vh;
 }
 
-
-.menuheader {
-  grid-column: 1/13;   
-  grid-row: 1/2;
-  border: solid black 1px;
-  margin: 5px;  
-}
-.menuside {
-    display: none;
-  grid-column: 1/1;
-  grid-row: 3/11;
-  border: solid black 1px;
-
-  margin: 5px;  
-}
 .page {
     grid-column: 1 /13;
-    grid-row: 2/12;
-    border: solid black 1px;
-    margin: 5px;  
+    grid-row: 1/12;
     overflow-y: scroll;
 }
 
 .footer {
-  grid-column: 1/13;   
+  grid-column: 1/13;
   grid-row: 12/13;
   display: flex;
   align-items: center;
-}
-
-.freezer {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    border-radius: 5px;
-    border: solid black 2px;
-    background-color: aqua;
-}
-
-.shop {
-    width: 40%;
-    display: flex;
-    justify-content: center;    
-    flex-wrap: wrap;
-    border-radius: 5px;
-    border: solid black 2px;
-    background-color: rgb(136, 115, 98);
 }
