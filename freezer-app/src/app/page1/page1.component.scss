@@ -1,3 +1,5 @@
+@import "~sass/variables";
+
 :host {
     height: 100%;
     display: grid;
@@ -47,9 +49,7 @@
 }
 
 .cross {
-  grid-area: new;
-  margin: auto;
-  background-color: #084C98;
+  background-color: $color-custom-bluedark;
   border-radius: 50%;
   border: 2px solid white;
   width: 50px;
@@ -66,13 +66,8 @@
 
 .cross__svg {
   margin: auto;
+  fill: white !important;
 }
-
-.new-aliment__cross use {
-  color: #084C98;
-  fill: currentColor;
-}
-
 
 .iconband {
     grid-area: lst;

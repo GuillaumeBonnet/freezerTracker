@@ -1,7 +1,29 @@
+@import "~sass/variables";
 :host {
   height:100%;
   border: 2px solid black;
   width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    width: 80%;
+    fill: red !important;
+    border-radius: 50%;
+    background-color: $color-custom-bluedark;
+    padding: 5px;
+  }
 }
 
 .exit {
@@ -20,7 +42,7 @@
 .iconcard {
   width: 50px;
   height: 50px;
-  background-color: #0879A2;
+  background-color: $color-custom-bluelight;
   border: solid white 3px;
   border-radius: 10px;
   margin: 2px;

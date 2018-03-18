@@ -1,3 +1,4 @@
+@import "~sass/variables";
 :host {
     height: 100%;
     display: flex;
@@ -12,9 +13,11 @@ $aliment-card__margin: 5px;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    $aliment-card-padding: 2px;
+    padding: $aliment-card-padding 0px $aliment-card-padding 0px;
     width: 20px;
     height: calc(100% - #{$aliment-card__margin});
-    background-color: #0879A2;
+    background-color: $color-custom-bluelight;
     border: solid white 3px;
     border-radius: 10px;
     margin: $aliment-card__margin;
@@ -28,7 +31,7 @@ $aliment-card__margin: 5px;
         border-radius: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
-        background-color: #084C98;
+        background-color: $color-custom-bluedark;
         font-family: 'Indie Flower', cursive;
         color: white;
         font-size: 14px;
@@ -37,14 +40,14 @@ $aliment-card__margin: 5px;
         width: 90%;
 
         &--selected {
-          color: #FFF2C3;
+          color: $color-custom-lightyellow;
         }
     }
 }
 
 .aliment-card--selected {
   background-color: darkcyan;
-  border: solid #FFF2C3 3px;
+  border: solid $color-custom-lightyellow 3px;
 }
 
 .aliment-card::before {

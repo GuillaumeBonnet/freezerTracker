@@ -1,3 +1,5 @@
+@import "~sass/variables";
+
 :host {
   height: 100%;
 }
@@ -5,7 +7,7 @@
 .container {
   height: 100%;
   border-radius: 50% 20% / 10% 40%;
-  background-color: #008B8B;
+  background-color: $color-custom-teal;
   padding: 10px;
   box-shadow: 1px 1px 4px, -1px -0.5px 4px;
   overflow-y: hidden;
@@ -14,7 +16,7 @@
 .aliment__svg {
   width: 20%;
   float: left;
-  border: solid #089846 2px;
+  border: solid $color-custom-green 2px;
   box-shadow: 1px 1px 4px;
   background-color: white;
   margin: 10px 10px 0px 10px;
@@ -34,14 +36,15 @@
 }
 .line__label {
   font-weight: 700;
-  color: #3E1700  ;
+  color: $color-custom-brown
+    ;
 }
 
 .line__separator {
   width: 90%;
   height: 0%;
   margin: 2px;
-  border: solid #089846 1px;
+  border: solid $color-custom-green 1px;
   box-shadow: 1px 1px 4px;
   margin: auto;
 }

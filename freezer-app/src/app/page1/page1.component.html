@@ -11,10 +11,12 @@
     </ul>
 </div>
 
+<div class="crossgridcontainer">
   <div [class]="startCrossAnimation ? 'cross cross--clicked' : 'cross'" (click)="startCrossAnimation = true" (animationend)="router.navigate(['new-aliment'])">
       <svg viewBox="0 0 100 100" class="cross__svg">
           <use xlink:href="#icon-newCross"/>
       </svg>
   </div>
+</div>
 
 
