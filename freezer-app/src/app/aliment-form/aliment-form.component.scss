@@ -10,26 +10,42 @@
   justify-content: space-between;
 }
 
-.icon {
+.button {
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: solid white 2px;
+  transition: border ease-in-out 0.2s;
+  border-radius: 50%;
+  background-color: $color-custom-bluedark;
+  padding: 4px;
+  color: white;
+  box-shadow: black 1px 1px 1px 1px;
+
+  &:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  //TODO media querries: no hover on phones
+  &:hover {
+    border: solid white 4px;
+  }
 
   &__svg {
     width: 80%;
-    fill: red !important;
-    border-radius: 50%;
-    background-color: $color-custom-bluedark;
-    padding: 5px;
+    fill: currentColor !important;
+    cursor: inherit;
+    &--rot180 {
+      transform: rotate(180deg);
+    }
   }
-}
-
-.exit {
-  border: 2px solid black;
-  height: 44px;
-  width: 44px;
 }
 
 .iconcard__container {

@@ -1,18 +1,28 @@
 <div class="buttons">
-  <div class="icon">
-    <svg viewBox="0 0 100 100" class="icon__svg">
-      <use xlink:href="#icon-009-close"/>
+  <button type="button" class="button" (click)="router.navigate([''])">
+    <svg viewBox="0 0 100 100" class="button__svg">
+      <use xlink:href="#icon-010-cancel-form"/>
     </svg>
-  </div>
+  </button>
 
-  <div class="icon">
-    <svg viewBox="0 0 100 100" class="icon__svg toto">
-      <use xlink:href="#icon-009-close"/>
+  <button type="button" class="button">
+    <svg viewBox="0 0 100 100" class="button__svg">
+      <use xlink:href="#icon-003-arrows-1"/>
     </svg>
-  </div>
+  </button>
+
+  <button type="button" class="button">
+    <svg viewBox="0 0 100 100" class="button__svg button__svg--rot180">
+      <use xlink:href="#icon-003-arrows-1"/>
+    </svg>
+  </button>
+
+  <button type="button" class="button" disabled>
+    <svg viewBox="0 0 100 100" class="button__svg">
+      <use xlink:href="#icon-011-check-form"/>
+    </svg>
+  </button>
+
+
 
 </div>
-<p>
-  aliment-form works!
-</p>
-<div class="exit" (click)="router.navigate([''])"></div>
