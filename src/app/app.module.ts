@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AlimentComponent } from './aliment/aliment.component';
 import { Page1Component } from './page1/page1.component';
-import { SquarifyDirective } from './squarify.directive';
-import {MainServiceService} from './main-service.service';
+import { SquarifyDirective } from './Directives/squarify.directive';
+import {MainServiceService} from './Services/main-service.service';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
 import { AlimentFormComponent } from './aliment-form/aliment-form.component';
 

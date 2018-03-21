@@ -4,7 +4,7 @@ import {
   , Input, AfterViewChecked, HostListener
 } from '@angular/core';
 
-import {MainServiceService} from './main-service.service';
+import {MainServiceService} from '../Services/main-service.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';

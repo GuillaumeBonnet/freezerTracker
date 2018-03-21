@@ -1,3 +1,11 @@
+
+C:\Users\guillaume\Documents\programmation\freezer\front\svg\handmade>npx svgo .
+delete the fill property manually if css coloring needed
+
+C:\Users\guillaume\Documents\programmation\freezer\front\freezer-app>grunt svgstore
+
+C:\Users\guillaume\Documents\programmation\freezer\front\freezer-app>ng serve --host 192.168.0.19 --port 4200
+
 # FreezerApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.

@@ -7,6 +7,7 @@
     "npm": "5.7.1"
   },
   "scripts": {
+    "work": "ng serve --host 192.168.0.19 --port 4200",
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
