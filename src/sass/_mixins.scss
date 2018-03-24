@@ -1,0 +1,5 @@
+@import "~sass/atomic-classes";
+
+@mixin center {
+  @extend .center;
+}

@@ -12,6 +12,7 @@ import { AlimentFormComponent } from './aliment-form/aliment-form.component';
 
 import  { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewAlimentComponent } from './new-aliment/new-aliment.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/throttleTime";
 
@@ -27,7 +28,9 @@ import "rxjs/add/operator/throttleTime";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [MainServiceService],
   bootstrap: [AppComponent]

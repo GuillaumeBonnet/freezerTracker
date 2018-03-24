@@ -1,8 +1,21 @@
 @import "~sass/variables";
+@import "~sass/atomic-classes";
+@import "~sass/mixins";
 :host {
   height:100%;
   border: 2px solid black;
   width: 100%;
+}
+
+.form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__mainspace {
+    flex-grow: 1;
+    @include center;
+  }
 }
 
 .buttons {

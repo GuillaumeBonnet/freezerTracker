@@ -1,28 +1,39 @@
-<div class="buttons">
-  <button type="button" class="button" (click)="router.navigate([''])">
-    <svg viewBox="0 0 100 100" class="button__svg">
-      <use xlink:href="#icon-010-cancel-form"/>
-    </svg>
-  </button>
+<form class="form-container" (ngSubmit)="register()" [formGroup]="userForm">
+  <div class="buttons">
 
-  <button type="button" class="button">
-    <svg viewBox="0 0 100 100" class="button__svg">
-      <use xlink:href="#icon-003-arrows-1"/>
-    </svg>
-  </button>
+    <button type="button" class="button" (click)="router.navigate([''])">
+      <svg viewBox="0 0 100 100" class="button__svg">
+        <use xlink:href="#icon-010-cancel-form"/>
+      </svg>
+    </button>
 
-  <button type="button" class="button">
-    <svg viewBox="0 0 100 100" class="button__svg button__svg--rot180">
-      <use xlink:href="#icon-003-arrows-1"/>
-    </svg>
-  </button>
+    <button type="button" class="button" (click)="previousFromControl()">
+      <svg viewBox="0 0 100 100" class="button__svg">
+        <use xlink:href="#icon-003-arrows-1"/>
+      </svg>
+    </button>
 
-  <button type="button" class="button" disabled>
-    <svg viewBox="0 0 100 100" class="button__svg">
-      <use xlink:href="#icon-011-check-form"/>
-    </svg>
-  </button>
+    <button type="button" class="button">
+      <svg viewBox="0 0 100 100" class="button__svg button__svg--rot180" (click)="nextFormControl()">
+        <use xlink:href="#icon-003-arrows-1"/>
+      </svg>
+    </button>
 
+    <button type="submit" class="button">
+      <svg viewBox="0 0 100 100" class="button__svg">
+        <use xlink:href="#icon-011-check-form"/>
+      </svg>
+    </button>
+  </div><!-- buttons div -->
 
+  <div class="form-container__mainspace" [ngSwitch]="currentFormControlName">
+    <div *ngSwitchCase="'username'">
+      <label>{{currentFormControlName}}</label><input formControlName="{{currentFormControlName}}">
+    </div>
 
-</div>
+    <div *ngSwitchCase="'password'">
+      <label>{{currentFormControlName}}</label><input formControlName="{{currentFormControlName}}">
+    </div>
+  </div>
+
+</form>
