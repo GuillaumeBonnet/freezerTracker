@@ -8,7 +8,6 @@ import { Page1Component } from './page1/page1.component';
 import { SquarifyDirective } from './Directives/squarify.directive';
 import {MainServiceService} from './Services/main-service.service';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
-import { AlimentFormComponent } from './aliment-form/aliment-form.component';
 
 import  { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewAlimentComponent } from './new-aliment/new-aliment.component';
@@ -23,7 +22,6 @@ import "rxjs/add/operator/throttleTime";
     Page1Component,
     SquarifyDirective,
     AlimentDetailsComponent,
-    AlimentFormComponent,
     NewAlimentComponent
   ],
   imports: [

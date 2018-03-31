@@ -1,3 +1,7 @@
+@import "~sass/variables";
+@import "~sass/atomic-classes";
+@import "~sass/mixins";
+
 .maincontent {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
@@ -9,6 +13,7 @@
     grid-column: 1 /13;
     grid-row: 1/12;
     overflow-y: scroll;
+    padding: $padding-page;
 }
 
 .footer {
