@@ -52,7 +52,16 @@ export class NewAlimentComponent implements OnInit {
   }
 
   register() {
-      console.log('test', this.alimentForm.get('toto'));
+    if(this.alimentForm.valid) {
+      console.log(this.alimentForm.value);
+    }
+    else {
+      this.alimentForm.controls;
+      for(var controlFormName in this.alimentForm.controls) {
+        this.alimentForm.get(controlFormName).markAsDirty();
+      }
+      console.log("dirty dirty");
+    }
   }
 
   validateNumber(control: FormControl): { [s: string]: boolean } {
