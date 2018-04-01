@@ -1,7 +1,24 @@
 <div class="mainbox">
-  <svg viewBox="0 0 100 100" class="mainbox__aliment__svg">
-      <use [attr.xlink:href]="'#' + alimentForm?.value.iconicFontName"/>
-  </svg>
+  <div (click)="setCurrentFormControl('icon')" [ngClass]="{
+    'mainbox__aliment':true,
+    'mainbox__aliment--selected': currentInputPage.value == 'icon',
+    'mainbox__aliment--invalid': isShowingInvalid('icon')
+  }">
+    <svg viewBox="0 0 100 100" class="mainbox__aliment__svg">
+        <use [attr.xlink:href]="'#' + alimentForm?.get('icon').value"/>
+    </svg>
+    <div [ngSwitch]="iconToDisplayLine('icon')" class="mainbox__line__icon mainbox__aliment__formstatus">
+        <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+          <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
+        </svg>
+        <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+          <use xlink:href="#icon-009-close"/>
+        </svg>
+        <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+          <use xlink:href="#icon-007-checked"/>
+        </svg>
+      </div><!-- icon switch end -->
+  </div>
 
   <div class="mainbox__line__containor" (click)="setCurrentFormControl('name')">
     <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'name', 'mainbox__line--invalid': isShowingInvalid('name')}">
@@ -137,32 +154,58 @@
   </div><!-- buttons div -->
 
   <div class="form-container__mainspace" [ngSwitch]="currentInputPage.value">
+    <div *ngSwitchCase="'icon'" class="current-input current-input--icons">
+      <div *ngFor="let iconName of iconList"class="iconcard" (click)="setIcon(iconName)">
+        <svg viewBox="0 0 100 100" class="iconcard__svg">
+            <use [attr.xlink:href]="'#' + iconName"/>
+        </svg>
+      </div>
+    </div>
+
     <div *ngSwitchCase="'name'" class="current-input">
       <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <input formControlName="name" class="current-input__input">
+      <div *ngIf="alimentForm.get('name').dirty && alimentForm.get('name').hasError('required')" class="current-input__invalid-reason">
+        This field is mandatory.
+      </div>
+      <input formControlName="name" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('name') == 'INVALID' }">
     </div>
 
     <div *ngSwitchCase="'category'" class="current-input">
       <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <input formControlName="category" class="current-input__input">
+      <div *ngIf="alimentForm.get('category').dirty && alimentForm.get('category').hasError('required')" class="current-input__invalid-reason">
+        This field is mandatory.
+      </div>
+      <input formControlName="category" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('category') == 'INVALID' }">
     </div>
 
     <div *ngSwitchCase="'storedDate'" class="current-input">
       <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <input formControlName="storedDate" class="current-input__input">
+      <div *ngIf="alimentForm.get('storedDate').dirty && alimentForm.get('storedDate').hasError('required')" class="current-input__invalid-reason">
+        This field is mandatory.
+      </div>
+      <input formControlName="storedDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
     </div>
 
     <div *ngSwitchCase="'expirationDate'" class="current-input">
       <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <input formControlName="expirationDate" class="current-input__input">
+      <div *ngIf="alimentForm.get('expirationDate').dirty && alimentForm.get('expirationDate').hasError('required')" class="current-input__invalid-reason">
+        This field is mandatory.
+      </div>
+      <input formControlName="expirationDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }">
     </div>
 
     <div *ngSwitchCase="'quantity'" class="current-input">
       <div><label class="current-input__label">quantityValue</label></div>
-      <input formControlName="quantityValue" class="current-input__input">
+      <div *ngIf="alimentForm.get('quantityValue').dirty && alimentForm.get('quantityValue').hasError('NaN')" class="current-input__invalid-reason">
+        This field has to be a number.
+      </div>
+      <input formControlName="quantityValue" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityValue') == 'INVALID' }">
 
       <div><label class="current-input__label">quantityUnit</label></div>
-      <input formControlName="quantityUnit" class="current-input__input">
+      <div *ngIf="alimentForm.get('quantityUnit').dirty && alimentForm.get('quantityUnit').hasError('required')" class="current-input__invalid-reason">
+        This field is mandatory.
+      </div>
+      <input formControlName="quantityUnit" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityUnit') == 'INVALID' }">
     </div>
   </div>
 

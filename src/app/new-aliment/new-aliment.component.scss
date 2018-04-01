@@ -15,14 +15,35 @@
   padding: 10px;
   box-shadow: 1px 1px 4px, -1px -0.5px 4px;
 
-  &__aliment__svg {
-    width: 20%;
+  &__aliment {
+    position: relative;
+    @include center;
+    width: 50px;
+    height: 50px;
     float: left;
     border: solid $color-custom-green 2px;
     box-shadow: 1px 1px 4px;
-    background-color: white;
+    background-color: $color-custom-bluelight;
     margin: 10px 10px 0px 10px;
     padding: 2px;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out, box-shadow 0.2s ease-out;
+    &--selected {
+      width: 52px;
+      height: 52px;
+      box-shadow: white 0px 0px 10px 0px;
+    }
+    &--invalid {
+      border: solid red 2px;
+    }
+    &__svg {
+      width: 80%;
+    }
+    &__formstatus {
+      position: absolute;
+      width: 20% !important;
+      left: 2px;
+      bottom: 2px;
+    }
   }
 
   &__line__containor {
@@ -38,13 +59,6 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
-
-    &--invalid {
-      //TODO background-color: white;
-    }
-    &--selected {
-      // background-color: $color-custom-bluelight;
-    }
     &__text {
       text-overflow: ellipsis;
       overflow: hidden;
@@ -55,6 +69,8 @@
     }
     &__icon {
       width:1em;
+      stroke: black;
+      stroke-width: 10px;
 
       &--spacer {
         flex-grow: 1;
@@ -65,8 +81,6 @@
       }
       &--valid{
         color: green;
-        stroke: black;
-        stroke-width: 10px;
       }
       &--invalid{
         color: red;
@@ -148,6 +162,17 @@
   background-color: $color-custom-teal;
   padding: 10px;
   box-shadow: 1px 1px 4px, -1px -0.5px 4px;
+  &__invalid-reason {
+    color: red;
+  }
+
+  &--icons {
+    height: 182px; //= 3*50heightIcons + 3*(2+2)iconsMargins + 2*10ContainerPadding
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+  }
 }
 
 .current-input__label{
@@ -168,17 +193,15 @@
   color: darkslategray;
   border: solid $color-custom-green 3px;
   box-shadow: 1px 1px 4px, -1px -1px 4px;
+  &--invalid {
+    border: solid red 3px;
+  }
 }
 
 
-.iconcard__container {
-  overflow-x: scroll;
-  padding: 0px;
-  display :flex;
-  width: 100%;
-}
 
 .iconcard {
+  position: relative;
   width: 50px;
   height: 50px;
   background-color: $color-custom-bluelight;
@@ -193,7 +216,7 @@
 .iconcard::before {
   content: " ";
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: -4px;
     left: -4px;
     right: -4px;

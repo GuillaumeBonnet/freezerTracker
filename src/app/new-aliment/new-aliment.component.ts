@@ -4,9 +4,7 @@ import { NgSwitch } from '@angular/common';
 import { Router } from '@angular/router';
 
 const ICON_ARRAY: any = require('../iconList.json');
-const INPUT_PAGES: String[] = ['name',
-  //'TODOicon',
-  'category', 'storedDate', 'expirationDate', 'quantity']
+const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expirationDate', 'quantity']
 
 @Component({
   selector: 'app-new-aliment',
@@ -16,13 +14,13 @@ const INPUT_PAGES: String[] = ['name',
 export class NewAlimentComponent implements OnInit {
 
   alimentForm: FormGroup;
-  currentInputPage: {value:String, index:number} = {value: 'name', index: 0};
+  currentInputPage: {value:String, index:number} = {value: INPUT_PAGES[0], index: 0};
   iconList: String[] = ICON_ARRAY;
 
   constructor(private router: Router, fb: FormBuilder) {
     this.alimentForm = fb.group({
         name: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        //TODOicon: fb.control('', [Validators.required, Validators.maxLength(250)]),
+        icon: fb.control('', [Validators.required, Validators.maxLength(250)]),
         category: fb.control('', [Validators.required, Validators.maxLength(250)]),
         storedDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
         expirationDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
@@ -39,15 +37,13 @@ export class NewAlimentComponent implements OnInit {
 
   nextFormControl() {
     let tabSize = INPUT_PAGES.length;
-    console.log('todo index', this.currentInputPage.index);
     this.currentInputPage.index = ( this.currentInputPage.index + 1 ) % tabSize;
     this.currentInputPage.value = INPUT_PAGES[this.currentInputPage.index];
-    console.log('todo index', this.currentInputPage.index);
   }
 
   setCurrentFormControl(value: String) {
     if(! INPUT_PAGES.includes(value)) {
-      this.currentInputPage = {value: 'name', index: 0};
+      this.currentInputPage = {value: INPUT_PAGES[0], index: 0};
     }
     else {
       this.currentInputPage.value = value;
@@ -58,11 +54,6 @@ export class NewAlimentComponent implements OnInit {
   register() {
       console.log('test', this.alimentForm.get('toto'));
   }
-
-  transferFormGroup(alimentForm: FormGroup) {
-    console.log("trasnf");
-    this.alimentForm = alimentForm;
-  }
 
   validateNumber(control: FormControl): { [s: string]: boolean } {
     // check to see if the control value is not a number
@@ -120,6 +111,12 @@ export class NewAlimentComponent implements OnInit {
     else {
       return 'EDIT';
     }
+  }
+
+  setIcon(iconName: string): void {
+    let iconFormControl: AbstractControl = this.alimentForm.get('icon');
+    iconFormControl.setValue(iconName);
+    iconFormControl.markAsDirty();
   }
 
   ngOnInit() {
