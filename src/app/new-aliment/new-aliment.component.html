@@ -183,7 +183,7 @@
       <div *ngIf="alimentForm.get('storedDate').dirty && alimentForm.get('storedDate').hasError('required')" class="current-input__invalid-reason">
         This field is mandatory.
       </div>
-      <input formControlName="storedDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
+      <input type="date" formControlName="storedDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
     </div>
 
     <div *ngSwitchCase="'expirationDate'" class="current-input">
