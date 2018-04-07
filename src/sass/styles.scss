@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import './variables';
 @import './mixins';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.current-input .mat-calendar-body-today, .current-input .mat-calendar-body-selected {
+  background-color: pink !important;
+}
 
 * {
     box-sizing: border-box;

@@ -1,7 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormControlName, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { NgSwitch } from '@angular/common';
 import { Router } from '@angular/router';
+import { Aliment } from '../Class/Aliment';
+import { DataService } from '../Services/data.service';
 
 const ICON_ARRAY: any = require('../iconList.json');
 const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expirationDate', 'quantity']
@@ -9,7 +11,8 @@ const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expira
 @Component({
   selector: 'app-new-aliment',
   templateUrl: './new-aliment.component.html',
-  styleUrls: ['./new-aliment.component.scss']
+  styleUrls: ['./new-aliment.component.scss'],
+  encapsulation : ViewEncapsulation.None,
 })
 export class NewAlimentComponent implements OnInit {
 
@@ -17,7 +20,7 @@ export class NewAlimentComponent implements OnInit {
   currentInputPage: {value:String, index:number} = {value: INPUT_PAGES[0], index: 0};
   iconList: String[] = ICON_ARRAY;
 
-  constructor(private router: Router, fb: FormBuilder) {
+  constructor(private router: Router, fb: FormBuilder, private dataService: DataService) {
     this.alimentForm = fb.group({
         name: fb.control('', [Validators.required, Validators.maxLength(250)]),
         icon: fb.control('', [Validators.required, Validators.maxLength(250)]),
@@ -54,6 +57,9 @@ export class NewAlimentComponent implements OnInit {
   register() {
     if(this.alimentForm.valid) {
       console.log(this.alimentForm.value);
+      let formVal = this.alimentForm.value;
+      let alim:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantity, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
+      this.dataService.addAliment(alim);
     }
     else {
       this.alimentForm.controls;

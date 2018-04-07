@@ -183,7 +183,18 @@
       <div *ngIf="alimentForm.get('storedDate').dirty && alimentForm.get('storedDate').hasError('required')" class="current-input__invalid-reason">
         This field is mandatory.
       </div>
-      <input type="date" formControlName="storedDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
+      <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
+        <mat-form-field>
+          <input
+
+            formControlName="storedDate"
+            matInput
+            [matDatepicker]="storedDatePicker"
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="storedDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #storedDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
 
     <div *ngSwitchCase="'expirationDate'" class="current-input">
@@ -191,7 +202,16 @@
       <div *ngIf="alimentForm.get('expirationDate').dirty && alimentForm.get('expirationDate').hasError('required')" class="current-input__invalid-reason">
         This field is mandatory.
       </div>
-      <input formControlName="expirationDate" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }">
+      <mat-form-field>
+        <input
+
+          formControlName="expirationDate"
+          matInput
+          [matDatepicker]="expirationDatePicker"
+          placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #expirationDatePicker [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }"></mat-datepicker>
+      </mat-form-field>
     </div>
 
     <div *ngSwitchCase="'quantity'" class="current-input">
