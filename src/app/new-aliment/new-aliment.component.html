@@ -66,7 +66,7 @@
   <div class="mainbox__line__containor" (click)="setCurrentFormControl('storedDate')">
     <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'storedDate', 'mainbox__line--invalid': isShowingInvalid('storedDate')}">
       <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'storedDate'}">
-        Stored date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.storedDate }}</span>
+        Stored date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.storedDate | date:'longDate' }}</span>
         <div class="mainbox__line__icon--spacer"></div>
         <div [ngSwitch]="iconToDisplayLine('storedDate')" class="mainbox__line__icon">
           <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
@@ -87,7 +87,7 @@
   <div class="mainbox__line__containor" (click)="setCurrentFormControl('expirationDate')">
     <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'expirationDate', 'mainbox__line--invalid': isShowingInvalid('expirationDate')}">
       <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'expirationDate'}">
-        Expiration date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.expirationDate }}</span>
+        Expiration date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.expirationDate | date:'longDate'}}</span>
         <div class="mainbox__line__icon--spacer"></div>
         <div [ngSwitch]="iconToDisplayLine('expirationDate')" class="mainbox__line__icon">
           <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
@@ -186,13 +186,14 @@
       <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
         <mat-form-field>
           <input
-
+            readonly
             formControlName="storedDate"
             matInput
             [matDatepicker]="storedDatePicker"
+            (click)="storedDatePicker.open()"
             placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="storedDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #storedDatePicker></mat-datepicker>
+          <mat-datepicker #storedDatePicker touchUi="true"></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
@@ -202,16 +203,19 @@
       <div *ngIf="alimentForm.get('expirationDate').dirty && alimentForm.get('expirationDate').hasError('required')" class="current-input__invalid-reason">
         This field is mandatory.
       </div>
-      <mat-form-field>
-        <input
-
-          formControlName="expirationDate"
-          matInput
-          [matDatepicker]="expirationDatePicker"
-          placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #expirationDatePicker [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }"></mat-datepicker>
-      </mat-form-field>
+      <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }">
+        <mat-form-field>
+          <input
+            readonly
+            formControlName="expirationDate"
+            matInput
+            [matDatepicker]="expirationDatePicker"
+            (click)="expirationDatePicker.open()"
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #expirationDatePicker touchUi="true"></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
 
     <div *ngSwitchCase="'quantity'" class="current-input">

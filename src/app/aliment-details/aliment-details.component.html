@@ -16,13 +16,13 @@
   <div class="line__separator"></div>
 
   <div class="line__containor">
-    <div class="line"><span class="line__label">Expiration date : </span>{{ aliment?.expirationDate }}</div>
+    <div class="line"><span class="line__label">Expiration date : </span>{{ aliment?.expirationDate | date:'longDate'  }}</div>
   </div>
 
   <div class="line__separator"></div>
 
   <div class="line__containor">
-    <div class="line"><span class="line__label">Stored date : </span>{{ aliment?.storedDate }}</div>
+    <div class="line"><span class="line__label">Stored date : </span>{{ aliment?.storedDate | date:'longDate'  }}</div>
   </div>
 
   <div class="line__separator"></div>
@@ -30,4 +30,11 @@
   <div class="line__containor">
     <div class="line"><span class="line__label">Quanitity : </span>{{ aliment?.quantity + ' ' + aliment?.quantityUnit }}</div>
   </div>
+
+  <button [class]="startCrossAnimation ? 'icon-edit icon-edit--clicked' : 'icon-edit'" (click)="startCrossAnimation = true" (animationend)="navigateToEdit()">
+    <svg viewBox="0 0 100 100" class="icon-edit__svg">
+      <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
+    </svg>
+  </button>
+
 </div>

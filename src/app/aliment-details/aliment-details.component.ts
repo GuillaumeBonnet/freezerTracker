@@ -1,9 +1,12 @@
-import { Component, OnInit,
-  Input
+import {
+  Component, OnInit, Input
 } from '@angular/core';
+import { DataService } from '../Services/data.service';
+
 
 import { Aliment } from '../Class/Aliment';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aliment-details',
@@ -17,11 +20,17 @@ export class AlimentDetailsComponent implements OnInit {
   @Input()
   aliment: Aliment = new Aliment();
 
-  constructor() {
+  startCrossAnimation: Boolean =  false;
 
-   }
+  constructor(private router: Router, private dataService: DataService) {
+  }
 
   ngOnInit() {
+  }
+
+  navigateToEdit(): void {
+    this.dataService.alimentToEdit = this.aliment;
+    this.router.navigate(['edit-aliment']);
   }
 
 }

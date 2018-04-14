@@ -18,6 +18,7 @@ import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/throttleTime";
 
 import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputM
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [MainServiceService, DataService],
+  providers: [MainServiceService, DataService, {provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

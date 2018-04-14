@@ -33,20 +33,6 @@
   justify-content: center;
   width: 100%;
 }
-@keyframes implode {
-  0% {
-    width: 50px;
-    height: 50px;
-  }
-  25% {
-    width: 55px;
-    height: 55px;
-  }
-  100% {
-    width: 0px;
-    height: 0px;
-  }
-}
 
 .cross {
   background-color: $color-custom-bluedark;

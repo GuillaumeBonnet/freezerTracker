@@ -6,6 +6,7 @@ const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 export class DataService {
 
   listAliments: Aliment[] = MOCK_ALIMENTS;
+  alimentToEdit: Aliment;
   constructor() { }
 
   getAliments() : Aliment[] {

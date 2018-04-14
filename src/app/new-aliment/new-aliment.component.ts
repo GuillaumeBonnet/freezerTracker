@@ -4,6 +4,7 @@ import { NgSwitch } from '@angular/common';
 import { Router } from '@angular/router';
 import { Aliment } from '../Class/Aliment';
 import { DataService } from '../Services/data.service';
+import { DatePipe } from '@angular/common';
 
 const ICON_ARRAY: any = require('../iconList.json');
 const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expirationDate', 'quantity']
@@ -19,17 +20,36 @@ export class NewAlimentComponent implements OnInit {
   alimentForm: FormGroup;
   currentInputPage: {value:String, index:number} = {value: INPUT_PAGES[0], index: 0};
   iconList: String[] = ICON_ARRAY;
+  isEdit: Boolean = this.router.url == '/edit-aliment';
 
   constructor(private router: Router, fb: FormBuilder, private dataService: DataService) {
     this.alimentForm = fb.group({
-        name: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        icon: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        category: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        storedDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        expirationDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
-        quantityValue: fb.control('', [Validators.required, Validators.maxLength(250), this.validateNumber]),
-        quantityUnit: fb.control('', [Validators.required, Validators.maxLength(250)])
-    });
+      name: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      icon: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      category: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      storedDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      expirationDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      quantityValue: fb.control('', [Validators.required, Validators.maxLength(250), this.validateNumber]),
+      quantityUnit: fb.control('', [Validators.required, Validators.maxLength(250)])
+    });
+    if(this.isEdit) {
+      let defaultAlim = this.dataService.alimentToEdit;
+      console.log('def:', defaultAlim);
+      if(defaultAlim) {
+        this.alimentForm.setValue({
+          name: defaultAlim.name,
+          icon: defaultAlim.iconicFontName,
+          category: defaultAlim.category,
+          storedDate: defaultAlim.storedDate,
+          expirationDate: defaultAlim.expirationDate,
+          quantityValue: defaultAlim.quantity,
+          quantityUnit:  defaultAlim.quantityUnit
+        });
+      }
+      else {
+        this.router.navigate(['']);
+      }
+    }
   }
 
   previousFromControl() {
@@ -56,17 +76,21 @@ export class NewAlimentComponent implements OnInit {
 
   register() {
     if(this.alimentForm.valid) {
-      console.log(this.alimentForm.value);
       let formVal = this.alimentForm.value;
-      let alim:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantity, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
-      this.dataService.addAliment(alim);
+      let alim:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantityValue, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
+      if(this.isEdit) {
+        Object.assign(this.dataService.alimentToEdit, alim);
+      }
+      else {
+        this.dataService.addAliment(alim);
+      }
+      this.router.navigate(['']);
     }
     else {
       this.alimentForm.controls;
       for(var controlFormName in this.alimentForm.controls) {
         this.alimentForm.get(controlFormName).markAsDirty();
       }
-      console.log("dirty dirty");
     }
   }
 

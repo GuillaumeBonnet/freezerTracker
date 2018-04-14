@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'new-aliment',
     component: NewAlimentComponent
+  },
+  {
+    path: 'edit-aliment',
+    component: NewAlimentComponent
   }
 ];
 
