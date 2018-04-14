@@ -9,6 +9,7 @@ import { Page1Component } from './page1/page1.component';
 import { SquarifyDirective } from './Directives/squarify.directive';
 import {MainServiceService} from './Services/main-service.service';
 import { DataService } from './Services/data.service';
+import { BackendService } from './Services/backend.service';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
 
 import  { AppRoutingModule } from './app-routing/app-routing.module';
@@ -40,7 +41,7 @@ import { LOCALE_ID } from '@angular/core';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [MainServiceService, DataService, {provide: LOCALE_ID, useValue: 'en-US' }],
+  providers: [MainServiceService, DataService, BackendService, {provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

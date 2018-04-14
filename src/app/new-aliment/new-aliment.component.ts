@@ -77,12 +77,12 @@ export class NewAlimentComponent implements OnInit {
   register() {
     if(this.alimentForm.valid) {
       let formVal = this.alimentForm.value;
-      let alim:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantityValue, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
+      let alimForm:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantityValue, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
       if(this.isEdit) {
-        Object.assign(this.dataService.alimentToEdit, alim);
+        this.dataService.editAliment(alimForm);
       }
       else {
-        this.dataService.addAliment(alim);
+        this.dataService.addAliment(alimForm);
       }
       this.router.navigate(['']);
     }

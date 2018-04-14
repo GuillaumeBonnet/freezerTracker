@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
-const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
-
+import { BackendService } from './backend.service';
 @Injectable()
 export class DataService {
 
-  listAliments: Aliment[] = MOCK_ALIMENTS;
+  listAliments: Aliment[];
   alimentToEdit: Aliment;
-  constructor() { }
+  constructor(public bnService: BackendService ) { }
 
   getAliments() : Aliment[] {
+    if(! this.listAliments) {
+      this.listAliments = this.bnService.getAliments();
+    }
     return this.listAliments;
   }
 
   addAliment(alimentToAdd: Aliment): void {
-    this.listAliments.unshift(alimentToAdd);
+    let addedAliment = this.bnService.saveAliment(alimentToAdd);
+    if(addedAliment) {
+      this.listAliments.unshift(addedAliment);
+    }
+    else {
+      console.log('error aliment not saved');
+    }
+  }
+
+  editAliment(alimentWithChanges: Aliment) : void {
+    let cpy = Object.assign({}, alimentWithChanges);
+    cpy.id  = this.alimentToEdit.id;
+    if(this.bnService.updateAliment(cpy)) {
+      Object.assign(this.alimentToEdit, alimentWithChanges);
+    }
+    else {
+      console.log('error edit');
+    }
   }
 }
