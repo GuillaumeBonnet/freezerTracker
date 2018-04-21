@@ -184,6 +184,7 @@
         This field is mandatory.
       </div>
       <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
+
         <mat-form-field>
           <input
             readonly
@@ -191,7 +192,9 @@
             matInput
             [matDatepicker]="storedDatePicker"
             (click)="storedDatePicker.open()"
-            placeholder="Choose a date">
+            placeholder="Choose a date"
+            value="alimentForm.get('storedDate')"
+            >
           <mat-datepicker-toggle matSuffix [for]="storedDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #storedDatePicker touchUi="true"></mat-datepicker>
         </mat-form-field>
@@ -211,7 +214,9 @@
             matInput
             [matDatepicker]="expirationDatePicker"
             (click)="expirationDatePicker.open()"
-            placeholder="Choose a date">
+            placeholder="Choose a date"
+            value="alimentForm.get('expirationDate')"
+          >
           <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #expirationDatePicker touchUi="true"></mat-datepicker>
         </mat-form-field>

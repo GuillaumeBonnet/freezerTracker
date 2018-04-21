@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { Page1Component} from '../page1/page1.component';
+import { PageMyFreezerComponent} from '../pageMyFreezer/pageMyFreezer.component';
 import { NewAlimentComponent } from '../new-aliment/new-aliment.component';
+import { InformationsComponent } from '../informations/informations.component';
 const routes: Routes = [
   {
       path: '',
-      component: Page1Component
+      component: PageMyFreezerComponent
   },
   {
     path: 'new-aliment',
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'edit-aliment',
     component: NewAlimentComponent
+  },
+  {
+    path: 'about',
+    component: InformationsComponent
   }
 ];
 

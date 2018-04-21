@@ -5,11 +5,11 @@ import { DataService } from '../Services/data.service';
 
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Component({
-  selector: 'app-page1',
-  templateUrl: './page1.component.html',
-  styleUrls: ['./page1.component.scss']
+  selector: 'app-pageMyFreezer',
+  templateUrl: './pageMyFreezer.component.html',
+  styleUrls: ['./pageMyFreezer.component.scss']
 })
-export class Page1Component implements OnInit {
+export class PageMyFreezerComponent implements OnInit {
 
   listAliments: Aliment[] = this.dataService.getAliments();
   indexSelectedAliment: number=0;

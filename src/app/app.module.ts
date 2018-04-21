@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AlimentComponent } from './aliment/aliment.component';
-import { Page1Component } from './page1/page1.component';
+import { PageMyFreezerComponent } from './pageMyFreezer/pageMyFreezer.component';
 import { SquarifyDirective } from './Directives/squarify.directive';
 import {MainServiceService} from './Services/main-service.service';
 import { DataService } from './Services/data.service';
@@ -20,15 +20,21 @@ import "rxjs/add/operator/throttleTime";
 
 import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { LOCALE_ID } from '@angular/core';
+import { MenuComponent } from './menu/menu.component';
+import { InformationsComponent } from './informations/informations.component';
+import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlimentComponent,
-    Page1Component,
+    PageMyFreezerComponent,
     SquarifyDirective,
     AlimentDetailsComponent,
-    NewAlimentComponent
+    NewAlimentComponent,
+    MenuComponent,
+    InformationsComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule,

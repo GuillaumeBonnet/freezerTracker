@@ -34,7 +34,6 @@ export class NewAlimentComponent implements OnInit {
     });
     if(this.isEdit) {
       let defaultAlim = this.dataService.alimentToEdit;
-      console.log('def:', defaultAlim);
       if(defaultAlim) {
         this.alimentForm.setValue({
           name: defaultAlim.name,

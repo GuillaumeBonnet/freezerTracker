@@ -1,0 +1,35 @@
+@import "~sass/variables";
+@import "~sass/mixins";
+
+:host {
+  margin: auto;
+  @include center;
+}
+
+
+.shadow {
+  background-color: black;
+  opacity: 0.8;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 8000;
+}
+.opener {
+  border-radius: 50%;
+  background : #084C98;
+  color: white;
+  margin: auto;
+  position: absolute;
+  z-index: 8500;
+  width: 50px;
+  height: 50px;
+  @include center;
+  text-align: center;
+  box-shadow: white 0px 0px 3px 3px;
+  font-family: 'Indie Flower', cursive;
+  font-weight: 900;
+  font-size: 16px;
+}
