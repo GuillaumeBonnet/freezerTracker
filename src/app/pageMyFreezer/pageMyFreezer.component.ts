@@ -9,7 +9,7 @@ const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
   templateUrl: './pageMyFreezer.component.html',
   styleUrls: ['./pageMyFreezer.component.scss']
 })
-export class PageMyFreezerComponent implements OnInit {
+export class PageMyFreezerComponent {
 
   listAliments: Aliment[] = this.dataService.getAliments();
   indexSelectedAliment: number=0;
@@ -18,9 +18,6 @@ export class PageMyFreezerComponent implements OnInit {
 
   constructor(private router: Router, private dataService: DataService) { }
 
-  ngOnInit() {
-
-  }
 
   posElementSelected(event: number) {
     this.indexSelectedAliment = event;

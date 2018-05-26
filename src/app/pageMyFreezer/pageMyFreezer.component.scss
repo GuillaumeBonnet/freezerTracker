@@ -3,7 +3,6 @@
 :host {
     height: 100%;
     display: grid;
-    overflow: hidden;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
     grid-template-areas:
@@ -58,8 +57,9 @@
 .iconband {
     grid-area: lst;
     position: relative;
-    width: 100%;
     overflow: hidden;
+    margin-left: -$padding-page;
+    margin-right: -$padding-page;
 
 
     &__sideshadow {

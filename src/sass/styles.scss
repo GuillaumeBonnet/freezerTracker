@@ -23,6 +23,7 @@ body > svg {
 html {
     height: 100vh;
     background-color: $color-custom-bluesky;
+    overflow-y: hidden;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
