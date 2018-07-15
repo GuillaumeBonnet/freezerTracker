@@ -33,8 +33,6 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit() {
     this.translationString = `translateX(${(-this.radius*Math.cos(this.angle*Math.PI/180)).toFixed(3)}vw) translateY(${(-this.radius*Math.sin(this.angle*Math.PI/180)).toFixed(3)}vw)`
-    console.log('angle', this.angle);
-    console.log('translationString', this.translationString);
   }
 
 }

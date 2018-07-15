@@ -1,34 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs/observable';
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Injectable()
 export class BackendService {
 
   listAliments: Aliment[] = MOCK_ALIMENTS;
-  constructor() {}
+  apiRoot: string = "http://localhost:8080";
 
-  getAliments() : Aliment[] {
-    console.log('AlimetBNS');
-    return this.listAliments;
+  constructor(private http: Http) {}
+
+  getAliments() : Observable<Response> {
+    return this.http.get(this.apiRoot + '/aliments');    
   }
 
-  saveAliment(alimentToSave: Aliment): Aliment {
-    //request
-    let idReturned = 36;
-    if( idReturned != null) {
-      let cpy = Object.assign({}, alimentToSave);
-      cpy.id = idReturned
-      return cpy;
-    }
-    else {
-      console.log('error aliment not saved');
-      return null;
-    }
+  saveAliment(alimentToSave: Aliment): Observable<Response> {
+    return this.http.post(this.apiRoot + '/aliment', alimentToSave);
   }
 
-  updateAliment(alimentToUpdate: Aliment) {
-    //request
-    let retout = true;
-    return retout;
+  updateAliment(alimentToUpdate: Aliment): Observable<Response> {
+    console.log('todo debug:[alimentToUpdate.id]', alimentToUpdate.id);
+    console.log('todo debug:[alimentToUpdate]', alimentToUpdate);    
+
+    return this.http.put(`${this.apiRoot}/aliment/${alimentToUpdate.id}`, alimentToUpdate);
+  }
+
+  delete(alimentToDelete: Aliment): Observable<Response> {
+    return this.http.delete(`${this.apiRoot}/aliment/${alimentToDelete.id}`);
   }
 }

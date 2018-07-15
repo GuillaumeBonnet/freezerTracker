@@ -31,11 +31,18 @@
     <div class="line"><span class="line__label">Quanitity : </span>{{ aliment?.quantity + ' ' + aliment?.quantityUnit }}</div>
   </div>
 
-  <button [ngClass]="startCrossAnimation ? 'icon-edit icon-edit--clicked' : 'icon-edit'" (click)="startCrossAnimation = true" (animationend)="navigateToEdit()">
-    <svg viewBox="0 0 100 100" class="icon-edit__svg">
-      <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-    </svg>
-  </button>
-
+  <div class="actions">
+    <button [class]="startCrossAnimation_edit ? 'actions__icon actions__icon--clicked' : 'actions__icon'" (click)="startCrossAnimation_edit = true" (animationend)="navigateToEdit()">
+      <svg viewBox="0 0 100 100" class="actions__icon__svg">
+        <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
+      </svg>
+    </button>
+    
+    <button [class]="startCrossAnimation_delete ? 'actions__icon actions__icon--clicked' : 'actions__icon'" (click)="startCrossAnimation_delete = true" (animationend)="delete()">
+      <svg viewBox="0 0 100 100" class="actions__icon__svg">
+        <use xlink:href="#icon-009-close"/>
+      </svg>
+    </button>
+  </div>
 
 </div>

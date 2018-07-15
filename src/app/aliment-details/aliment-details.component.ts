@@ -20,7 +20,8 @@ export class AlimentDetailsComponent implements OnInit {
   @Input()
   aliment: Aliment = new Aliment();
 
-  startCrossAnimation: Boolean =  false;
+  startCrossAnimation_edit: Boolean =  false;
+  startCrossAnimation_delete: Boolean =  false;
 
   constructor(private router: Router, private dataService: DataService) {
   }
@@ -31,6 +32,10 @@ export class AlimentDetailsComponent implements OnInit {
   navigateToEdit(): void {
     this.dataService.alimentToEdit = this.aliment;
     this.router.navigate(['edit-aliment']);
+  }
+
+  delete(): void {
+    this.dataService.delete(this.aliment);
   }
 
 }

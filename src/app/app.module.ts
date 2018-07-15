@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+
 
 
 import { AppComponent } from './app.component';
@@ -45,7 +47,8 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
     MatDatepickerModule, //needs to be after BrowserModule
     MatNativeDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpModule
   ],
   providers: [MainServiceService, DataService, BackendService, {provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]

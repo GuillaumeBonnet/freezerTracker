@@ -4,6 +4,8 @@ import { NgSwitch } from '@angular/common';
 import { Router } from '@angular/router';
 import { Aliment } from '../Class/Aliment';
 import { DataService } from '../Services/data.service';
+import { BackendService } from '../Services/backend.service';
+
 import { DatePipe } from '@angular/common';
 
 const ICON_ARRAY: any = require('../iconList.json');
@@ -30,7 +32,8 @@ export class NewAlimentComponent implements OnInit {
       storedDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
       expirationDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
       quantityValue: fb.control('', [Validators.required, Validators.maxLength(250), this.validateNumber]),
-      quantityUnit: fb.control('', [Validators.required, Validators.maxLength(250)])
+      quantityUnit: fb.control('', [Validators.required, Validators.maxLength(250)]),
+      id: fb.control('', [this.isEdit ? Validators.required : Validators.nullValidator, Validators.maxLength(250), this.validateNumber])
     });
     if(this.isEdit) {
       let defaultAlim = this.dataService.alimentToEdit;
@@ -42,7 +45,8 @@ export class NewAlimentComponent implements OnInit {
           storedDate: defaultAlim.storedDate,
           expirationDate: defaultAlim.expirationDate,
           quantityValue: defaultAlim.quantity,
-          quantityUnit:  defaultAlim.quantityUnit
+          quantityUnit:  defaultAlim.quantityUnit,
+          id: defaultAlim.id
         });
       }
       else {
@@ -78,6 +82,7 @@ export class NewAlimentComponent implements OnInit {
       let formVal = this.alimentForm.value;
       let alimForm:Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantityValue, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
       if(this.isEdit) {
+        alimForm.id = formVal.id;
         this.dataService.editAliment(alimForm);
       }
       else {
