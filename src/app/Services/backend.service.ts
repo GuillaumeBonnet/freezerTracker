@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Injectable()
 export class BackendService {
