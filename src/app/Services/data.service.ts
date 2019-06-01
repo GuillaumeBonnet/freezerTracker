@@ -45,7 +45,7 @@ export class DataService {
   editAliment(alimentWithChanges: Aliment) : void {
     console.log('todo debug:[alimentWithChangesABC]', alimentWithChanges);
     this.bnService.updateAliment(alimentWithChanges).subscribe(result => {
-      Object.assign(this.listAliments.filter(alim => alim.id != alimentWithChanges.id), alimentWithChanges);
+      Object.assign(this.listAliments.find(alim => alim.id == alimentWithChanges.id), alimentWithChanges);
       this.subjListAliment.next(this.listAliments);
     },  
     error => {
