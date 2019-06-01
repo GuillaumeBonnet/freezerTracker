@@ -7,8 +7,8 @@ const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 export class BackendService {
 
   listAliments: Aliment[] = MOCK_ALIMENTS;
-  // apiRoot: string = "http://localhost:8080";
-  apiRoot: string = "https://freezer-practice.herokuapp.com";
+  apiRoot: string = "http://localhost:8080";
+  // apiRoot: string = "https://freezer-practice.herokuapp.com";
 
   constructor(private http: Http) {}
 
