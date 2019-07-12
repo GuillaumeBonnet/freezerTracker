@@ -1,33 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { HttpClient, HttpRequest} from '@ANGULAR/COMMON/HTTP';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Injectable()
 export class BackendService {
 
   listAliments: Aliment[] = MOCK_ALIMENTS;
-  apiRoot: string = "http://localhost:8080";
-  // apiRoot: string = "https://freezer-practice.herokuapp.com";
+  apiRoot: string = environment.API_ROOT_URL;
+  freezerId: Number = 114;
+  options = { headers: {'Content-Type': 'application/json'}};
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
-  getAliments() : Observable<Response> {
-    return this.http.get(this.apiRoot + '/aliments');    
+  getAliments() : Observable<Object> {
+    return this.http.get(`${this.apiRoot}/freezers/${this.freezerId}/aliments`, this.options)
   }
 
-  saveAliment(alimentToSave: Aliment): Observable<Response> {
-    return this.http.post(this.apiRoot + '/aliment', alimentToSave);
+  saveAliment(alimentToSave: Aliment): Observable<Object> {
+    return this.http.post(`${this.apiRoot}/freezers/${this.freezerId}/aliments`, alimentToSave, this.options);
   }
 
-  updateAliment(alimentToUpdate: Aliment): Observable<Response> {
+  updateAliment(alimentToUpdate: Aliment): Observable<Object> {
     console.log('todo debug:[alimentToUpdate.id]', alimentToUpdate.id);
     console.log('todo debug:[alimentToUpdate]', alimentToUpdate);    
 
-    return this.http.put(`${this.apiRoot}/aliment/${alimentToUpdate.id}`, alimentToUpdate);
+    return this.http.put(`${this.apiRoot}/freezers/${this.freezerId}/aliments/${alimentToUpdate.id}`, alimentToUpdate, this.options);
   }
 
-  delete(alimentToDelete: Aliment): Observable<Response> {
-    return this.http.delete(`${this.apiRoot}/aliment/${alimentToDelete.id}`);
+  delete(alimentToDelete: Aliment): Observable<Object> {
+    return this.http.delete(`${this.apiRoot}/freezers/${this.freezerId}/aliments/${alimentToDelete.id}`, this.options);
   }
 }

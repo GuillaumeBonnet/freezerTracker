@@ -20,7 +20,7 @@ export class DataService {
 
   loadAliments() : void {
       this.bnService.getAliments().subscribe((result) => {        
-        this.listAliments = result.json();            
+        this.listAliments = <Aliment[]>result;
       }, error => {
         console.log('Error Aliment not loaded:', error);
       }, () => {
@@ -34,7 +34,7 @@ export class DataService {
     
     
     this.bnService.saveAliment(alimentToAdd).subscribe(result => {
-      this.listAliments.unshift(result.json());
+      this.listAliments.unshift(<Aliment>result);
       this.subjListAliment.next(this.listAliments);
     },
     error => {

@@ -20,7 +20,11 @@ const routes: Routes = [
   {
     path: 'about',
     component: InformationsComponent
-  }
+  },
+  // {
+  //   path: 'freezers',
+  //   component: freezersComponent
+  // }
 ];
 
 @NgModule({
