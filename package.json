@@ -10,7 +10,7 @@
     "work": "ng serve --host 192.168.0.19 --port 4200",
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
