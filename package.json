@@ -22,7 +22,6 @@
     "@angular/cdk": "^5.2.4",
     "@angular/cli": "^1.7.3",
     "@angular/common": "^5.0.0",
-    "@angular/common/http": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/core": "^5.0.0",
