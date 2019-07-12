@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@ANGULAR/COMMON/HTTP';
+
 
 
 
@@ -48,7 +49,7 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [MainServiceService, DataService, BackendService, {provide: LOCALE_ID, useValue: 'en-US' }],
   bootstrap: [AppComponent]
