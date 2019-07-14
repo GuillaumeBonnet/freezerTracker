@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
 import { HttpClient, HttpRequest} from '@ANGULAR/COMMON/HTTP';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Injectable()
