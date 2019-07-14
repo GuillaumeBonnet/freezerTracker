@@ -18,8 +18,6 @@ import { AlimentDetailsComponent } from './aliment-details/aliment-details.compo
 import  { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewAlimentComponent } from './new-aliment/new-aliment.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/throttleTime";
 
 import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { LOCALE_ID } from '@angular/core';

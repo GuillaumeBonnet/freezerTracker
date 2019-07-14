@@ -6,9 +6,7 @@ import {
 
 import {MainServiceService} from '../Services/main-service.service';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable ,  Subscription } from 'rxjs';
 import { debounceTime, throttleTime } from 'rxjs/operators';
 
 @Directive({

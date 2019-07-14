@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
 import { BackendService } from './backend.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 
 @Injectable()
 export class DataService {

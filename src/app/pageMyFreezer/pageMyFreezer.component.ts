@@ -3,8 +3,7 @@ import { Aliment } from '../Class/Aliment';
 import { Router } from '@angular/router';
 import { DataService } from '../Services/data.service';
 import { BackendService } from '../Services/backend.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 
 const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Component({

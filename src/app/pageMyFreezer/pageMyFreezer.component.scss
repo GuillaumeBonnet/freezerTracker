@@ -62,6 +62,7 @@
     overflow: hidden;
 
 
+
     &__sideshadow {
         position: absolute;
         z-index: 100;
@@ -69,12 +70,12 @@
         bottom: -3px;
         width: 10px;
         &--left {
-            box-shadow: inset 4px 0px 8px 0px white;
+            box-shadow: inset 7px 0px 8px 1px $color-custom-bluesky;
             left: 0;
         }
 
         &--right {
-            box-shadow: inset -4px 0px 8px 0px white;
+            box-shadow: inset -7px 0px 8px 1px $color-custom-bluesky;
             right: 0;
         }
     }
