@@ -24,7 +24,7 @@ export class NewAlimentComponent implements OnInit {
   iconList: String[] = ICON_ARRAY;
   isEdit: Boolean = this.router.url == '/edit-aliment';
 
-  constructor(private router: Router, fb: FormBuilder, private dataService: DataService) {
+  constructor(public router: Router, fb: FormBuilder, private dataService: DataService) {
     this.alimentForm = fb.group({
       name: fb.control('', [Validators.required, Validators.maxLength(250)]),
       icon: fb.control('', [Validators.required, Validators.maxLength(250)]),

@@ -18,7 +18,7 @@ export class PageMyFreezerComponent implements OnInit {
   selectedAliment: Aliment;
   startCrossAnimation: Boolean = false;
 
-  constructor(private router: Router, private dataService: DataService) { }
+  constructor(public router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getAlimentSubject().subscribe(
