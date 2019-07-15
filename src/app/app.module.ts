@@ -19,7 +19,10 @@ import  { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewAlimentComponent } from './new-aliment/new-aliment.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { LOCALE_ID } from '@angular/core';
 import { MenuComponent } from './menu/menu.component';
 import { InformationsComponent } from './informations/informations.component';

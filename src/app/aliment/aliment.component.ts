@@ -3,7 +3,7 @@ import {
   , EventEmitter
   , Input, Output
 } from '@angular/core';
-import {DOCUMENT} from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { Aliment } from '../Class/Aliment';
 
 
