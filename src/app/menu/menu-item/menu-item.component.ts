@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
-import { EventEmitter } from '@angular/core/src/event_emitter';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-menu-item',
