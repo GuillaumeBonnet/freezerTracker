@@ -3,243 +3,243 @@
 @import "~sass/mixins";
 
 :host {
-  height: 100%;
-  padding: $padding-page;
-  overflow-y: scroll;
+	height: 100%;
+	padding: $padding-page;
+	overflow-y: scroll;
 }
 
 .mainbox {
-  padding: 10px;
-  border-radius: 2px;
-  background-color: $color-custom-teal;
-  padding: 10px;
-  box-shadow: 1px 1px 4px, -1px -0.5px 4px;
+	padding: 10px;
+	border-radius: 2px;
+	background-color: $color-custom-teal;
+	padding: 10px;
+	box-shadow: 1px 1px 4px, -1px -0.5px 4px;
 
-  &__aliment {
-    position: relative;
-    @include center;
-    width: 50px;
-    height: 50px;
-    float: left;
-    border: solid $color-custom-green 2px;
-    box-shadow: 1px 1px 4px;
-    background-color: $color-custom-bluelight;
-    margin: 10px 10px 0px 10px;
-    padding: 2px;
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out, box-shadow 0.2s ease-out;
-    &--selected {
-      width: 52px;
-      height: 52px;
-      box-shadow: white 0px 0px 10px 0px;
-    }
-    &--invalid {
-      border: solid red 2px;
-    }
-    &__svg {
-      width: 80%;
-    }
-    &__formstatus {
-      position: absolute;
-      width: 20% !important;
-      left: 2px;
-      bottom: 2px;
-    }
-  }
+	&__aliment {
+		position: relative;
+		@include center;
+		width: 50px;
+		height: 50px;
+		float: left;
+		border: solid $color-custom-green 2px;
+		box-shadow: 1px 1px 4px;
+		background-color: $color-custom-bluelight;
+		margin: 10px 10px 0px 10px;
+		padding: 2px;
+		transition: width 0.2s ease-in-out, height 0.2s ease-in-out, box-shadow 0.2s ease-out;
+		&--selected {
+		width: 52px;
+		height: 52px;
+		box-shadow: white 0px 0px 10px 0px;
+		}
+		&--invalid {
+		border: solid red 2px;
+		}
+		&__svg {
+		width: 80%;
+		}
+		&__formstatus {
+		position: absolute;
+		width: 20% !important;
+		left: 2px;
+		bottom: 2px;
+		}
+	}
 
-  &__line__containor {
-    border: solid transparent 1px;
-  }
-  &__line {
-    font-family: 'Indie Flower', cursive;
-    font-size: 16px;
-    color: white;
-    margin: 7px;
-    padding: 2px;
-    border-radius: 1px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    &__text {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+	&__line__containor {
+		border: solid transparent 1px;
+	}
+	&__line {
+		font-family: 'Indie Flower', cursive;
+		font-size: 16px;
+		color: white;
+		margin: 7px;
+		padding: 2px;
+		border-radius: 1px;
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		&__text {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		}
 
-    &__icon svg {
-      fill: currentColor !important;
-    }
-    &__icon {
-      width:1em;
-      stroke: black;
-      stroke-width: 10px;
+		&__icon svg {
+		fill: currentColor !important;
+		}
+		&__icon {
+		width:1em;
+		stroke: black;
+		stroke-width: 10px;
 
-      &--spacer {
-        flex-grow: 1;
-      }
+		&--spacer {
+			flex-grow: 1;
+		}
 
-      &--edit {
-        color: white;
-      }
-      &--valid{
-        color: green;
-      }
-      &--invalid{
-        color: red;
-      }
-    }
-  }
-  &__line__label {
-    font-weight: 700;
-    color: $color-custom-brown;
-    transition: font-size 0.2s ease-in-out;
-    &--selected {
-      font-weight: 1000;
-      font-size: 18px;
-      text-shadow: 0 0 0.2em white;
-    }
-  }
+		&--edit {
+			color: white;
+		}
+		&--valid{
+			color: green;
+		}
+		&--invalid{
+			color: red;
+		}
+		}
+	}
+	&__line__label {
+		font-weight: 700;
+		color: $color-custom-brown;
+		transition: font-size 0.2s ease-in-out;
+		&--selected {
+		font-weight: 1000;
+		font-size: 18px;
+		text-shadow: 0 0 0.2em white;
+		}
+	}
 
 
-  &__line__separator {
-    width: 90%;
-    height: 0%;
-    margin: 2px;
-    border: solid $color-custom-green 1px;
-    box-shadow: 1px 1px 4px;
-    margin: auto;
-  }
+	&__line__separator {
+		width: 90%;
+		height: 0%;
+		margin: 2px;
+		border: solid $color-custom-green 1px;
+		box-shadow: 1px 1px 4px;
+		margin: auto;
+	}
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-between;
-  padding: $padding-page;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding: $padding-page;
+	align-items: center;
 }
 
 .button {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid white 2px;
-  transition: border ease-in-out 0.2s;
-  border-radius: 50%;
-  background-color: $color-custom-bluedark;
-  padding: 4px;
-  color: white;
-  box-shadow: black 1px 1px 1px 1px;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: solid white 2px;
+	transition: border ease-in-out 0.2s;
+	border-radius: 50%;
+	background-color: $color-custom-bluedark;
+	padding: 4px;
+	color: white;
+	box-shadow: black 1px 1px 1px 1px;
 
-  &:active {
-    position: relative;
-    top: 1px;
-    left: 1px;
-  }
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  //TODO media querries: no hover on phones
-  &:hover {
-    border: solid white 4px;
-  }
+	&:active {
+		position: relative;
+		top: 1px;
+		left: 1px;
+	}
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+	//TODO media querries: no hover on phones
+	&:hover {
+		border: solid white 4px;
+	}
 
-  &__svg {
-    width: 80%;
-    fill: currentColor !important;
-    cursor: inherit;
-    &--rot180 {
-      transform: rotate(180deg);
-    }
-  }
+	&__svg {
+		width: 80%;
+		fill: currentColor !important;
+		cursor: inherit;
+		&--rot180 {
+		transform: rotate(180deg);
+		}
+	}
 }
 
 .current-input {
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: $color-custom-teal;
-  padding: 10px;
-  box-shadow: 1px 1px 4px, -1px -0.5px 4px;
-  &__invalid-reason {
-    color: red;
-  }
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: $color-custom-teal;
+	padding: 10px;
+	box-shadow: 1px 1px 4px, -1px -0.5px 4px;
+	&__invalid-reason {
+		color: red;
+	}
 
-  &--icons {
-    height: 182px; //= 3*50heightIcons + 3*(2+2)iconsMargins + 2*10ContainerPadding
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-  }
+	&--icons {
+		height: 182px; //= 3*50heightIcons + 3*(2+2)iconsMargins + 2*10ContainerPadding
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		overflow-y: scroll;
+	}
 }
 
 .current-input__label{
-  font-family: 'Indie Flower', cursive;
-  color: white;
-  font-size: 16px;
+	font-family: 'Indie Flower', cursive;
+	color: white;
+	font-size: 16px;
 }
 
 .current-input__input{
-  margin-top: 2px;
-  height: 30px;
-  font-size: 16px;
-  width: 70%;
-  border-radius: 30px;
-  padding: 0 10px 0 10px;
-  background-color: white;
-  font-family: 'Indie Flower', cursive;
-  color: darkslategray;
-  border: solid $color-custom-green 3px;
-  box-shadow: 1px 1px 4px, -1px -1px 4px;
-  &--date {
-    height: 40px;
-    padding: 16px;
-    margin-top: 15px;
-    @include center;
-  }
-  &--date .mat-form-field{
-    width: 95%;
-    font-family: 'Indie Flower', cursive;
-    font-weight: 800;
-  }
+	margin-top: 2px;
+	height: 30px;
+	font-size: 16px;
+	width: 70%;
+	border-radius: 30px;
+	padding: 0 10px 0 10px;
+	background-color: white;
+	font-family: 'Indie Flower', cursive;
+	color: darkslategray;
+	border: solid $color-custom-green 3px;
+	box-shadow: 1px 1px 4px, -1px -1px 4px;
+	&--date {
+		height: 40px;
+		padding: 16px;
+		margin-top: 15px;
+		@include center;
+	}
+	&--date .mat-form-field{
+		width: 95%;
+		font-family: 'Indie Flower', cursive;
+		font-weight: 800;
+	}
 
-  // &--date .mat-input-placeholder-wrapper {
-  //   font-family: 'Indie Flower', cursive;
-  // }
+	// &--date .mat-input-placeholder-wrapper {
+	//   font-family: 'Indie Flower', cursive;
+	// }
 
-  &--invalid {
-    border: solid red 3px;
-  }
+	&--invalid {
+		border: solid red 3px;
+	}
 }
 
 
 
 .iconcard {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  background-color: $color-custom-bluelight;
-  border: solid white 3px;
-  border-radius: 10px;
-  margin: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	background-color: $color-custom-bluelight;
+	border: solid white 3px;
+	border-radius: 10px;
+	margin: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .iconcard::before {
-  content: " ";
-    position: absolute;
-    z-index: 1;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 1px solid black;
-    border-radius: 10px;
+	content: " ";
+	position: absolute;
+	z-index: 1;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	border: 1px solid black;
+	border-radius: 10px;
 }
 .iconcard__svg {
-  width: 80%;
+	width: 80%;
 }

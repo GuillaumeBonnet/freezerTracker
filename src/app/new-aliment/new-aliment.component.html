@@ -1,241 +1,253 @@
 <div class="mainbox">
-  <div (click)="setCurrentFormControl('icon')" [ngClass]="{
+	<div (click)="setCurrentFormControl('icon')" [ngClass]="{
     'mainbox__aliment':true,
     'mainbox__aliment--selected': currentInputPage.value == 'icon',
     'mainbox__aliment--invalid': isShowingInvalid('icon')
   }">
-    <svg viewBox="0 0 100 100" class="mainbox__aliment__svg">
-        <use [attr.xlink:href]="'#' + alimentForm?.get('icon').value"/>
-    </svg>
-    <div [ngSwitch]="iconToDisplayLine('icon')" class="mainbox__line__icon mainbox__aliment__formstatus">
-        <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-          <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-        </svg>
-        <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-          <use xlink:href="#icon-009-close"/>
-        </svg>
-        <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-          <use xlink:href="#icon-007-checked"/>
-        </svg>
-      </div><!-- icon switch end -->
-  </div>
+		<svg viewBox="0 0 100 100" class="mainbox__aliment__svg">
+			<use [attr.xlink:href]="'#' + alimentForm?.get('icon').value" />
+		</svg>
+		<div [ngSwitch]="iconToDisplayLine('icon')" class="mainbox__line__icon mainbox__aliment__formstatus">
+			<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+				<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+			</svg>
+			<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+				<use xlink:href="#icon-009-close" />
+			</svg>
+			<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+				<use xlink:href="#icon-007-checked" />
+			</svg>
+		</div><!-- icon switch end -->
+	</div>
 
-  <div class="mainbox__line__containor" (click)="setCurrentFormControl('name')">
-    <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'name', 'mainbox__line--invalid': isShowingInvalid('name')}">
-      <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'name'}">
-        Name :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.name }}</span>
-        <div class="mainbox__line__icon--spacer"></div>
-        <div [ngSwitch]="iconToDisplayLine('name')" class="mainbox__line__icon">
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-            <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-            <use xlink:href="#icon-009-close"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-            <use xlink:href="#icon-007-checked"/>
-          </svg>
-        </div><!-- icon switch end -->
-    </div>
+	<div class="mainbox__line__containor" (click)="setCurrentFormControl('name')">
+		<div
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'name', 'mainbox__line--invalid': isShowingInvalid('name')}">
+			<span
+				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'name'}">
+				Name :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.name }}</span>
+			<div class="mainbox__line__icon--spacer"></div>
+			<div [ngSwitch]="iconToDisplayLine('name')" class="mainbox__line__icon">
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+					<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+					<use xlink:href="#icon-009-close" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+					<use xlink:href="#icon-007-checked" />
+				</svg>
+			</div><!-- icon switch end -->
+		</div>
 
-  </div>
+	</div>
 
-  <div class="mainbox__line__separator"></div>
+	<div class="mainbox__line__separator"></div>
 
-  <div class="mainbox__line__containor" (click)="setCurrentFormControl('category')">
-    <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'category', 'mainbox__line--invalid': isShowingInvalid('value')}">
-      <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'category'}">
-        Category :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.category }}</span>
-        <div class="mainbox__line__icon--spacer"></div>
-        <div [ngSwitch]="iconToDisplayLine('category')" class="mainbox__line__icon">
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-            <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-            <use xlink:href="#icon-009-close"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-            <use xlink:href="#icon-007-checked"/>
-          </svg>
-        </div><!-- icon switch end -->
-    </div>
-  </div>
+	<div class="mainbox__line__containor" (click)="setCurrentFormControl('category')">
+		<div
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'category', 'mainbox__line--invalid': isShowingInvalid('value')}">
+			<span
+				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'category'}">
+				Category :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.category }}</span>
+			<div class="mainbox__line__icon--spacer"></div>
+			<div [ngSwitch]="iconToDisplayLine('category')" class="mainbox__line__icon">
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+					<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+					<use xlink:href="#icon-009-close" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+					<use xlink:href="#icon-007-checked" />
+				</svg>
+			</div><!-- icon switch end -->
+		</div>
+	</div>
 
-  <div class="mainbox__line__separator"></div>
+	<div class="mainbox__line__separator"></div>
 
-  <div class="mainbox__line__containor" (click)="setCurrentFormControl('storedDate')">
-    <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'storedDate', 'mainbox__line--invalid': isShowingInvalid('storedDate')}">
-      <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'storedDate'}">
-        Stored date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.storedDate | date:'longDate' }}</span>
-        <div class="mainbox__line__icon--spacer"></div>
-        <div [ngSwitch]="iconToDisplayLine('storedDate')" class="mainbox__line__icon">
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-            <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-            <use xlink:href="#icon-009-close"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-            <use xlink:href="#icon-007-checked"/>
-          </svg>
-        </div><!-- icon switch end -->
-    </div>
-  </div>
+	<div class="mainbox__line__containor" (click)="setCurrentFormControl('storedDate')">
+		<div
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'storedDate', 'mainbox__line--invalid': isShowingInvalid('storedDate')}">
+			<span
+				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'storedDate'}">
+				Stored date :&nbsp;</span><span
+				class="mainbox__line__text">{{ alimentForm?.value.storedDate | date:'longDate' }}</span>
+			<div class="mainbox__line__icon--spacer"></div>
+			<div [ngSwitch]="iconToDisplayLine('storedDate')" class="mainbox__line__icon">
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+					<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+					<use xlink:href="#icon-009-close" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+					<use xlink:href="#icon-007-checked" />
+				</svg>
+			</div><!-- icon switch end -->
+		</div>
+	</div>
 
-  <div class="mainbox__line__separator"></div>
+	<div class="mainbox__line__separator"></div>
 
-  <div class="mainbox__line__containor" (click)="setCurrentFormControl('expirationDate')">
-    <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'expirationDate', 'mainbox__line--invalid': isShowingInvalid('expirationDate')}">
-      <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'expirationDate'}">
-        Expiration date :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.expirationDate | date:'longDate'}}</span>
-        <div class="mainbox__line__icon--spacer"></div>
-        <div [ngSwitch]="iconToDisplayLine('expirationDate')" class="mainbox__line__icon">
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-            <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-            <use xlink:href="#icon-009-close"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-            <use xlink:href="#icon-007-checked"/>
-          </svg>
-        </div><!-- icon switch end -->
-    </div>
-  </div>
+	<div class="mainbox__line__containor" (click)="setCurrentFormControl('expirationDate')">
+		<div
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'expirationDate', 'mainbox__line--invalid': isShowingInvalid('expirationDate')}">
+			<span
+				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'expirationDate'}">
+				Expiration date :&nbsp;</span><span
+				class="mainbox__line__text">{{ alimentForm?.value.expirationDate | date:'longDate'}}</span>
+			<div class="mainbox__line__icon--spacer"></div>
+			<div [ngSwitch]="iconToDisplayLine('expirationDate')" class="mainbox__line__icon">
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+					<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+					<use xlink:href="#icon-009-close" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+					<use xlink:href="#icon-007-checked" />
+				</svg>
+			</div><!-- icon switch end -->
+		</div>
+	</div>
 
-  <div class="mainbox__line__separator"></div>
+	<div class="mainbox__line__separator"></div>
 
-  <div class="mainbox__line__containor" (click)="setCurrentFormControl('quantity')">
-    <div [ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'quantity', 'mainbox__line--invalid': isShowingInvalid('quantityValue') || isShowingInvalid('quantityUnit')}">
-      <span [ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'quantity'}">
-        Quantity :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.quantityValue + ' ' + alimentForm?.value.quantityUnit }}</span>
-        <div class="mainbox__line__icon--spacer"></div>
-        <div [ngSwitch]="iconToDisplayLine('quantity')" class="mainbox__line__icon">
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
-            <use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
-            <use xlink:href="#icon-009-close"/>
-          </svg>
-          <svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
-            <use xlink:href="#icon-007-checked"/>
-          </svg>
-        </div><!-- icon switch end -->
-    </div>
-  </div>
+	<div class="mainbox__line__containor" (click)="setCurrentFormControl('quantity')">
+		<div
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'quantity', 'mainbox__line--invalid': isShowingInvalid('quantityValue') || isShowingInvalid('quantityUnit')}">
+			<span
+				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'quantity'}">
+				Quantity :&nbsp;</span><span
+				class="mainbox__line__text">{{ alimentForm?.value.quantityValue + ' ' + alimentForm?.value.quantityUnit }}</span>
+			<div class="mainbox__line__icon--spacer"></div>
+			<div [ngSwitch]="iconToDisplayLine('quantity')" class="mainbox__line__icon">
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'EDIT'" class="mainbox__line__icon--edit">
+					<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'INVALID'" class="mainbox__line__icon--invalid">
+					<use xlink:href="#icon-009-close" />
+				</svg>
+				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
+					<use xlink:href="#icon-007-checked" />
+				</svg>
+			</div><!-- icon switch end -->
+		</div>
+	</div>
 </div><!-- mainbox details -->
 
 <form class="form-container" (ngSubmit)="register()" [formGroup]="alimentForm">
-  <div class="buttons">
+	<div class="buttons">
 
-    <button type="button" class="button" (click)="router.navigate([''])">
-      <svg viewBox="0 0 100 100" class="button__svg">
-        <use xlink:href="#icon-010-cancel-form"/>
-      </svg>
-    </button>
+		<button type="button" class="button" (click)="router.navigate([''])">
+			<svg viewBox="0 0 100 100" class="button__svg">
+				<use xlink:href="#icon-010-cancel-form" />
+			</svg>
+		</button>
 
-    <button type="button" class="button" (click)="previousFromControl()">
-      <svg viewBox="0 0 100 100" class="button__svg">
-        <use xlink:href="#icon-003-arrows-1"/>
-      </svg>
-    </button>
+		<button type="button" class="button" (click)="previousFromControl()">
+			<svg viewBox="0 0 100 100" class="button__svg">
+				<use xlink:href="#icon-003-arrows-1" />
+			</svg>
+		</button>
 
-    <button type="button" class="button" (click)="nextFormControl()">
-      <svg viewBox="0 0 100 100" class="button__svg button__svg--rot180">
-        <use xlink:href="#icon-003-arrows-1"/>
-      </svg>
-    </button>
+		<button type="button" class="button" (click)="nextFormControl()">
+			<svg viewBox="0 0 100 100" class="button__svg button__svg--rot180">
+				<use xlink:href="#icon-003-arrows-1" />
+			</svg>
+		</button>
 
-    <button type="submit" class="button">
-      <svg viewBox="0 0 100 100" class="button__svg">
-        <use xlink:href="#icon-011-check-form"/>
-      </svg>
-    </button>
-  </div><!-- buttons div -->
+		<button type="submit" class="button">
+			<svg viewBox="0 0 100 100" class="button__svg">
+				<use xlink:href="#icon-011-check-form" />
+			</svg>
+		</button>
+	</div><!-- buttons div -->
 
-  <div class="form-container__mainspace" [ngSwitch]="currentInputPage.value">
-    <div *ngSwitchCase="'icon'" class="current-input current-input--icons">
-      <div *ngFor="let iconName of iconList"class="iconcard" (click)="setIcon(iconName)">
-        <svg viewBox="0 0 100 100" class="iconcard__svg">
-            <use [attr.xlink:href]="'#' + iconName"/>
-        </svg>
-      </div>
-    </div>
+	<div class="form-container__mainspace" [ngSwitch]="currentInputPage.value">
+		<div *ngSwitchCase="'icon'" class="current-input current-input--icons">
+			<div *ngFor="let iconName of iconList" class="iconcard" (click)="setIcon(iconName)">
+				<svg viewBox="0 0 100 100" class="iconcard__svg">
+					<use [attr.xlink:href]="'#' + iconName" />
+				</svg>
+			</div>
+		</div>
 
-    <div *ngSwitchCase="'name'" class="current-input">
-      <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <div *ngIf="alimentForm.get('name').dirty && alimentForm.get('name').hasError('required')" class="current-input__invalid-reason">
-        This field is mandatory.
-      </div>
-      <input formControlName="name" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('name') == 'INVALID' }">
-    </div>
+		<div *ngSwitchCase="'name'" class="current-input">
+			<div><label class="current-input__label">{{currentInputPage.value}}</label></div>
+			<div *ngIf="alimentForm.get('name').dirty && alimentForm.get('name').hasError('required')"
+				class="current-input__invalid-reason">
+				This field is mandatory.
+			</div>
+			<input formControlName="name"
+				[ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('name') == 'INVALID' }">
+		</div>
 
-    <div *ngSwitchCase="'category'" class="current-input">
-      <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <div *ngIf="alimentForm.get('category').dirty && alimentForm.get('category').hasError('required')" class="current-input__invalid-reason">
-        This field is mandatory.
-      </div>
-      <input formControlName="category" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('category') == 'INVALID' }">
-    </div>
+		<div *ngSwitchCase="'category'" class="current-input">
+			<div><label class="current-input__label">{{currentInputPage.value}}</label></div>
+			<div *ngIf="alimentForm.get('category').dirty && alimentForm.get('category').hasError('required')"
+				class="current-input__invalid-reason">
+				This field is mandatory.
+			</div>
+			<input formControlName="category"
+				[ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('category') == 'INVALID' }">
+		</div>
 
-    <div *ngSwitchCase="'storedDate'" class="current-input">
-      <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <div *ngIf="alimentForm.get('storedDate').dirty && alimentForm.get('storedDate').hasError('required')" class="current-input__invalid-reason">
-        This field is mandatory.
-      </div>
-      <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
+		<div *ngSwitchCase="'storedDate'" class="current-input">
+			<div><label class="current-input__label">{{currentInputPage.value}}</label></div>
+			<div *ngIf="alimentForm.get('storedDate').dirty && alimentForm.get('storedDate').hasError('required')"
+				class="current-input__invalid-reason">
+				This field is mandatory.
+			</div>
+			<div
+				[ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('storedDate') == 'INVALID' }">
 
-        <mat-form-field>
-          <input
-            readonly
-            formControlName="storedDate"
-            matInput
-            [matDatepicker]="storedDatePicker"
-            (click)="storedDatePicker.open()"
-            placeholder="Choose a date"
-            value="alimentForm.get('storedDate')"
-            >
-          <mat-datepicker-toggle matSuffix [for]="storedDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #storedDatePicker touchUi="true"></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
+				<mat-form-field>
+					<input readonly formControlName="storedDate" matInput [matDatepicker]="storedDatePicker"
+						(click)="storedDatePicker.open()" placeholder="Choose a date" value="alimentForm.get('storedDate')">
+					<mat-datepicker-toggle matSuffix [for]="storedDatePicker"></mat-datepicker-toggle>
+					<mat-datepicker #storedDatePicker touchUi="true"></mat-datepicker>
+				</mat-form-field>
+			</div>
+		</div>
 
-    <div *ngSwitchCase="'expirationDate'" class="current-input">
-      <div><label class="current-input__label">{{currentInputPage.value}}</label></div>
-      <div *ngIf="alimentForm.get('expirationDate').dirty && alimentForm.get('expirationDate').hasError('required')" class="current-input__invalid-reason">
-        This field is mandatory.
-      </div>
-      <div [ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }">
-        <mat-form-field>
-          <input
-            readonly
-            formControlName="expirationDate"
-            matInput
-            [matDatepicker]="expirationDatePicker"
-            (click)="expirationDatePicker.open()"
-            placeholder="Choose a date"
-            value="alimentForm.get('expirationDate')"
-          >
-          <mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #expirationDatePicker touchUi="true"></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
+		<div *ngSwitchCase="'expirationDate'" class="current-input">
+			<div><label class="current-input__label">{{currentInputPage.value}}</label></div>
+			<div *ngIf="alimentForm.get('expirationDate').dirty && alimentForm.get('expirationDate').hasError('required')"
+				class="current-input__invalid-reason">
+				This field is mandatory.
+			</div>
+			<div
+				[ngClass]="{'current-input__input current-input__input--date': true, 'current-input__input--invalid': iconToDisplayField('expirationDate') == 'INVALID' }">
+				<mat-form-field>
+					<input readonly formControlName="expirationDate" matInput [matDatepicker]="expirationDatePicker"
+						(click)="expirationDatePicker.open()" placeholder="Choose a date"
+						value="alimentForm.get('expirationDate')">
+					<mat-datepicker-toggle matSuffix [for]="expirationDatePicker"></mat-datepicker-toggle>
+					<mat-datepicker #expirationDatePicker touchUi="true"></mat-datepicker>
+				</mat-form-field>
+			</div>
+		</div>
 
-    <div *ngSwitchCase="'quantity'" class="current-input">
-      <div><label class="current-input__label">quantityValue</label></div>
-      <div *ngIf="alimentForm.get('quantityValue').dirty && alimentForm.get('quantityValue').hasError('NaN')" class="current-input__invalid-reason">
-        This field has to be a number.
-      </div>
-      <input formControlName="quantityValue" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityValue') == 'INVALID' }">
+		<div *ngSwitchCase="'quantity'" class="current-input">
+			<div><label class="current-input__label">quantityValue</label></div>
+			<div *ngIf="alimentForm.get('quantityValue').dirty && alimentForm.get('quantityValue').hasError('NaN')"
+				class="current-input__invalid-reason">
+				This field has to be a number.
+			</div>
+			<input formControlName="quantityValue"
+				[ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityValue') == 'INVALID' }">
 
-      <div><label class="current-input__label">quantityUnit</label></div>
-      <div *ngIf="alimentForm.get('quantityUnit').dirty && alimentForm.get('quantityUnit').hasError('required')" class="current-input__invalid-reason">
-        This field is mandatory.
-      </div>
-      <input formControlName="quantityUnit" [ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityUnit') == 'INVALID' }">
-    </div>
-  </div>
+			<div><label class="current-input__label">quantityUnit</label></div>
+			<div *ngIf="alimentForm.get('quantityUnit').dirty && alimentForm.get('quantityUnit').hasError('required')"
+				class="current-input__invalid-reason">
+				This field is mandatory.
+			</div>
+			<input formControlName="quantityUnit"
+				[ngClass]="{'current-input__input': true, 'current-input__input--invalid': iconToDisplayField('quantityUnit') == 'INVALID' }">
+		</div>
+	</div>
 
 </form>

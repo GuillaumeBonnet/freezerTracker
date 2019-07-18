@@ -1,63 +1,64 @@
 @import "~sass/variables";
 :host {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 $aliment-card__margin: 5px;
+
 .aliment-card {
-    position:relative;
-    display :flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    $aliment-card-padding: 2px;
-    padding: $aliment-card-padding 0px $aliment-card-padding 0px;
-    width: 20px;
-    height: calc(100% - #{$aliment-card__margin});
-    background-color: $color-custom-bluelight;
-    border: solid white 3px;
-    border-radius: 10px;
-    margin: $aliment-card__margin;
-    cursor: pointer;
+	position:relative;
+	display :flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	$aliment-card-padding: 2px;
+	padding: $aliment-card-padding 0px $aliment-card-padding 0px;
+	width: 20px;
+	height: calc(100% - #{$aliment-card__margin});
+	background-color: $color-custom-bluelight;
+	border: solid white 3px;
+	border-radius: 10px;
+	margin: $aliment-card__margin;
+	cursor: pointer;
 
-    &__svg {
-        width: 60%;
-    }
+	&__svg {
+		width: 60%;
+	}
 
-    &__title {
-        border-radius: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        background-color: $color-custom-bluedark;
-        font-family: 'Indie Flower', cursive;
-        color: white;
-        font-size: 14px;
-        text-align: center;
-        padding: 1px 0px 1px 0px;
-        width: 90%;
+	&__title {
+		border-radius: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background-color: $color-custom-bluedark;
+		font-family: 'Indie Flower', cursive;
+		color: white;
+		font-size: 14px;
+		text-align: center;
+		padding: 1px 0px 1px 0px;
+		width: 90%;
 
-        &--selected {
-          color: $color-custom-lightyellow;
-        }
-    }
+		&--selected {
+			color: $color-custom-lightyellow;
+		}
+	}
 }
 
 .aliment-card--selected {
-  background-color: darkcyan;
-  border: solid $color-custom-lightyellow 3px;
+	background-color: darkcyan;
+	border: solid $color-custom-lightyellow 3px;
 }
 
 .aliment-card::before {
-    content: " ";
-    position: absolute;
-    z-index: -1;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 1px solid black;
-    border-radius: 10px;
+	content: " ";
+	position: absolute;
+	z-index: -1;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	border: 1px solid black;
+	border-radius: 10px;
 }

@@ -1,12 +1,12 @@
 @import "~sass/variables";
 
 :host {
-    height: 100%;
-    display: grid;
-    overflow: hidden;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    grid-template-areas:
+	height: 100%;
+	display: grid;
+	overflow: hidden;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+	grid-template-areas:
       "sel sel sel sel sel sel sel sel sel sel sel sel"
       "sel sel sel sel sel sel sel sel sel sel sel sel"
       "sel sel sel sel sel sel sel sel sel sel sel sel"
@@ -22,77 +22,77 @@
 }
 
 .aliment-details {
-  grid-area: sel;
-  padding: 10px;
+	grid-area: sel;
+	padding: 10px;
 }
 
 .crossgridcontainer {
-  grid-area: new;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+	grid-area: new;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 
 .cross {
-  background-color: $color-custom-bluedark;
-  border-radius: 50%;
-  border: 2px solid white;
-  width: 50px;
-  height: 50px;
+	background-color: $color-custom-bluedark;
+	border-radius: 50%;
+	border: 2px solid white;
+	width: 50px;
+	height: 50px;
 }
 
 .cross--clicked {
-  margin: auto;
-  animation: implode 0.2s;
-  width: 0px;
-  height: 0px;
-  border: none;
+	margin: auto;
+	animation: implode 0.2s;
+	width: 0px;
+	height: 0px;
+	border: none;
 }
 
 .cross__svg {
-  margin: auto;
-  fill: white !important;
+	margin: auto;
+	fill: white !important;
 }
 
 .iconband {
-    grid-area: lst;
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+	grid-area: lst;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
 
 
 
-    &__sideshadow {
-        position: absolute;
-        z-index: 100;
-        top: -3px;
-        bottom: -3px;
-        width: 10px;
-        &--left {
-            box-shadow: inset 7px 0px 8px 1px $color-custom-bluesky;
-            left: 0;
-        }
+		&__sideshadow {
+			position: absolute;
+			z-index: 100;
+			top: -3px;
+			bottom: -3px;
+			width: 10px;
+			&--left {
+					box-shadow: inset 7px 0px 8px 1px $color-custom-bluesky;
+					left: 0;
+			}
 
-        &--right {
-            box-shadow: inset -7px 0px 8px 1px $color-custom-bluesky;
-            right: 0;
-        }
-    }
+			&--right {
+					box-shadow: inset -7px 0px 8px 1px $color-custom-bluesky;
+					right: 0;
+			}
+		}
 
-    &__scrollable {
-        overflow-x: scroll;
-        display: flex;
-        align-items: center;
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
+		&__scrollable {
+			overflow-x: scroll;
+			display: flex;
+			align-items: center;
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
 }
 
 .icon {
-    height: 20px;
-    border: solid black 1px;
-    width: 20px;
-    margin: auto;
+	height: 20px;
+	border: solid black 1px;
+	width: 20px;
+	margin: auto;
 }
