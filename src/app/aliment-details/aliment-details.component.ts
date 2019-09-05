@@ -35,7 +35,7 @@ export class AlimentDetailsComponent implements OnInit {
 	}
 
 	delete(): void {
-		this.dataService.delete(this.aliment);
+		this.dataService.deleteAliment(this.aliment);
 	}
 
 }

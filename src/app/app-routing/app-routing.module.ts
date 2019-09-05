@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageMyFreezerComponent } from '../pageMyFreezer/pageMyFreezer.component';
 import { NewAlimentComponent } from '../new-aliment/new-aliment.component';
 import { InformationsComponent } from '../informations/informations.component';
+import { FreezersComponent } from '../freezers/freezers.component';
+
 const routes: Routes = [
 	{
 		path: '',
@@ -21,10 +23,10 @@ const routes: Routes = [
 		path: 'about',
 		component: InformationsComponent
 	},
-	// {
-	//   path: 'freezers',
-	//   component: freezersComponent
-	// }
+	{
+	  path: 'freezers',
+	  component: FreezersComponent
+	}
 ];
 
 @NgModule({

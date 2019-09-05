@@ -27,6 +27,10 @@ import { LOCALE_ID } from '@angular/core';
 import { MenuComponent } from './menu/menu.component';
 import { InformationsComponent } from './informations/informations.component';
 import { MenuItemComponent } from './menu/menu-item/menu-item.component';
+import { FreezersComponent } from './freezers/freezers.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive'
 
 @NgModule({
 	declarations: [
@@ -38,7 +42,9 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 		NewAlimentComponent,
 		MenuComponent,
 		InformationsComponent,
-		MenuItemComponent
+		MenuItemComponent,
+		FreezersComponent,
+		ClickStopPropagationDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -50,7 +56,9 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 		MatNativeDateModule,
 		MatFormFieldModule,
 		MatInputModule,
-		HttpClientModule
+		HttpClientModule,
+		MatCardModule,
+		MatButtonModule,
 	],
 	providers: [MainServiceService, DataService, BackendService, { provide: LOCALE_ID, useValue: 'en-US' }],
 	bootstrap: [AppComponent]

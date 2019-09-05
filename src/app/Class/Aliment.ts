@@ -8,7 +8,8 @@ export class Aliment {
 	storedDate: Date;
 	expirationDate: Date;
 
-	constructor(name?, category?, iconicFontName?, quantity?, quantityUnit?, storedDate?, expirationDate?) {
+	constructor(name?, category?, iconicFontName?, quantity?, quantityUnit?, storedDate?, expirationDate?, id?) {
+		this.id = id;
 		this.name = name;
 		this.category = category;
 		this.iconicFontName = iconicFontName;

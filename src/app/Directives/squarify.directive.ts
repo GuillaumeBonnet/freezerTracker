@@ -17,7 +17,7 @@ export class SquarifyDirective implements AfterViewChecked {
 	subscription: Subscription;
 
 	@Input()
-	appSquarify: String;
+	squarifyDimensionOfReference: String;
 
 	constructor(public el: ElementRef, private utils: MainServiceService) {
 	}
@@ -29,6 +29,7 @@ export class SquarifyDirective implements AfterViewChecked {
 
 
 	ngAfterViewChecked() {
+
 		this.squarifyWithMargin();
 		// this.subscription = Observable.fromEvent(window, 'resize')
 		// // .throttleTime(200)
@@ -42,17 +43,12 @@ export class SquarifyDirective implements AfterViewChecked {
 	squarifyWithMargin() {
 		let style = this.el.nativeElement.style;
 
-		let parentCompStyle: CSSStyleDeclaration = getComputedStyle(<HTMLElement>this.el.nativeElement.parentElement.parentElement.parentElement);
-		let funcPxToNumber = this.utils.pixelToNumber;
-		// style.height = (funcPxToNumber(parentCompStyle.height) - 2 * funcPxToNumber(parentCompStyle.borderWidth)) + 'px';
-		style.height = parentCompStyle.height;
-
-		style.width = style.height;
-
-		if (funcPxToNumber(this.appSquarify) != NaN) {
-			style.margin = this.appSquarify;
-			//arithmetic with the px strings
-			style.height = (funcPxToNumber(style.height) - 2 * funcPxToNumber(this.appSquarify)) + 'px';
+		if(this.squarifyDimensionOfReference == 'height') {
+			style.width = this.el.nativeElement.offsetHeight + 'px';
+			style.height = style.width;
+		}
+		else {
+			style.height = this.el.nativeElement.offsetWidth + 'px';
 			style.width = style.height;
 		}
 	}

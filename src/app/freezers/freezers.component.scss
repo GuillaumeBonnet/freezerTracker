@@ -1,0 +1,153 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~sass/variables";
+@import "~sass/mixins";
+
+.freezers-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.aliment-card {
+	position:relative;
+	display :flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	$aliment-card-padding: 2px;
+	padding: 2px;
+	width: 33%;
+	background-color: $color-custom-bluelight;
+	border: solid white 3px;
+	border-radius: 10px;
+	cursor: pointer;
+
+	&__svg {
+		width: 40%;
+	}
+
+	&__title {
+		border-radius: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background-color: $color-custom-bluedark;
+		font-family: 'Indie Flower', cursive;
+		color: white;
+		font-size: 14px;
+		text-align: center;
+		padding: 3px;
+		width: 95%;
+
+		&--selected {
+			color: $color-custom-lightyellow;
+		}
+	}
+}
+
+.aliment-card--selected {
+	background-color: darkcyan;
+	border: solid $color-custom-lightyellow 3px;
+}
+
+.aliment-card::before {
+	content: " ";
+	position: absolute;
+	z-index: -1;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.new-freezer {
+	background-color: $color-custom-teal;
+	position: relative;
+	padding: 10px;
+
+	&__buttons {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__button {
+		width: 30%;
+	}
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+
+.button--text {
+	border-radius: 8px;
+}
+
+.input-name {
+	width: 100%;
+	border-color: $color-custom-bluedark;
+}
+
+.button--ellipsis {
+	position: absolute;
+	border-width: 1px;
+
+	$absolute-shift: 4px;
+	right: $absolute-shift;
+	top: $absolute-shift;
+
+	$proportion: 30%;
+	width : $proportion;
+	height: $proportion;
+
+	&:active {
+		right: $absolute-shift - 1px !important;
+		top: $absolute-shift + 1px !important;
+		left: initial;
+	}
+
+
+}
+
+.sub-menu {
+	height: 60%;
+	width: 60%;
+	margin: auto;
+	margin-top: 80px;
+	position: relative;
+	z-index: 10000;
+
+	& .sub-menu__button {
+		background-color: transparent;
+		border: none;
+		margin-left: auto;
+		width: 40px;
+		box-shadow: none;
+		cursor: pointer;
+	}
+
+	& li {
+		border-radius: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background-color: $color-custom-bluedark;
+		font-family: "Indie Flower", cursive;
+		color: white;
+		font-size: 14px;
+		text-align: center;
+		padding: 3px;
+		margin: 5px;
+		border: 1px solid white;
+	}
+
+	& .title {
+		font-family: "Indie Flower", cursive;
+		color: white;
+		font-size: 18px;
+		text-align: center;
+		font-weight: bold;
+	}
+}
+

@@ -3,6 +3,7 @@ C:\Users\guillaume\Documents\programmation\freezer\front\svg\handmade>npx svgo .
 delete the fill property manually if css coloring needed
 
 C:\Users\guillaume\Documents\programmation\freezer\front\freezer-app>grunt svgstore
+-- then copy the content of the generated svg file in the index.html page
 
 C:\Users\guillaume\Documents\programmation\freezer\front\freezer-app>ng serve --host 192.168.0.19 --port 4200
 

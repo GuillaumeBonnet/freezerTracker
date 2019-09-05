@@ -5,7 +5,6 @@ import { DataService } from '../Services/data.service';
 import { BackendService } from '../Services/backend.service';
 import { Observable, Subject } from 'rxjs';
 
-const MOCK_ALIMENTS: any = require('../Mocks/Aliments.json');
 @Component({
 	selector: 'app-pageMyFreezer',
 	templateUrl: './pageMyFreezer.component.html',
@@ -30,7 +29,8 @@ export class PageMyFreezerComponent implements OnInit {
 				console.log("error", error);
 			}
 		);
-		this.dataService.loadAliments();
+		this.listAliments = this.dataService.listAliments;
+		this.posElementSelected(0);
 	}
 
 	posElementSelected(event: number) {
