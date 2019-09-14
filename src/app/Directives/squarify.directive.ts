@@ -29,7 +29,6 @@ export class SquarifyDirective implements AfterViewChecked {
 
 
 	ngAfterViewChecked() {
-
 		this.squarifyWithMargin();
 		// this.subscription = Observable.fromEvent(window, 'resize')
 		// // .throttleTime(200)

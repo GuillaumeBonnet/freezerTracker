@@ -1,0 +1,30 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~sass/variables";
+@import "~sass/mixins";
+
+:host  {
+	height: 60%;
+	width: 60%;
+	margin: auto;
+	margin-top: 80px;
+	position: relative;
+	z-index: 10000;
+
+	& .button-cross {
+		background-color: transparent;
+		border: none;
+		margin-left: auto;
+		width: 40px;
+		box-shadow: none;
+		cursor: pointer;
+	}
+
+	& li {
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		& button {
+			width: 60%;
+		}
+	}
+}

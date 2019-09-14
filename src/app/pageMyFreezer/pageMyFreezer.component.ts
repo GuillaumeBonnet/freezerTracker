@@ -30,11 +30,19 @@ export class PageMyFreezerComponent implements OnInit {
 			}
 		);
 		this.listAliments = this.dataService.listAliments;
-		this.posElementSelected(0);
+		if(this.listAliments && this.listAliments.length > 0) {
+			this.posElementSelected(0);
+		}
 	}
 
 	posElementSelected(event: number) {
 		this.indexSelectedAliment = event;
 		this.selectedAliment = this.listAliments[event];
 	}
+
+
+	public get isFreezerEmpty() : Boolean {
+		return !this.listAliments || this.listAliments.length==0;
+	}
+
 }

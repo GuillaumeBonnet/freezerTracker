@@ -1,24 +1,55 @@
 @import "~sass/variables";
 
-:host {
+.grid {
 	height: 100%;
 	display: grid;
 	overflow: hidden;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, 1fr);
-	grid-template-areas:
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "sel sel sel sel sel sel sel sel sel sel sel sel"
-      "lst lst lst lst lst lst lst lst lst lst lst lst "
-      "lst lst lst lst lst lst lst lst lst lst lst lst "
-      "new new new new new new new new new new new new"
-      "new new new new new new new new new new new new"
-      "new new new new new new new new new new new new";
+
+	&.grid--empty {
+		grid-template-areas:
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"ept ept ept ept ept ept ept ept ept ept ept ept"
+			"new new new new new new new new new new new new"
+			"new new new new new new new new new new new new"
+			"new new new new new new new new new new new new";
+	}
+
+	&.grid--not-empty {
+		grid-template-areas:
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"sel sel sel sel sel sel sel sel sel sel sel sel"
+			"lst lst lst lst lst lst lst lst lst lst lst lst"
+			"lst lst lst lst lst lst lst lst lst lst lst lst"
+			"new new new new new new new new new new new new"
+			"new new new new new new new new new new new new"
+			"new new new new new new new new new new new new";
+	}
+}
+
+.empty-filler {
+	grid-area: ept;
+	font-family: 'Indie Flower', cursive;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	font-weight: 500;
+	text-align: center;
+	vertical-align: middle;
+	box-shadow: none;
 }
 
 .aliment-details {

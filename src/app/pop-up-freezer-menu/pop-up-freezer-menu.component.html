@@ -1,0 +1,26 @@
+<button class="gs-button button-cross" (click)="closeMenuPopUp()">
+	<svg viewBox="0 0 100 100" class="">
+		<use xlink:href="#icon-009-close" />
+	</svg>
+</button>
+
+<h1 class="gs-text">Menu for the Freezer:</h1>
+<h2 class="gs-text">{{data.selectedFreezer.name}}</h2>
+
+<ul class="">
+	<li>
+		<button class="gs-button--text">
+			Set as main freezer
+		</button>
+	</li>
+	<li>
+		<button class="gs-button--text">
+			Rename
+		</button>
+	</li>
+	<li (click)="openDeletePopUp()">
+		<button class="gs-button--text">
+			Delete
+		</button>
+	</li>
+</ul>

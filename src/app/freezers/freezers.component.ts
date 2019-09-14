@@ -5,6 +5,8 @@ import { Freezer } from '../Class/Freezer';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { trigger, style, animate, transition, state } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer-menu.component';
 
 
 
@@ -27,14 +29,12 @@ import { trigger, style, animate, transition, state } from '@angular/animations'
 })
 export class FreezersComponent implements OnInit {
 
-	constructor(private dataService: DataService, private backendService: BackendService, private router: Router) { }
+	constructor(private dataService: DataService, private backendService: BackendService, private router: Router, public dialog: MatDialog) { }
 
 	freezers: Freezer[];
 	isCreatingANewFreezer: Boolean = false;
 	newFreezerName: string = '';
 	isNameEmpty: Boolean = false;
-	isSubMenuOppened: Boolean = false;
-	subMenuTargetId: Number;
 
 	ngOnInit() {
 		this.backendService.getFreezers().subscribe({
@@ -99,15 +99,18 @@ export class FreezersComponent implements OnInit {
 
 	openSubMenu(event: MouseEvent) {
 		event.stopPropagation();
-		this.subMenuTargetId = parseInt((event.target as HTMLButtonElement).dataset.index);
-		console.log('todo debug:[event]', event);
 
-		this.isSubMenuOppened = true;
-		console.log('todo debug:[subMenuTargetId]', this.subMenuTargetId);
+		let selectedFreezerId: number =  parseInt((event.target as HTMLButtonElement).dataset.index);
+		const dialogRef = this.dialog.open(PopUpFreezerMenuComponent, {
+			width: '250px',
+			panelClass: 'gs-popup',
+			data: {selectedFreezer: this.freezers[selectedFreezerId]}
+		});
 
-	}
-
-	closeSubMenu() {
-		this.isSubMenuOppened = false;
+		dialogRef.afterClosed().subscribe(result => {
+			//gboTodo: change view if main freeezer selected
+			console.log('The dialog was closed');
+			console.log('todo debug:[result]', result);
+		});
 	}
 }

@@ -1,22 +1,3 @@
-<div class="gs-shadow-backdrop" *ngIf="isSubMenuOppened" (click)="closeSubMenu()">
-	<div class="sub-menu gs-box" click-stop-propagation>
-		<button class="gs-button sub-menu__button" (click)="closeSubMenu()">
-			<svg viewBox="0 0 100 100" class="">
-				<use xlink:href="#icon-009-close" />
-			</svg>
-		</button>
-
-		<h1 class="title">Menu for Freezer :</h1>
-		<div class="title">{{freezers[subMenuTargetId].name}}</div>
-
-		<ul class="">
-			<li>Set as main freezer</li>
-			<li>Rename</li>
-			<li>Delete</li>
-		</ul>
-</div>
-</div>
-
 <mat-card>
 	<mat-card-title>Your freezers</mat-card-title>
 	<mat-card-content>

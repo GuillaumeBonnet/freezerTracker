@@ -30,7 +30,10 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { FreezersComponent } from './freezers/freezers.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive'
+import  { MatDialogModule } from '@angular/material/dialog';
+import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
+import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
+import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component'
 
 @NgModule({
 	declarations: [
@@ -45,6 +48,12 @@ import { ClickStopPropagationDirective } from './Directives/click-stop-propagati
 		MenuItemComponent,
 		FreezersComponent,
 		ClickStopPropagationDirective,
+		PopUpFreezerMenuComponent,
+		PopUpDeleteFreezerComponent,
+	],
+	entryComponents: [
+		PopUpFreezerMenuComponent,
+		PopUpDeleteFreezerComponent
 	],
 	imports: [
 		BrowserModule,
@@ -59,6 +68,7 @@ import { ClickStopPropagationDirective } from './Directives/click-stop-propagati
 		HttpClientModule,
 		MatCardModule,
 		MatButtonModule,
+		MatDialogModule,
 	],
 	providers: [MainServiceService, DataService, BackendService, { provide: LOCALE_ID, useValue: 'en-US' }],
 	bootstrap: [AppComponent]
