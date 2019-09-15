@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
+
 
 @Component({
 	selector: 'app-menu',
@@ -22,7 +24,7 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
 	isOpened: Boolean = false;
-	constructor(private router: Router) { }
+	constructor(private router: Router, private location: Location) { }
 
 	ngOnInit() {
 	}
@@ -31,6 +33,15 @@ export class MenuComponent implements OnInit {
 		this.router.navigate([route]);
 		clickEvt.stopPropagation();
 		this.isOpened = false
+	}
+
+	secondaryAction(actionToken: String) {
+		if (actionToken == 'back') {
+			this.location.back();
+		}
+		else if(actionToken == 'forward') {
+			this.location.forward();
+		}
 	}
 
 }

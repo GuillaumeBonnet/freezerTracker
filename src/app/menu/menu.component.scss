@@ -4,21 +4,44 @@
 :host {
 	margin: auto;
 	@include center;
+	justify-content: space-around;
+	width: 43%;
 }
 
-.opener {
+@mixin menuButton {
 	border-radius: 50%;
 	background : #084C98;
 	color: white;
 	margin: auto;
-	position: absolute;
+	position: relative;
 	z-index: 8500;
-	width: 50px;
-	height: 50px;
 	@include center;
 	text-align: center;
 	box-shadow: white 0px 0px 3px 3px;
 	font-family: 'Indie Flower', cursive;
 	font-weight: 900;
 	font-size: 16px;
+	overflow: hidden;
+}
+
+.opener {
+	@include menuButton();
+	overflow: initial;
+	width: 50px;
+	height: 50px;
+}
+
+.secondary-action {
+	@include menuButton();
+	width: 25px;
+	height: 25px;
+
+	&--right {
+		transform: rotate(180deg);
+	}
+	& svg {
+		width: 60%;
+		fill: currentColor !important;
+		cursor: inherit;
+	}
 }

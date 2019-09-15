@@ -1,5 +1,11 @@
 <div class="gs-shadow-backdrop" *ngIf="isOpened" (click)="isOpened = false" [@shadowing]></div>
 
+<div class="secondary-action" (click)="secondaryAction('back')">
+	<svg viewBox="0 0 100 100" class="">
+		<use xlink:href="#icon-003-arrows-1" />
+	</svg>
+</div>
+
 <div class="opener" (click)="isOpened = !isOpened">
 	menu
 	<app-menu-item angle="{{10+0*(180-20)/4}}" label="my freezer" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item>
@@ -7,4 +13,10 @@
 	<app-menu-item angle="{{10+2*(180-20)/4}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')"></app-menu-item>
 	<app-menu-item angle="{{10+3*(180-20)/4}}" label="Log Out" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item>
 	<app-menu-item angle="{{10+4*(180-20)/4}}" label="Freezers" [isOpened]="isOpened" (click)="navigate($event, 'freezers')"></app-menu-item>
+</div>
+
+<div class="secondary-action secondary-action--right" (click)="secondaryAction('forward')">
+	<svg viewBox="0 0 100 100" class="">
+		<use xlink:href="#icon-003-arrows-1" />
+	</svg>
 </div>
