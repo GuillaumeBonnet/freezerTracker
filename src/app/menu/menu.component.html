@@ -8,11 +8,11 @@
 
 <div class="opener" (click)="isOpened = !isOpened">
 	menu
-	<app-menu-item angle="{{10+0*(180-20)/4}}" label="my freezer" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item>
-	<app-menu-item angle="{{10+1*(180-20)/4}}" label="new item" [isOpened]="isOpened" (click)="navigate($event, 'new-aliment')"></app-menu-item>
-	<app-menu-item angle="{{10+2*(180-20)/4}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')"></app-menu-item>
-	<app-menu-item angle="{{10+3*(180-20)/4}}" label="Log Out" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item>
-	<app-menu-item angle="{{10+4*(180-20)/4}}" label="Freezers" [isOpened]="isOpened" (click)="navigate($event, 'freezers')"></app-menu-item>
+	<!-- <app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 3})}}" label="my freezer" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item>
+	<app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 3})}}" label="new item" [isOpened]="isOpened" (click)="navigate($event, 'new-aliment')"></app-menu-item> -->
+	<app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 3})}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')"></app-menu-item>
+	<!-- <app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 3})}}" label="Log Out" [isOpened]="isOpened" (click)="navigate($event, '')"></app-menu-item> -->
+	<app-menu-item #menuitem angle="{{calculateAngle({index: 3, length: 3})}}" label="Freezers" [isOpened]="isOpened" (click)="navigate($event, 'freezers')"></app-menu-item>
 </div>
 
 <div class="secondary-action secondary-action--right" (click)="secondaryAction('forward')">

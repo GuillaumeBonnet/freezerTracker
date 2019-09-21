@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer-menu.component';
+import { DataService } from '../Services/data.service';
+import { Aliment } from '../Class/Aliment';
 
 @Component({
 	selector: 'app-pop-up-delete-freezer',
@@ -9,13 +11,14 @@ import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer
 })
 export class PopUpDeleteFreezerComponent implements OnInit {
 
-	constructor(public dialogRef: MatDialogRef<PopUpFreezerMenuComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+	constructor(private dataService: DataService, public dialogRef: MatDialogRef<PopUpFreezerMenuComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 	ngOnInit() {
 	}
 
 	deleteFreezer() {
-		console.log('todo debug:[this.data.freezerId]', this.data.freezerId);
+		this.dataService.deleteFreezer(this.data.freezerId);
+		//ToDoBetter behaviour callbacks success error
 		this.dialogRef.close(true);
 	}
 

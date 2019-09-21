@@ -1,9 +1,9 @@
 <div class="mainbox">
 	<div (click)="setCurrentFormControl('icon')" [ngClass]="{
-    'mainbox__aliment':true,
-    'mainbox__aliment--selected': currentInputPage.value == 'icon',
-    'mainbox__aliment--invalid': isShowingInvalid('icon')
-  }">
+		'mainbox__aliment':true,
+		'mainbox__aliment--selected': currentInputPage.value == 'icon',
+		'mainbox__aliment--invalid': isShowingInvalid('icon')
+	}">
 		<svg viewBox="0 0 100 100" class="mainbox__aliment__svg">
 			<use [attr.xlink:href]="'#' + alimentForm?.get('icon').value" />
 		</svg>

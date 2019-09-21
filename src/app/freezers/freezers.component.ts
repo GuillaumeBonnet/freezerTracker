@@ -37,13 +37,12 @@ export class FreezersComponent implements OnInit {
 	isNameEmpty: Boolean = false;
 
 	ngOnInit() {
-		this.backendService.getFreezers().subscribe({
+		this.dataService.getFreezerSubject().subscribe({
 			next: (data) => {
-				console.log('todo debug:[data]', data);
 				this.freezers = <Freezer[]>data;
 			},
 			error: (error) => {
-				console.log('todo debug:[error]', error);
+				console.log('todo debug:[error getFreezerSubject subscribe]', error);
 			}
 		})
 	}
@@ -83,24 +82,16 @@ export class FreezersComponent implements OnInit {
 	}
 
 	createFreezer() {
-		this.backendService.saveFreezer(this.newFreezerName).subscribe({
-			next: (result) => {
-				this.freezers.unshift(<Freezer>result);
-				console.log('todo debug:[this.freezers]', this.freezers);
-
-				this.isCreatingANewFreezer = false;
-			},
-			error: (error) => {
-				console.log("error", error);
-			},
-			complete: null
+		this.dataService.addFreezer(this.newFreezerName, () => {
+			this.isCreatingANewFreezer = false;
 		});
 	}
 
 	openSubMenu(event: MouseEvent) {
 		event.stopPropagation();
 
-		let selectedFreezerId: number =  parseInt((event.target as HTMLButtonElement).dataset.index);
+		let selectedFreezerId: number =  parseInt((event.currentTarget as HTMLButtonElement).dataset.index);
+
 		const dialogRef = this.dialog.open(PopUpFreezerMenuComponent, {
 			width: '250px',
 			panelClass: 'gs-popup',

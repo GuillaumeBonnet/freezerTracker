@@ -29,6 +29,12 @@ export class MenuComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	calculateAngle(input): number {
+		let numberOfMeniItems = input.length;
+		let deadAngle = 25;
+		return deadAngle +  (input.index - 1) * (180-deadAngle-deadAngle)  / (numberOfMeniItems-1);
+	}
+
 	navigate(clickEvt: Event, route: string): void {
 		this.router.navigate([route]);
 		clickEvt.stopPropagation();

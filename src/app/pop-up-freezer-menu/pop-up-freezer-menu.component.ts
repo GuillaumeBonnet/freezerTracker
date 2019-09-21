@@ -19,11 +19,12 @@ export class PopUpFreezerMenuComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
-	openDeletePopUp(): void { //move to subMenu pop-up
+
+	openDeletePopUp(): void {
 		const dialogRef = this.dialog.open(PopUpDeleteFreezerComponent, {
 			width: '200px',
 			panelClass: 'gs-popup',
-			data: {freezerId: this.data.selectedFreezer.Id}
+			data: {freezerId: this.data.selectedFreezer.id}
 		});
 
 		dialogRef.afterClosed().subscribe(hasValidatedDeletion => {

@@ -4,6 +4,7 @@ import { HttpClient, HttpRequest } from '@ANGULAR/COMMON/HTTP';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Freezer } from '../Class/Freezer';
+
 @Injectable()
 export class BackendService {
 
@@ -20,6 +21,14 @@ export class BackendService {
 
 	saveFreezer(name: String): Observable<Object> {
 		return this.http.post(`${this.apiRoot}/freezers`, new Freezer(name), this.options)
+	}
+
+	deleteFreezer(freezerToDelete: Freezer): Observable<Object> {
+		return this.http.delete(`${this.apiRoot}/freezers/${freezerToDelete.id}`, this.options)
+	}
+
+	updateFreezer(freezerToUpdate: Freezer): Observable<Object> {
+		return this.http.put(`${this.apiRoot}/freezers/${freezerToUpdate.id}`, freezerToUpdate, this.options);
 	}
 
 	// Aliments
