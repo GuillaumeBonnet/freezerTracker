@@ -1,101 +1,101 @@
-[ 
-    { 
-      "id": 1, 
-      "name": "steak", 
-      "category": "viande", 
-      "iconicFontName": "icon-batch1_steak", 
-      "number": 4, 
-      "quantity": 120, 
-      "quantityUnit": "g", 
-      "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-      "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }, 
-    { 
-      "id": 2, 
-      "name": "saumon", 
-      "category": "poisson", 
-      "iconicFontName": "icon-batch1_salmon", 
-      "number": 3, 
-      "quantity": 2, 
-      "quantityUnit": "pieces", 
-      "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-      "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }, 
-    { 
-      "id": 3, 
-      "name": "ice cream", 
-      "category": "desert", 
-      "iconicFontName": "icon-batch1_ice-cream-6", 
-      "number": 2, 
-      "quantity": 120, 
-      "quantityUnit": "g", 
-      "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-      "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }, 
-    { 
-    "id": 1, 
-    "name": "steak", 
-    "category": "viande", 
-    "iconicFontName": "icon-batch1_steak", 
-    "number": 4, 
-    "quantity": 120, 
-    "quantityUnit": "g", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-  }, 
-  { 
-    "id": 2, 
-    "name": "saumon", 
-    "category": "poisson", 
-    "iconicFontName": "icon-batch1_salmon", 
-    "number": 3, 
-    "quantity": 2, 
-    "quantityUnit": "pieces", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-  }, 
-  { 
-    "id": 3, 
-    "name": "ice cream", 
-    "category": "desert", 
-    "iconicFontName": "icon-batch1_ice-cream-6", 
-    "number": 2, 
-    "quantity": 120, 
-    "quantityUnit": "g", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-  }, 
-  { 
-    "id": 1, 
-    "name": "steak", 
-    "category": "viande", 
-    "iconicFontName": "icon-batch1_steak", 
-    "number": 4, 
-    "quantity": 120, 
-    "quantityUnit": "g", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }, 
-    { 
-    "id": 2, 
-    "name": "saumon", 
-    "category": "poisson", 
-    "iconicFontName": "icon-batch1_salmon", 
-    "number": 3, 
-    "quantity": 2, 
-    "quantityUnit": "pieces", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }, 
-    { 
-    "id": 3, 
-    "name": "ice cream", 
-    "category": "desert", 
-    "iconicFontName": "icon-batch1_ice-cream-6", 
-    "number": 2, 
-    "quantity": 120, 
-    "quantityUnit": "g", 
-    "storedDate": "Wed May 02 2018 00:00:00 GMT0200", 
-    "expirationDate": "Wed May 18 2018 00:00:00 GMT0200" 
-    }
+[
+	{
+		"id": 1,
+		"name": "steak",
+		"category": "viande",
+		"iconicFontName": "icon-batch1_steak",
+		"number": 4,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 2,
+		"name": "saumon",
+		"category": "poisson",
+		"iconicFontName": "icon-batch1_salmon",
+		"number": 3,
+		"quantity": 2,
+		"quantityUnit": "pieces",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 3,
+		"name": "ice cream",
+		"category": "desert",
+		"iconicFontName": "icon-batch1_ice-cream-6",
+		"number": 2,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 1,
+		"name": "steak",
+		"category": "viande",
+		"iconicFontName": "icon-batch1_steak",
+		"number": 4,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 2,
+		"name": "saumon",
+		"category": "poisson",
+		"iconicFontName": "icon-batch1_salmon",
+		"number": 3,
+		"quantity": 2,
+		"quantityUnit": "pieces",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 3,
+		"name": "ice cream",
+		"category": "desert",
+		"iconicFontName": "icon-batch1_ice-cream-6",
+		"number": 2,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 1,
+		"name": "steak",
+		"category": "viande",
+		"iconicFontName": "icon-batch1_steak",
+		"number": 4,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 2,
+		"name": "saumon",
+		"category": "poisson",
+		"iconicFontName": "icon-batch1_salmon",
+		"number": 3,
+		"quantity": 2,
+		"quantityUnit": "pieces",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	},
+	{
+		"id": 3,
+		"name": "ice cream",
+		"category": "desert",
+		"iconicFontName": "icon-batch1_ice-cream-6",
+		"number": 2,
+		"quantity": 120,
+		"quantityUnit": "g",
+		"storedDate": "Wed May 02 2018 00:00:00 GMT0200",
+		"expirationDate": "Wed May 18 2018 00:00:00 GMT0200"
+	}
 ]

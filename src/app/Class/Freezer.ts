@@ -1,8 +1,9 @@
-export class Aliment {
-  id: Number;
-  name: String;
+export class Freezer {
+	id: Number;
+	name: String;
 
-  constructor(name?) {
-    this.name = name;
-  }
+	constructor(name?, id?) {
+		this.id = id;
+		this.name = name;
+	}
 }

@@ -3,22 +3,22 @@
 @import "~sass/mixins";
 
 .maincontent {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	height: 100vh;
 }
 
 .page {
-    grid-column: 1 /13;
-    grid-row: 1/12;
-    overflow-y: scroll;
-    padding: $padding-page;
+		grid-column: 1 /13;
+		grid-row: 1/12;
+		overflow-y: scroll;
+		padding: $padding-page;
 }
 
 .footer {
-  grid-column: 1/13;
-  grid-row: 12/13;
-  display: flex;
-  align-items: center;
+	grid-column: 1/13;
+	grid-row: 12/13;
+	display: flex;
+	align-items: center;
 }

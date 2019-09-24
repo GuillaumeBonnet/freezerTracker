@@ -1,9 +1,17 @@
 .fullheight {
-  height: 100%;
+	height: 100%;
 }
 
 .center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.svg-white {
+	fill: white !important;
+}
+
+.svg-stroke-white {
+	stroke: white;
 }

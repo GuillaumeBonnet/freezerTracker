@@ -2,70 +2,69 @@
 @import "~sass/mixins";
 
 :host {
-  height: 100%;
+	height: 100%;
 }
 
 .container {
-  height: 100%;
-  border-radius: 50% 20% / 10% 40%;
-  background-color: $color-custom-teal;
-  padding: 10px;
-  box-shadow: 1px 1px 4px, -1px -0.5px 4px;
-  overflow-y: hidden;
+	height: 100%;
+	border-radius: 50% 20% / 10% 40%;
+	background-color: $color-custom-teal;
+	padding: 10px;
+	box-shadow: 1px 1px 4px, -1px -0.5px 4px;
+	overflow-y: hidden;
 }
 
 .aliment__svg {
-  width: 20%;
-  float: left;
-  border: solid $color-custom-green 2px;
-  box-shadow: 1px 1px 4px;
-  background-color: white;
-  margin: 10px 10px 0px 10px;
-  padding: 2px;
+	width: 20%;
+	float: left;
+	border: solid $color-custom-green 2px;
+	box-shadow: 1px 1px 4px;
+	background-color: white;
+	margin: 10px 10px 0px 10px;
+	padding: 2px;
 }
 .actions {
-  display: flex;
-  justify-content: flex-end;
-  &__icon {
-    margin: 0px 5px;
-    height: 44px;
-    width: 44px;
-    @include center;
-    border-radius: 5px;
-    border: solid white 1px;
-    background-color: $color-custom-bluedark;
-    &__svg {
-      fill: white !important;
-      width: 90%;
-    }
-    &--clicked {
-      animation: implode 0.2s;
-    }
-  }
+	display: flex;
+	justify-content: flex-end;
+	&__icon {
+		margin: 0px 5px;
+		height: 44px;
+		width: 44px;
+		@include center;
+		border-radius: 5px;
+		border: solid white 1px;
+		background-color: $color-custom-bluedark;
+		&__svg {
+		fill: white !important;
+		width: 90%;
+		}
+		&--clicked {
+		animation: implode 0.2s;
+		}
+	}
 }
 
 .line__containor {
-  border: solid transparent 1px;
+	border: solid transparent 1px;
 }
 .line {
-  font-family: 'Indie Flower', cursive;
-  font-size: 16px;
-  color: white;
-  margin: 7px;
-  padding: 2px;
-  border-radius: 1px;
+	font-family: 'Indie Flower', cursive;
+	font-size: 16px;
+	color: white;
+	margin: 7px;
+	padding: 2px;
+	border-radius: 1px;
 }
 .line__label {
-  font-weight: 700;
-  color: $color-custom-brown
-    ;
+	font-weight: 700;
+	color: $color-custom-brown;
 }
 
 .line__separator {
-  width: 90%;
-  height: 0%;
-  margin: 2px;
-  border: solid $color-custom-green 1px;
-  box-shadow: 1px 1px 4px;
-  margin: auto;
+	width: 90%;
+	height: 0%;
+	margin: 2px;
+	border: solid $color-custom-green 1px;
+	box-shadow: 1px 1px 4px;
+	margin: auto;
 }

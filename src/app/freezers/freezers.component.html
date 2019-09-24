@@ -1,0 +1,59 @@
+<mat-card>
+	<mat-card-title>Your freezers</mat-card-title>
+	<mat-card-content>
+		<ul class="freezers-container" (click)="$event.stopPropagation()">
+			<!-- if -->
+			<li appSquarify squarifyDimensionOfReference="width"
+				class="aliment-card new-freezer"
+				*ngIf="!isCreatingANewFreezer"
+				(click)="initiateFreezerCreation()"
+			>
+				<svg viewBox="0 0 100 100" class="svg-white svg-stroke-white">
+						<use xlink:href="#icon-newCross"/>
+				</svg>
+			</li>
+			<li appSquarify squarifyDimensionOfReference="width"
+				class="aliment-card new-freezer"
+				*ngIf="isCreatingANewFreezer"
+			>
+				<div class="new-freezer__buttons">
+					<button class="gs-button new-freezer__button" (click)="cancelFreezerCreation()">
+						<svg viewBox="0 0 100 100" class="">
+								<use xlink:href="#icon-009-close" />
+						</svg>
+					</button>
+					<button (click)="createFreezer()" class="gs-button new-freezer__button" [attr.disabled]="newFreezerName == '' ? 'disabled' : null">
+						<svg viewBox="0 0 100 100" class="">
+								<use xlink:href="#icon-007-checked" />
+						</svg>
+					</button>
+				</div>
+
+				<input (keyup)="nameKeyUp($event)" [ngClass]="{'gs-current-input__input input-name': true, 'gs-current-input__input--invalid': isNameEmpty }">
+			</li>
+
+		<!-- for -->
+			<li appSquarify squarifyDimensionOfReference="width"
+				class="aliment-card"
+				*ngFor="let elem of freezers; index as i"
+				(click)="navigateToFreezerContent(i)"
+			>
+				<button class="gs-button button--ellipsis" (click)="openSubMenu($event)" [attr.data-index]="i">
+					<svg viewBox="0 0 100 100" class="svg-white svg-stroke-white" [attr.data-index]="i">
+							<use [attr.xlink:href]="'#' + 'icon-ellipsis'" />
+					</svg>
+				</button>
+				<svg viewBox="0 0 100 100" class="aliment-card__svg">
+						<use [attr.xlink:href]="'#' + 'icon-batch1_flour-1'" />
+				</svg>
+				<h1 class="aliment-card__title">
+						{{elem.name}}
+				</h1>
+			</li>
+		</ul>
+	</mat-card-content>
+</mat-card>
+
+
+
+
