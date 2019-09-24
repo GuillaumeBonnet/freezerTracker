@@ -1,0 +1,20 @@
+<button class="gs-button cross-button" (click)="closeRenamePopUp()">
+	<svg viewBox="0 0 100 100" class="">
+		<use xlink:href="#icon-009-close" />
+	</svg>
+</button>
+
+<div class="gs-text">
+	Enter new Name:
+</div>
+<div class="input">
+	<input #nameInput [ngClass]="{'gs-current-input__input input-name': true, 'gs-current-input__input--invalid': isNameEmpty }">
+</div>
+<div class="buttons">
+	<button class="gs-button--text" (click)="renameFreezer(nameInput)">
+		Rename
+	</button>
+	<button class="gs-button--text" (click)="closeRenamePopUp()">
+		Cancel
+	</button>
+</div>

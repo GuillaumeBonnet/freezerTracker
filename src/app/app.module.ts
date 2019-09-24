@@ -33,7 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
 import  { MatDialogModule } from '@angular/material/dialog';
 import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
-import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component'
+import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component';
+import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component'
 
 @NgModule({
 	declarations: [
@@ -50,10 +51,12 @@ import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-dele
 		ClickStopPropagationDirective,
 		PopUpFreezerMenuComponent,
 		PopUpDeleteFreezerComponent,
+		PopUpRenameFreezerComponent,
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,
-		PopUpDeleteFreezerComponent
+		PopUpDeleteFreezerComponent,
+		PopUpRenameFreezerComponent,
 	],
 	imports: [
 		BrowserModule,

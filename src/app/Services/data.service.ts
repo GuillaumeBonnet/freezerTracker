@@ -63,13 +63,15 @@ export class DataService {
 		}
 
 		editFreezer(freezerWithChanges: Freezer): void {
-			this.bnService.updateFreezer(freezerWithChanges).subscribe(result => {
-				Object.assign(this.listFreezers.find(freezer => freezer.id == freezerWithChanges.id), freezerWithChanges);
-				this.subjListFreezer.next(this.listFreezers);
-			},
+			this.bnService.updateFreezer(freezerWithChanges).subscribe(
+				result => {
+					Object.assign(this.listFreezers.find(freezer => freezer.id == freezerWithChanges.id), freezerWithChanges);
+					this.subjListFreezer.next(this.listFreezers);
+				},
 				error => {
 					console.log('Error Aliment not updated:', error);
-				});
+				}
+			);
 		}
 
 		deleteFreezer(freezerIdToDelete: String): void {
