@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -34,8 +34,11 @@ import  { MatDialogModule } from '@angular/material/dialog';
 import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
 import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component';
-import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component'
-
+import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component';
+import { LoginComponent } from './login/login.component';
+import { VerificationRedirectionComponent } from './verification-redirection/verification-redirection.component'
+import { InterceptorXsrfHeaderWritterService } from './Services/interceptor-xsrf-header-writter.service';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -52,6 +55,8 @@ import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rena
 		PopUpFreezerMenuComponent,
 		PopUpDeleteFreezerComponent,
 		PopUpRenameFreezerComponent,
+		LoginComponent,
+		VerificationRedirectionComponent,
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,
@@ -73,7 +78,14 @@ import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rena
 		MatButtonModule,
 		MatDialogModule,
 	],
-	providers: [MainServiceService, DataService, BackendService, { provide: LOCALE_ID, useValue: 'en-US' }],
+	providers: [
+		MainServiceService,
+		DataService,
+		BackendService,
+		{ provide: LOCALE_ID, useValue: 'en-US' },
+		CookieService,
+		{ provide: HTTP_INTERCEPTORS, useClass: InterceptorXsrfHeaderWritterService, multi: true },
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
