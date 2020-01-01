@@ -1,29 +1,43 @@
-<form class="form-container gs-box" (ngSubmit)="login()" [formGroup]="loginForm">
-	<div class="gs-text">
-		Log into the app:
+<div class="form-container gs-box">
+	<form (ngSubmit)="login()" [formGroup]="loginForm">
+		<div class="gs-text">
+			Log into the app:
+		</div>
+
+		<br>
+
+		<div class="input">
+			<div><label class="gs-text">Username</label></div>
+			<input
+				formControlName="username"
+				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
+			>
+		</div>
+
+		<div class="input">
+			<div><label class="gs-text">Password</label></div>
+			<input
+				formControlName="password"
+				type="password"
+				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
+			>
+		</div>
+
+		<div class="button-group">
+			<button class="gs-button form-button">
+				Log In
+			</button>
+		</div>
+	</form>
+
+	<div class="button-group">
+		<button class="gs-button form-button" (click)="goToRegistrationPage()">
+			Register
+		</button>
+
+		<button class="gs-button form-button" (click)="goToForgottenPasswordPage()">
+			Forgot Password
+		</button>
 	</div>
 
-	<br>
-
-	<div class="input">
-		<div><label class="gs-text">Username</label></div>
-		<input
-			formControlName="username"
-			[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
-		>
-	</div>
-
-	<div class="input">
-		<div><label class="gs-text">Password</label></div>
-		<input
-			formControlName="password"
-			type="password"
-			[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
-		>
-	</div>
-
-
-	<button class="gs-button login-button">
-		Log In
-	</button>
-</form>
+</div>

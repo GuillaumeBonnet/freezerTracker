@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { AuthService }      from './auth.service';
 import { DataService } from '../Services/data.service';
 import { map, catchError } from 'rxjs/operators';
 import { UserInfo } from '../Class/UserInfo';
@@ -15,6 +14,7 @@ export class AuthGuard implements  CanActivate {
 	constructor(private router: Router, private dataService: DataService) {}
 
 	isLoggedIn = false;
+	redirectionUrl = '/freezers';
 
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
 		if(this.isLoggedIn) {
@@ -27,6 +27,7 @@ export class AuthGuard implements  CanActivate {
 			})
 			, catchError((error, caught) => {
 				this.isLoggedIn = false;
+				this.redirectionUrl = state.url;
 				return of(this.router.parseUrl('/login'));
 			})
 		);

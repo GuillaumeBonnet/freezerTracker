@@ -8,6 +8,7 @@ import { FreezersComponent } from '../freezers/freezers.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthGuard }  from '../auth/auth.guard';
 import { VerificationRedirectionComponent } from '../verification-redirection/verification-redirection.component';
+import { RegistrationComponent } from '../registration/registration.component';
 
 const routes: Routes = [
 
@@ -35,6 +36,10 @@ const routes: Routes = [
 	{
 		path: 'login',
 		component: LoginComponent
+	},
+	{
+		path: 'registration',
+		component: RegistrationComponent
 	},
 	{
 		path: 'confirm-registration/:token', //This path is reference in the back-end => don't change

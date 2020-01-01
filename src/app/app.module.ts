@@ -39,6 +39,7 @@ import { LoginComponent } from './login/login.component';
 import { VerificationRedirectionComponent } from './verification-redirection/verification-redirection.component'
 import { InterceptorXsrfHeaderWritterService } from './Services/interceptor-xsrf-header-writter.service';
 import { CookieService } from 'ngx-cookie-service';
+import { RegistrationComponent } from './registration/registration.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -57,6 +58,7 @@ import { CookieService } from 'ngx-cookie-service';
 		PopUpRenameFreezerComponent,
 		LoginComponent,
 		VerificationRedirectionComponent,
+		RegistrationComponent,
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,

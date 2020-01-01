@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
+import { AuthGuard } from '../auth/auth.guard';
+import { BackendService } from '../Services/backend.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public router: Router, fb: FormBuilder, public authService: AuthService) {
+	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, private backendService: BackendService) {
 		this.loginForm = fb.group({
 			username: fb.control('', [Validators.required, Validators.maxLength(250)]),
 			password: fb.control('', [Validators.required, Validators.maxLength(250)]),
@@ -36,19 +37,22 @@ export class LoginComponent implements OnInit {
 		}
 
 		let formVal = this.loginForm.value;
-		console.log('gboDebug:[formVal]', formVal.username);
-		console.log('gboDebug:[formVal]', formVal.password);
 
-		this.authService.login().subscribe(() => {
-			if (this.authService.isLoggedIn) {
-				// Get the redirect URL from our auth service
-				// If no redirect has been set, use the default
-				let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/freezers';
-				// Redirect the user
-				this.router.navigateByUrl(redirect);
+		this.backendService.login(formVal.username, formVal.password).subscribe({
+			next: () => {
+				this.router.navigateByUrl(this.authGuard.redirectionUrl);
+			}, error: (error) => {
+				console.log('error login', error);
 			}
 		});
+	}
 
+	goToRegistrationPage() {
+		this.router.navigate(['registration']);
+	}
+
+	goToForgottenPasswordPage() {
+		this.router.navigate(['forgot-password']);
 	}
 
 }

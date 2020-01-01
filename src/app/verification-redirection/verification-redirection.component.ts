@@ -25,7 +25,7 @@ export class VerificationRedirectionComponent implements OnInit {
 			},
 			error: (error) => {
 				let errorMessage = 'The email verification was unsucessful.' // TODO: label
-				console.log('gboDebug:[error confirm-registration]', error);
+				console.log('[error confirm-registration]', error);
 			},
 		});
 	}

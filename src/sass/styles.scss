@@ -107,6 +107,7 @@
 	color: darkslategray;
 	border: solid $color-custom-green 3px;
 	box-shadow: 1px 1px 4px, -1px -1px 4px;
+	outline:0;
 
 	&--invalid {
 		border: solid red 3px !important;

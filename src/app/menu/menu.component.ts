@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { BackendService } from '../Services/backend.service';
+import { AuthGuard } from '../auth/auth.guard';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -24,7 +28,13 @@ import {Location} from '@angular/common';
 export class MenuComponent implements OnInit {
 
 	isOpened: Boolean = false;
-	constructor(private router: Router, private location: Location) { }
+	constructor(
+		private router: Router
+		, private location: Location
+		, private backendService: BackendService
+		, private authGuard: AuthGuard
+		, private cookieService : CookieService
+	) { }
 
 	ngOnInit() {
 	}
@@ -48,6 +58,17 @@ export class MenuComponent implements OnInit {
 		else if(actionToken == 'forward') {
 			this.location.forward();
 		}
+	}
+
+	logout(clickEvt: Event) {
+		clickEvt.stopPropagation();
+		this.backendService.logout().subscribe({
+			complete: () => {
+				this.cookieService.deleteAll(null, environment.DOMAIN);
+				this.authGuard.isLoggedIn = false;
+				this.router.navigate(['login']);
+			}
+		});
 	}
 
 }

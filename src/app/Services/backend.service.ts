@@ -31,6 +31,14 @@ export class BackendService {
 		return this.http.post(`${this.apiRoot}/users/login`, body);
 	}
 
+	logout(): Observable<Object> {
+		return this.http.post(`${this.apiRoot}/users/logout`, null);
+	}
+
+	register(registrationInfo: {username: string, password: string, matchingPassword: string, email: string}): Observable<Object> {
+		return this.http.post(`${this.apiRoot}/users/registration`, registrationInfo);
+	}
+
 	/* -------------------------------------------------------------------------- */
 	/*                                  Freezers                                  */
 	/* -------------------------------------------------------------------------- */
