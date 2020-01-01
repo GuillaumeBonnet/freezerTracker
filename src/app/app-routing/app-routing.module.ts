@@ -14,7 +14,7 @@ const routes: Routes = [
 
 	{
 		path: '',
-		component: PageMyFreezerComponent
+		component: InformationsComponent
 	},
 	{
 		path: 'new-aliment',

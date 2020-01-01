@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
 		private router: Router
 		, private location: Location
 		, private backendService: BackendService
-		, private authGuard: AuthGuard
+		, public authGuard: AuthGuard
 		, private cookieService : CookieService
 	) { }
 
