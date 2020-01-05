@@ -6,7 +6,7 @@ import { DataService } from '../Services/data.service';
 
 import { Aliment } from '../Class/Aliment';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-aliment-details',
@@ -20,22 +20,33 @@ export class AlimentDetailsComponent implements OnInit {
 	@Input()
 	aliment: Aliment = new Aliment();
 
+	@Input()
+	freezerId: string;
+
 	startCrossAnimation_edit: Boolean = false;
 	startCrossAnimation_delete: Boolean = false;
 
-	constructor(private router: Router, private dataService: DataService) {
+	constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute) {
 	}
 
 	ngOnInit() {
 	}
 
 	navigateToEdit(): void {
-		this.dataService.alimentToEdit = this.aliment;
-		this.router.navigate(['edit-aliment']);
+		this.router.navigate(['edit-aliment', this.aliment.id], {relativeTo: this.route});
 	}
 
 	delete(): void {
-		this.dataService.deleteAliment(this.aliment);
+		//TODO pop-up
+		this.dataService.deleteAliment(this.freezerId, this.aliment).subscribe({
+			next: () => {
+				this.aliment = new Aliment();
+				this.router.navigate(['freezers', this.freezerId]);
+			},
+			error: (error) => {
+				console.log("Error deleting an aliment:", error);
+			}
+		})
 	}
 
 }

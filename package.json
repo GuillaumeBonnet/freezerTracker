@@ -7,7 +7,7 @@
     "npm": "6.9.0"
   },
   "scripts": {
-    "devbuild": "del ..\\back\\src\\main\\resources\\public /s /q && ng build --output-path=../back/src/main/resources/public",
+    "devbuild": "del ..\\back\\src\\main\\resources\\public /s /q && ng build --output-path=../back/src/main/resources/public --configuration=dev-java",
     "work": "ng serve --host 192.168.0.19 --port 4200",
     "ng": "ng",
     "start": "node server.js",

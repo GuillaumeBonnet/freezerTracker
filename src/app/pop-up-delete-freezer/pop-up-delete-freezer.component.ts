@@ -18,6 +18,7 @@ export class PopUpDeleteFreezerComponent implements OnInit {
 
 	deleteFreezer() {
 		this.dataService.deleteFreezer(this.data.freezerId);
+		//TODO: type the data.
 		//ToDoBetter behaviour callbacks success error
 		this.dialogRef.close(true);
 	}

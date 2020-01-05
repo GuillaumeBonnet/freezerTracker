@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../Services/data.service';
 import { BackendService } from '../Services/backend.service';
 import { Freezer } from '../Class/Freezer';
@@ -29,7 +29,7 @@ import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer
 })
 export class FreezersComponent implements OnInit {
 
-	constructor(private dataService: DataService, private backendService: BackendService, private router: Router, public dialog: MatDialog) { }
+	constructor(private dataService: DataService, @Inject('BackendService') private backendService: BackendService, private router: Router, public dialog: MatDialog) { }
 
 	freezers: Freezer[];
 	isCreatingANewFreezer: Boolean = false;
@@ -37,25 +37,19 @@ export class FreezersComponent implements OnInit {
 	isNameEmpty: Boolean = false;
 
 	ngOnInit() {
-		this.dataService.getFreezerSubject().subscribe({
-			next: (data) => {
-				this.freezers = <Freezer[]>data;
+		this.dataService.getFreezers()
+		.subscribe({
+			next: (freezers: Freezer[]) => {
+				this.freezers = freezers;
 			},
 			error: (error) => {
-				console.log('todo debug:[error getFreezerSubject subscribe]', error);
+				console.log('todo debug:[error getFreezer]', error);
 			}
 		})
 	}
 
-	navigateToFreezerContent(i) {
-		console.log('navigateToFreezerContent', this.freezers[i].id);
-		this.dataService.loadAliments(this.freezers[i].id)
-			.then(() => {
-				this.router.navigate(['']);
-			})
-			.catch((error) => {
-				console.log('todo debug:[error]');
-			});
+	navigateToFreezerContent(i: number) {
+		this.router.navigate(['/freezers', this.freezers[i].id]);
 	}
 
 	initiateFreezerCreation() {

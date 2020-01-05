@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { DataService } from '../Services/data.service';
 import { map, catchError } from 'rxjs/operators';
 import { UserInfo } from '../Class/UserInfo';
-import { BackendService } from '../Services/backend.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,6 +25,7 @@ export class AuthGuard implements  CanActivate {
 				return true;
 			})
 			, catchError((error, caught) => {
+				console.log('error getUserInfo:', error);
 				this.isLoggedIn = false;
 				this.redirectionUrl = state.url;
 				return of(this.router.parseUrl('/login'));

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
 	constructor(
 		private router: Router
 		, private location: Location
-		, private backendService: BackendService
+		, @Inject('BackendService') private backendService: BackendService
 		, public authGuard: AuthGuard
 		, private cookieService : CookieService
 	) { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
@@ -13,16 +13,22 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, private backendService: BackendService) {
+	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, @Inject('BackendService') private backendService: BackendService) {
 		this.loginForm = fb.group({
 			username: fb.control('', [Validators.required, Validators.maxLength(250)]),
 			password: fb.control('', [Validators.required, Validators.maxLength(250)]),
 		});
 
 		this.loginForm.setValue({
-			username: 'guest',
-			password: 'guest-password'
+			username: 'toto',
+			password: 'toto'
 		});
+
+		// this.loginForm.setValue({
+		// 	username: 'guest',
+		// 	password: 'guest-password'
+		// });
+		//TODO! guest account UI
 	}
 
 	ngOnInit() {

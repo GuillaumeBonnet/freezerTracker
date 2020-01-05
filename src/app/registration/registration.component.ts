@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
 	registerForm: FormGroup;
 	isAwaitingConfirmation: boolean = false;
 
-	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, private backendService: BackendService) {
+	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, @Inject('BackendService') private backendService: BackendService) {
 
 		this.registerForm = fb.group({
 			username: fb.control('', [Validators.required, Validators.maxLength(250)]),

@@ -1,15 +1,14 @@
-import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControlName, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { NgSwitch } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Aliment } from '../Class/Aliment';
 import { DataService } from '../Services/data.service';
-import { BackendService } from '../Services/backend.service';
-
 import { DatePipe } from '@angular/common';
+import { Observable, PartialObserver } from 'rxjs';
 
 const ICON_ARRAY: any = require('../iconList.json');
-const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expirationDate', 'quantity']
+const INPUT_PAGES: string[] = ['icon', 'name', 'category', 'storedDate', 'expirationDate', 'quantity']
 
 @Component({
 	selector: 'app-new-aliment',
@@ -20,38 +19,70 @@ const INPUT_PAGES: String[] = ['icon', 'name', 'category', 'storedDate', 'expira
 export class NewAlimentComponent implements OnInit {
 
 	alimentForm: FormGroup;
-	currentInputPage: { value: String, index: number } = { value: INPUT_PAGES[0], index: 0 };
-	iconList: String[] = ICON_ARRAY;
-	isEdit: Boolean = this.router.url == '/edit-aliment';
+	currentInputPage: { value: string, index: number } = { value: INPUT_PAGES[0], index: 0 };
+	iconList: string[] = ICON_ARRAY;
+	freezerId: string;
 
-	constructor(public router: Router, fb: FormBuilder, private dataService: DataService) {
-		this.alimentForm = fb.group({
-			name: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			icon: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			category: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			storedDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			expirationDate: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			quantityValue: fb.control('', [Validators.required, Validators.maxLength(250), this.validateNumber]),
-			quantityUnit: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			id: fb.control('', [this.isEdit ? Validators.required : Validators.nullValidator, Validators.maxLength(250), this.validateNumber])
+	// Edit variables
+	@Input()
+	isEdit: Boolean = false;
+	alimentId: number;
+
+	constructor(public router: Router, private fb: FormBuilder, private dataService: DataService, private route: ActivatedRoute) {	}
+
+	ngOnInit() {
+		this.route.params.subscribe({
+			next: (params: Params) => {
+				console.log("gboDebug:[params]", params);
+
+				this.freezerId = params.freezerId;
+				if(this.isEdit) {
+					this.alimentId = params.alimentId;
+				}
+			},
+			error: (error: Error) => {
+				console.log('Error getting url params.');
+			}
 		});
+		this.alimentForm = this.fb.group({
+			name: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			icon: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			category: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			storedDate: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			expirationDate: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			quantityValue: this.fb.control('', [Validators.required, Validators.maxLength(250), this.validateNumber]),
+			quantityUnit: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			id: this.fb.control('', [this.isEdit ? Validators.required : Validators.nullValidator, Validators.maxLength(250), this.validateNumber])
+		});
+
 		if (this.isEdit) {
-			let defaultAlim = this.dataService.alimentToEdit;
-			if (defaultAlim) {
-				this.alimentForm.setValue({
-					name: defaultAlim.name,
-					icon: defaultAlim.iconicFontName,
-					category: defaultAlim.category,
-					storedDate: defaultAlim.storedDate,
-					expirationDate: defaultAlim.expirationDate,
-					quantityValue: defaultAlim.quantity,
-					quantityUnit: defaultAlim.quantityUnit,
-					id: defaultAlim.id
-				});
-			}
-			else {
-				this.router.navigate(['']);
-			}
+			console.log("gboDebug:[this.dataService.getFreezerContent(this.freezerId)]", this.dataService.getFreezerContent(this.freezerId));
+			this.dataService.getFreezerContent(this.freezerId).subscribe({
+				next: (freezerContent: Aliment[]) => {
+					console.log("gboDebug:[this.alimentId]", this.alimentId);
+					let alimToEdit = freezerContent.find((alim) => alim.id == this.alimentId);
+					if (alimToEdit) {
+						this.alimentForm.setValue({
+							name: alimToEdit.name,
+							icon: alimToEdit.iconicFontName,
+							category: alimToEdit.category,
+							storedDate: alimToEdit.storedDate,
+							expirationDate: alimToEdit.expirationDate,
+							quantityValue: alimToEdit.quantity,
+							quantityUnit: alimToEdit.quantityUnit,
+							id: alimToEdit.id
+						});
+					}
+					else {
+						console.log('Could not find the aliment to edit.');
+						this.router.navigate(['freezers', this.freezerId]);
+					}
+				},
+				error: (error) => {
+					console.log('Could not find the freezer content error:', error);
+					this.router.navigate(['freezers', this.freezerId]);
+				}
+			});
 		}
 	}
 
@@ -67,7 +98,7 @@ export class NewAlimentComponent implements OnInit {
 		this.currentInputPage.value = INPUT_PAGES[this.currentInputPage.index];
 	}
 
-	setCurrentFormControl(value: String) {
+	setCurrentFormControl(value: string) {
 		if (!INPUT_PAGES.includes(value)) {
 			this.currentInputPage = { value: INPUT_PAGES[0], index: 0 };
 		}
@@ -80,15 +111,33 @@ export class NewAlimentComponent implements OnInit {
 	register() {
 		if (this.alimentForm.valid) {
 			let formVal = this.alimentForm.value;
-			let alimForm: Aliment = new Aliment(formVal.name, formVal.category, formVal.icon, formVal.quantityValue, formVal.quantityUnit, formVal.storedDate, formVal.expirationDate);
+			let alimFromForm: Aliment = new Aliment({
+				name: formVal.name
+				, category: formVal.category
+				, iconicFontName: formVal.icon
+				, quantity: formVal.quantityValue
+				, quantityUnit: formVal.quantityUnit
+				, storedDate: formVal.storedDate
+				, expirationDate: formVal.expirationDate
+			});
+
+			let dmlObserver: PartialObserver<Aliment> = {
+				next: () => {
+					this.router.navigate(['freezers', this.freezerId]);
+				},
+				error: (error) => {
+					console.log('error with dml operation insert or update on an aliment:', error);
+					this.router.navigate(['freezers', this.freezerId]);
+				}
+			};
+
 			if (this.isEdit) {
-				alimForm.id = formVal.id;
-				this.dataService.editAliment(alimForm);
+				alimFromForm.id = formVal.id;
+				this.dataService.editAliment(this.freezerId, alimFromForm).subscribe(dmlObserver);
 			}
 			else {
-				this.dataService.addAliment(alimForm);
+				this.dataService.addAliment(this.freezerId, alimFromForm).subscribe(dmlObserver);
 			}
-			this.router.navigate(['']);
 		}
 		else {
 			this.alimentForm.controls;
@@ -162,7 +211,8 @@ export class NewAlimentComponent implements OnInit {
 		iconFormControl.markAsDirty();
 	}
 
-	ngOnInit() {
+	cancelForm(): void {
+		this.router.navigate(['freezers', this.freezerId]);
 	}
 
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageMyFreezerComponent } from './pageMyFreezer.component';
+import { FreezerContent } from './freezerContent.component';
 
-describe('PageMyFreezerComponent', () => {
-	let component: PageMyFreezerComponent;
-	let fixture: ComponentFixture<PageMyFreezerComponent>;
+describe('FreezerContent', () => {
+	let component: FreezerContent;
+	let fixture: ComponentFixture<FreezerContent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [PageMyFreezerComponent]
+			declarations: [FreezerContent]
 		})
 			.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(PageMyFreezerComponent);
+		fixture = TestBed.createComponent(FreezerContent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

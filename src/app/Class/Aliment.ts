@@ -1,5 +1,5 @@
 export class Aliment {
-	id: Number;
+	id: number;
 	name: String;
 	category: String;
 	iconicFontName: String;
@@ -8,14 +8,25 @@ export class Aliment {
 	storedDate: Date;
 	expirationDate: Date;
 
-	constructor(name?, category?, iconicFontName?, quantity?, quantityUnit?, storedDate?, expirationDate?, id?) {
-		this.id = id;
-		this.name = name;
-		this.category = category;
-		this.iconicFontName = iconicFontName;
-		this.quantity = quantity;
-		this.quantityUnit = quantityUnit;
-		this.storedDate = storedDate;
-		this.expirationDate = expirationDate;
+	constructor(inputWrapper?: {
+		id?: number,
+		name?: string,
+		category?: string,
+		iconicFontName?: string,
+		quantity?: number,
+		quantityUnit?: string,
+		storedDate?: Date,
+		expirationDate?: Date,
+	}) {
+		if(inputWrapper) {
+			this.id = inputWrapper.id;
+			this.name = inputWrapper.name;
+			this.category = inputWrapper.category;
+			this.iconicFontName = inputWrapper.iconicFontName;
+			this.quantity = inputWrapper.quantity;
+			this.quantityUnit = inputWrapper.quantityUnit;
+			this.storedDate = inputWrapper.storedDate;
+			this.expirationDate = inputWrapper.expirationDate;
+		}
 	}
 }

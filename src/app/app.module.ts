@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -8,11 +8,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AlimentComponent } from './aliment/aliment.component';
-import { PageMyFreezerComponent } from './pageMyFreezer/pageMyFreezer.component';
+import { FreezerContent } from './freezerContent/freezerContent.component';
 import { SquarifyDirective } from './Directives/squarify.directive';
 import { MainServiceService } from './Services/main-service.service';
 import { DataService } from './Services/data.service';
-import { BackendService } from './Services/backend.service';
+import { environment } from '../environments/environment';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -40,11 +40,13 @@ import { VerificationRedirectionComponent } from './verification-redirection/ver
 import { InterceptorXsrfHeaderWritterService } from './Services/interceptor-xsrf-header-writter.service';
 import { CookieService } from 'ngx-cookie-service';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from './auth/auth.guard';
+import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
 @NgModule({
 	declarations: [
 		AppComponent,
 		AlimentComponent,
-		PageMyFreezerComponent,
+		FreezerContent,
 		SquarifyDirective,
 		AlimentDetailsComponent,
 		NewAlimentComponent,
@@ -59,6 +61,7 @@ import { RegistrationComponent } from './registration/registration.component';
 		LoginComponent,
 		VerificationRedirectionComponent,
 		RegistrationComponent,
+		EditAlimentComponent,
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,
@@ -83,7 +86,8 @@ import { RegistrationComponent } from './registration/registration.component';
 	providers: [
 		MainServiceService,
 		DataService,
-		BackendService,
+		{provide: 'BackendService', useClass: environment.BackendService},
+		AuthGuard,
 		{ provide: LOCALE_ID, useValue: 'en-US' },
 		CookieService,
 		{ provide: HTTP_INTERCEPTORS, useClass: InterceptorXsrfHeaderWritterService, multi: true },

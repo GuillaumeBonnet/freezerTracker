@@ -5,80 +5,46 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Freezer } from '../Class/Freezer';
 import { UserInfo } from '../Class/UserInfo';
+import { map } from 'rxjs/operators';
 
-@Injectable()
-export class BackendService {
+export interface BackendService {
 
 	listAliments: Aliment[];
-	apiRoot: string = environment.API_ROOT_URL;
-	options = { headers: { 'Content-Type': 'application/json' } }; //ToImprove interctor based
-
-	constructor(private http: HttpClient) { }
-
+	apiRoot: string;
+	options:any;
 	/* -------------------------------------------------------------------------- */
 	/*                                    Users                                   */
 	/* -------------------------------------------------------------------------- */
 
-	getUserInfo(): Observable<Object> { // UserInfo
-		return this.http.get(`${this.apiRoot}/users/info`);
-	}
+	getUserInfo(): Observable<UserInfo>;
 
-	login(username: string, password: string): Observable<Object> {
-		let body = {
-			username: username,
-			password: password,
-		}
-		return this.http.post(`${this.apiRoot}/users/login`, body);
-	}
+	login(username: string, password: string): Observable<Object>;
 
-	logout(): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/users/logout`, null);
-	}
+	logout(): Observable<Object>;
 
-	register(registrationInfo: {username: string, password: string, matchingPassword: string, email: string}): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/users/registration`, registrationInfo);
-	}
+	register(registrationInfo: {username: string, password: string, matchingPassword: string, email: string}): Observable<Object>;
 
 	/* -------------------------------------------------------------------------- */
 	/*                                  Freezers                                  */
 	/* -------------------------------------------------------------------------- */
 
-	getFreezers(): Observable<Object> { //ToImprove:  Observable<Freezer>
-		return this.http.get(`${this.apiRoot}/freezers`, this.options);
-	}
+	getFreezers(): Observable<Freezer[]>;
 
-	saveFreezer(name: String): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/freezers`, new Freezer(name), this.options);
-	}
+	saveFreezer(name: string): Observable<Freezer>;
 
-	deleteFreezer(freezerToDelete: Freezer): Observable<Object> {
-		return this.http.delete(`${this.apiRoot}/freezers/${freezerToDelete.id}`, this.options);
-	}
+	deleteFreezer(freezerToDelete: Freezer): Observable<Object>;
 
-	updateFreezer(freezerToUpdate: Freezer): Observable<Object> {
-		return this.http.put(`${this.apiRoot}/freezers/${freezerToUpdate.id}`, freezerToUpdate, this.options);
-	}
+	updateFreezer(freezerToUpdate: Freezer): Observable<Freezer>;
 
 	/* -------------------------------------------------------------------------- */
 	/*                                  Aliments                                  */
 	/* -------------------------------------------------------------------------- */
 
-	getAliments(freezerId: Number): Observable<Object> {
-		return this.http.get(`${this.apiRoot}/freezers/${freezerId}/aliments`, this.options);
-	}
+	getAliments(freezerId: string): Observable<Aliment[]>;
 
-	saveAliment(freezerId: Number, alimentToSave: Aliment): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/freezers/${freezerId}/aliments`, alimentToSave, this.options);
-	}
+	saveAliment(freezerId: string, alimentToSave: Aliment): Observable<Aliment>;
 
-	updateAliment(freezerId: Number, alimentToUpdate: Aliment): Observable<Object> {
-		console.log('todo debug:[alimentToUpdate.id]', alimentToUpdate.id);
-		console.log('todo debug:[alimentToUpdate]', alimentToUpdate);
+	updateAliment(freezerId: string, alimentToUpdate: Aliment): Observable<Aliment>;
 
-		return this.http.put(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToUpdate.id}`, alimentToUpdate, this.options);
-	}
-
-	deleteAliment(freezerId: Number, alimentToDelete: Aliment): Observable<Object> {
-		return this.http.delete(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToDelete.id}`, this.options);
-	}
+	deleteAliment(freezerId: string, alimentToDelete: Aliment): Observable<Object>;
 }
