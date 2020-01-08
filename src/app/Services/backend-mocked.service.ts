@@ -1,11 +1,10 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
-import { HttpClient, HttpRequest} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { Freezer } from '../Class/Freezer';
 import { UserInfo } from '../Class/UserInfo';
 import { map } from 'rxjs/operators';
-import { AuthGuard } from '../auth/auth.guard';
 import { BackendService } from './backend.service';
 
 @Injectable()
@@ -15,7 +14,7 @@ export class BackendServiceMocked implements BackendService {
 	apiRoot: string = 'urlMockedBackEndService';
 	options = { headers: { 'Content-Type': 'application/json' } };
 
-	constructor( private http: HttpClient) { }
+	constructor() { }
 
 	/* -------------------------------------------------------------------------- */
 	/*                               Mock variables                               */
@@ -30,15 +29,15 @@ export class BackendServiceMocked implements BackendService {
 	];
 
 	freezerIdToContentMap = {
-		'1': [
+		1: [
 			new Aliment({id:1, name:'biscuits petit beurre', category:'snacks', iconicFontName:'icon-batch1_biscuit', quantity:12, quantityUnit:'pieces', storedDate:new Date('2019-07-08'), expirationDate:new Date('2019-07-10') })
 			, new Aliment({id:2, name:'camembert', category:'snacks', iconicFontName:'icon-batch1_cheese', quantity:1, quantityUnit:'pieces', storedDate:new Date('2019-07-08'), expirationDate:new Date('2019-07-10'), })
 		],
-		'2': [
+		2: [
 			new Aliment({id:3, name:'fromages blancs', category:'milk product', iconicFontName:'icon-batch1_milk-1', quantity:1, quantityUnit:'pieces', storedDate:new Date('2019-07-08'), expirationDate:new Date('2019-07-10'), })
 		],
 		3: [
-			, new Aliment({id:4, name:'beer', category:'boissons', iconicFontName:'icon-batch1_water-1', quantity:6, quantityUnit:'bottles', storedDate:new Date('2019-07-08'), expirationDate:new Date('2019-07-10'), })
+			new Aliment({id:4, name:'beer', category:'boissons', iconicFontName:'icon-batch1_water-1', quantity:6, quantityUnit:'bottles', storedDate:new Date('2019-07-08'), expirationDate:new Date('2019-07-10'), })
 		],
 		4: [
 		],
@@ -155,7 +154,7 @@ export class BackendServiceMocked implements BackendService {
 	/*                                  Aliments                                  */
 	/* -------------------------------------------------------------------------- */
 
-	getAliments(freezerId: string): Observable<Aliment[]> {
+	getAliments(freezerId: number): Observable<Aliment[]> {
 		console.log("========= BACK-END CALL: getAliments() =========");
 		if(this.isLoggedIn) {
 			let content = this.freezerIdToContentMap[freezerId];
@@ -171,7 +170,7 @@ export class BackendServiceMocked implements BackendService {
 		}
 	}
 
-	saveAliment(freezerId: string, alimentToSave: Aliment): Observable<Aliment> {
+	saveAliment(freezerId: number, alimentToSave: Aliment): Observable<Aliment> {
 		console.log("========= BACK-END CALL: saveAliment() =========");
 		if(this.isLoggedIn) {
 			let content = this.freezerIdToContentMap[freezerId];
@@ -188,7 +187,7 @@ export class BackendServiceMocked implements BackendService {
 		}
 	}
 
-	updateAliment(freezerId: string, alimentToUpdate: Aliment): Observable<Aliment> {
+	updateAliment(freezerId: number, alimentToUpdate: Aliment): Observable<Aliment> {
 		console.log("========= BACK-END CALL: updateAliment() =========");
 		if(this.isLoggedIn) {
 			let content: Aliment[] = this.freezerIdToContentMap[freezerId];
@@ -210,7 +209,7 @@ export class BackendServiceMocked implements BackendService {
 		}
 	}
 
-	deleteAliment(freezerId: string, alimentToDelete: Aliment): Observable<Object> {
+	deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object> {
 		console.log("========= BACK-END CALL: deleteAliment() =========");
 		if(this.isLoggedIn) {
 			let content: Aliment[] = this.freezerIdToContentMap[freezerId];

@@ -33,7 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import  { MatDialogModule } from '@angular/material/dialog';
 import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
-import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component';
+import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
 import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component';
 import { LoginComponent } from './login/login.component';
 import { VerificationRedirectionComponent } from './verification-redirection/verification-redirection.component'
@@ -56,7 +56,7 @@ import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
 		FreezersComponent,
 		ClickStopPropagationDirective,
 		PopUpFreezerMenuComponent,
-		PopUpDeleteFreezerComponent,
+		PopUpDeleteComponent,
 		PopUpRenameFreezerComponent,
 		LoginComponent,
 		VerificationRedirectionComponent,
@@ -65,7 +65,7 @@ import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,
-		PopUpDeleteFreezerComponent,
+		PopUpDeleteComponent,
 		PopUpRenameFreezerComponent,
 	],
 	imports: [

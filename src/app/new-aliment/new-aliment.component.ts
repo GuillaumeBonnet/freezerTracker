@@ -21,7 +21,7 @@ export class NewAlimentComponent implements OnInit {
 	alimentForm: FormGroup;
 	currentInputPage: { value: string, index: number } = { value: INPUT_PAGES[0], index: 0 };
 	iconList: string[] = ICON_ARRAY;
-	freezerId: string;
+	freezerId: number;
 
 	// Edit variables
 	@Input()
@@ -56,7 +56,6 @@ export class NewAlimentComponent implements OnInit {
 		});
 
 		if (this.isEdit) {
-			console.log("gboDebug:[this.dataService.getFreezerContent(this.freezerId)]", this.dataService.getFreezerContent(this.freezerId));
 			this.dataService.getFreezerContent(this.freezerId).subscribe({
 				next: (freezerContent: Aliment[]) => {
 					console.log("gboDebug:[this.alimentId]", this.alimentId);

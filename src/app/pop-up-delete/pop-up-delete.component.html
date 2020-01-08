@@ -5,10 +5,10 @@
 </button>
 
 <div class="gs-text">
-	Are you sure you want to delete this freezer ?
+	Are you sure you want to delete this {{data.alimentId ? 'aliment' : 'freezer'}} ?
 </div>
 <div class="buttons">
-	<button class="gs-button--text" (click)="deleteFreezer()">
+	<button class="gs-button--text" (click)="delete()">
 		Delete
 	</button>
 	<button class="gs-button--text" (click)="closeDeletePopUp()">

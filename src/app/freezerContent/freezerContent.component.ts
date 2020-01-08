@@ -16,7 +16,7 @@ export class FreezerContent implements OnInit {
 	indexSelectedAliment: number = 0;
 	selectedAliment: Aliment;
 
-	freezerId: string;
+	freezerId: number;
 	startCrossAnimation: Boolean = false;
 
 	constructor(public router: Router, private dataService: DataService, private route: ActivatedRoute) {
@@ -25,12 +25,14 @@ export class FreezerContent implements OnInit {
 	ngOnInit() {
 		this.route.params.pipe(
 			switchMap((params: Params) => {
-				this.freezerId = params.freezerId;
-				return this.dataService.getFreezerContent(params.freezerId);
+				this.freezerId = +params.freezerId;
+				return this.dataService.getFreezerContent(this.freezerId);
 			})
 		)
 		.subscribe({
 			next: (freezerContent: Aliment[]) => {
+				console.log("gboDebug:[freezerContent]", freezerContent);
+
 				this.listAliments = freezerContent;
 				this.selectedAliment = this.listAliments && this.listAliments.length >= 1 ? this.listAliments[0] : null;
 			},

@@ -40,11 +40,11 @@ export interface BackendService {
 	/*                                  Aliments                                  */
 	/* -------------------------------------------------------------------------- */
 
-	getAliments(freezerId: string): Observable<Aliment[]>;
+	getAliments(freezerId: number): Observable<Aliment[]>;
 
-	saveAliment(freezerId: string, alimentToSave: Aliment): Observable<Aliment>;
+	saveAliment(freezerId: number, alimentToSave: Aliment): Observable<Aliment>;
 
-	updateAliment(freezerId: string, alimentToUpdate: Aliment): Observable<Aliment>;
+	updateAliment(freezerId: number, alimentToUpdate: Aliment): Observable<Aliment>;
 
-	deleteAliment(freezerId: string, alimentToDelete: Aliment): Observable<Object>;
+	deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object>;
 }

@@ -21,7 +21,7 @@ export class BackendServiceHttp implements BackendService {
 	/*                                    Users                                   */
 	/* -------------------------------------------------------------------------- */
 
-	getUserInfo(): Observable<UserInfo> { // UserInfo
+	getUserInfo(): Observable<UserInfo> {
 		return this.http.get(`${this.apiRoot}/users/info`)
 			.pipe(
 				map( (jsonBody: UserInfo) => jsonBody )
@@ -81,7 +81,7 @@ export class BackendServiceHttp implements BackendService {
 	/*                                  Aliments                                  */
 	/* -------------------------------------------------------------------------- */
 
-	getAliments(freezerId: string): Observable<Aliment[]> {
+	getAliments(freezerId: number): Observable<Aliment[]> {
 		return this.http.get(`${this.apiRoot}/freezers/${freezerId}/aliments`, this.options)
 			.pipe(
 				map( (jsonBody: Aliment[]) => jsonBody )
@@ -89,7 +89,7 @@ export class BackendServiceHttp implements BackendService {
 		;
 	}
 
-	saveAliment(freezerId: string, alimentToSave: Aliment): Observable<Aliment> {
+	saveAliment(freezerId: number, alimentToSave: Aliment): Observable<Aliment> {
 		return this.http.post(`${this.apiRoot}/freezers/${freezerId}/aliments`, alimentToSave, this.options)
 			.pipe(
 				map( (jsonBody: Aliment) => jsonBody )
@@ -97,7 +97,7 @@ export class BackendServiceHttp implements BackendService {
 		;
 	}
 
-	updateAliment(freezerId: string, alimentToUpdate: Aliment): Observable<Aliment> {
+	updateAliment(freezerId: number, alimentToUpdate: Aliment): Observable<Aliment> {
 		return this.http.put(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToUpdate.id}`, alimentToUpdate, this.options)
 			.pipe(
 				map( (jsonBody: Aliment) => jsonBody )
@@ -105,7 +105,7 @@ export class BackendServiceHttp implements BackendService {
 		;
 	}
 
-	deleteAliment(freezerId: string, alimentToDelete: Aliment): Observable<Object> {
+	deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object> {
 		return this.http.delete(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToDelete.id}`, this.options);
 	}
 }

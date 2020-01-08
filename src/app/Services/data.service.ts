@@ -74,14 +74,17 @@ export class DataService {
 			);
 		}
 
-		deleteFreezer(freezerIdToDelete: number): void {
+		deleteFreezer(freezerIdToDelete: number): Observable<Object> {
 			let freezerToDelete:Freezer = new Freezer({id:freezerIdToDelete});
-			this.backendService.deleteFreezer(freezerToDelete).subscribe(result => {
-				this.listFreezers.splice(this.listFreezers.findIndex(elem => elem.id == freezerToDelete.id), 1);
-			},
-				error => {
-					console.log('Error Freezer not deleted:', error);
-				});
+			return this.getFreezers().pipe(
+				switchMap((freezers: Freezer[]) => {
+					return this.backendService.deleteFreezer(freezerToDelete).pipe(
+						tap(() => {
+							freezers.splice(freezers.findIndex(elem => elem.id == freezerToDelete.id), 1);
+						})
+					);
+				})
+			);
 		}
 
 
@@ -89,7 +92,7 @@ export class DataService {
 	/*                                  Aliments                                  */
 	/* -------------------------------------------------------------------------- */
 
-		getFreezerContent(freezerId: string): Observable<Aliment[]> {
+		getFreezerContent(freezerId: number): Observable<Aliment[]> {
 			if(this.mapFreezerContents[freezerId]) {
 				return of(this.mapFreezerContents[freezerId]);
 			}
@@ -100,7 +103,7 @@ export class DataService {
 			);
 		}
 
-		addAliment(freezerId: string, alimentToAdd: Aliment): Observable<Aliment> {
+		addAliment(freezerId: number, alimentToAdd: Aliment): Observable<Aliment> {
 			return this.getFreezerContent(freezerId).pipe(
 				switchMap((freezerContent: Aliment[]) => {
 					return this.backendService.saveAliment(freezerId, alimentToAdd).pipe(
@@ -112,7 +115,7 @@ export class DataService {
 			);
 		}
 
-		editAliment(freezerId: string, alimentWithUpdates: Aliment): Observable<Aliment>  {
+		editAliment(freezerId: number, alimentWithUpdates: Aliment): Observable<Aliment>  {
 			return this.getFreezerContent(freezerId).pipe(
 				switchMap((freezerContent: Aliment[]) => {
 					return this.backendService.updateAliment(freezerId, alimentWithUpdates).pipe(
@@ -125,7 +128,7 @@ export class DataService {
 
 		}
 
-		deleteAliment(freezerId: string, alimentToDelete: Aliment): Observable<Object> {
+		deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object> {
 			return this.getFreezerContent(freezerId).pipe(
 				switchMap((freezerContent: Aliment[]) => {
 					return this.backendService.deleteAliment(freezerId, alimentToDelete).pipe(

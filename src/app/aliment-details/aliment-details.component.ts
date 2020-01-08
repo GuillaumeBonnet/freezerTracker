@@ -6,7 +6,9 @@ import { DataService } from '../Services/data.service';
 
 import { Aliment } from '../Class/Aliment';
 import { FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 
 @Component({
 	selector: 'app-aliment-details',
@@ -21,12 +23,12 @@ export class AlimentDetailsComponent implements OnInit {
 	aliment: Aliment = new Aliment();
 
 	@Input()
-	freezerId: string;
+	freezerId: number;
 
 	startCrossAnimation_edit: Boolean = false;
 	startCrossAnimation_delete: Boolean = false;
 
-	constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute) {
+	constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, public dialog: MatDialog) {
 	}
 
 	ngOnInit() {
@@ -36,17 +38,22 @@ export class AlimentDetailsComponent implements OnInit {
 		this.router.navigate(['edit-aliment', this.aliment.id], {relativeTo: this.route});
 	}
 
-	delete(): void {
-		//TODO pop-up
-		this.dataService.deleteAliment(this.freezerId, this.aliment).subscribe({
-			next: () => {
-				this.aliment = new Aliment();
-				this.router.navigate(['freezers', this.freezerId]);
-			},
-			error: (error) => {
-				console.log("Error deleting an aliment:", error);
+	delete(event: MouseEvent): void {
+		const dialogRef = this.dialog.open(PopUpDeleteComponent, {
+			width: '200px',
+			panelClass: 'gs-popup',
+			data: {freezerId: this.freezerId, alimentId: this.aliment.id}
+		});
+
+		dialogRef.afterClosed().subscribe(hasValidatedDeletion => {
+			if(hasValidatedDeletion) {
+				this.router.navigate(['/freezers', this.freezerId]);
 			}
-		})
+			else if(typeof hasValidatedDeletion == 'boolean' && !hasValidatedDeletion) {
+				console.log('error in deletion of aliment after pop-up');
+				this.router.navigate(['/freezers', this.freezerId]);
+			}
+		});
 	}
 
 }
