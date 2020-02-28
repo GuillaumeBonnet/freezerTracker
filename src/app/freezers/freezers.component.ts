@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../Services/data.service';
-import { BackendService } from '../Services/backend.service';
 import { Freezer } from '../Class/Freezer';
-import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +27,7 @@ import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer
 })
 export class FreezersComponent implements OnInit {
 
-	constructor(private dataService: DataService, @Inject('BackendService') private backendService: BackendService, private router: Router, public dialog: MatDialog) { }
+	constructor(private dataService: DataService, private router: Router, public dialog: MatDialog) { }
 
 	freezers: Freezer[];
 	isCreatingANewFreezer: Boolean = false;

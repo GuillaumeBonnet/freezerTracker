@@ -32,4 +32,15 @@ export class AuthGuard implements  CanActivate {
 			})
 		);
 	}
+
+	//Functions wrapper for easier jasmin spy in tests
+	getRedirectionUrl() {
+		return this.redirectionUrl;
+	}
+	getIsLoggedIn() {
+		return this.isLoggedIn;
+	}
+	setIsLoggedIn(isLoggedIn: boolean) {
+		this.isLoggedIn = isLoggedIn;
+	}
 }

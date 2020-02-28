@@ -39,10 +39,10 @@ export class MenuComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	calculateAngle(input): number {
-		let numberOfMeniItems = input.length;
-		let deadAngle = 25;
-		return deadAngle +  (input.index - 1) * (180-deadAngle-deadAngle)  / (numberOfMeniItems-1);
+	calculateAngle(input: {index: number, length: number}): number {
+		let numberOfMenuItems: number = input.length;
+		let deadAngle: number = 25;
+		return deadAngle +  (input.index - 1) * (180-deadAngle-deadAngle)  / (numberOfMenuItems-1);
 	}
 
 	navigate(clickEvt: Event, route: string): void {
@@ -65,7 +65,7 @@ export class MenuComponent implements OnInit {
 		this.backendService.logout().subscribe({
 			complete: () => {
 				this.cookieService.deleteAll(null, environment.DOMAIN);
-				this.authGuard.isLoggedIn = false;
+				this.authGuard.setIsLoggedIn(false);
 				this.router.navigate(['login']);
 			}
 		});

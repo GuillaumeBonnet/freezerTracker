@@ -1,25 +1,50 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu.component';
+import { NgModule } from '@angular/core';
+import { Freezer } from '../Class/Freezer';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+@NgModule({
+	imports: [MatDialogModule, NoopAnimationsModule],
+	exports: [PopUpFreezerMenuComponent],
+	declarations: [PopUpFreezerMenuComponent],
+	entryComponents: [PopUpFreezerMenuComponent],
+})
+class DialogTestModule { }
 
 describe('PopUpFreezerMenuComponent', () => {
-  let component: PopUpFreezerMenuComponent;
-  let fixture: ComponentFixture<PopUpFreezerMenuComponent>;
+	let dialog: MatDialog;
+	let overlayContainerElement: HTMLElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PopUpFreezerMenuComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [ DialogTestModule ],
+			providers: [
+				{
+					provide: OverlayContainer, useFactory: () => {
+						overlayContainerElement = document.createElement('div');
+						return { getContainerElement: () => overlayContainerElement };
+					}
+				}
+			]
+		});
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PopUpFreezerMenuComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		dialog = TestBed.get(MatDialog);
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('shows information without details', () => {
+		dialog.open(
+			PopUpFreezerMenuComponent
+			, {
+				width: '250px',
+				panelClass: 'gs-popup',
+				data: {selectedFreezer: new Freezer({name:'name'})}
+			}
+		);
+		let component = overlayContainerElement.querySelector('app-pop-up-freezer-menu')
+		expect(component).toBeTruthy();
+	});
 });

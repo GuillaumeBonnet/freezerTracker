@@ -6,13 +6,13 @@
 	</svg>
 </div>
 
-<div class="opener" (click)="isOpened = !isOpened" *ngIf="!authGuard.isLoggedIn">
+<div class="opener" (click)="isOpened = !isOpened" *ngIf="!authGuard.getIsLoggedIn()">
 	menu
 	<app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 2})}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')"></app-menu-item>
 	<app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 2})}}" label="Login" [isOpened]="isOpened" (click)="navigate($event, 'login')"></app-menu-item>
 </div>
 
-<div class="opener" (click)="isOpened = !isOpened" *ngIf="authGuard.isLoggedIn">
+<div class="opener" (click)="isOpened = !isOpened" *ngIf="authGuard.getIsLoggedIn()">
 	menu
 	<app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 3})}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')"></app-menu-item>
 	<app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 3})}}" label="Freezers" [isOpened]="isOpened" (click)="navigate($event, 'freezers')"></app-menu-item>

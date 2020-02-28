@@ -28,7 +28,7 @@ export class AlimentDetailsComponent implements OnInit {
 	startCrossAnimation_edit: Boolean = false;
 	startCrossAnimation_delete: Boolean = false;
 
-	constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, public dialog: MatDialog) {
+	constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog) {
 	}
 
 	ngOnInit() {

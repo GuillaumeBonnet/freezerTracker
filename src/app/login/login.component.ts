@@ -13,10 +13,10 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public router: Router, fb: FormBuilder, public authGuard: AuthGuard, @Inject('BackendService') private backendService: BackendService) {
-		this.loginForm = fb.group({
-			username: fb.control('', [Validators.required, Validators.maxLength(250)]),
-			password: fb.control('', [Validators.required, Validators.maxLength(250)]),
+	constructor(public router: Router, public fb: FormBuilder, public authGuard: AuthGuard, @Inject('BackendService') private backendService: BackendService) {
+		this.loginForm = this.fb.group({
+			username: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
+			password: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
 		});
 
 		this.loginForm.setValue({
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
 		this.backendService.login(formVal.username, formVal.password).subscribe({
 			next: () => {
-				this.router.navigateByUrl(this.authGuard.redirectionUrl);
+				this.router.navigateByUrl(this.authGuard.getRedirectionUrl());
 			}, error: (error) => {
 				console.log('error login', error);
 			}
