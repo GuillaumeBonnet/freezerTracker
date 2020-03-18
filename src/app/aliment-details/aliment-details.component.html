@@ -4,45 +4,57 @@
 	</svg>
 
 	<div class="line__containor">
-		<div class="line"><span class="line__label">Name : </span>{{ aliment?.name }}</div>
-	</div>
-
-	<div class="line__separator"></div>
-
-	<div class="line__containor">
-		<div class="line"><span class="line__label">Category : </span>{{ aliment?.category }}</div>
-	</div>
-
-	<div class="line__separator"></div>
-
-	<div class="line__containor">
-		<div class="line"><span class="line__label">Expiration date :
-			</span>{{ aliment?.expirationDate | date:'longDate'  }}</div>
-	</div>
-
-	<div class="line__separator"></div>
-
-	<div class="line__containor">
-		<div class="line"><span class="line__label">Stored date : </span>{{ aliment?.storedDate | date:'longDate'  }}
+		<div class="line">
+			<span class="line__label">Name : </span>
+			{{ aliment?.name }}
 		</div>
 	</div>
 
 	<div class="line__separator"></div>
 
 	<div class="line__containor">
-		<div class="line"><span class="line__label">Quanitity :
-			</span>{{aliment?.quantity}} {{aliment?.quantityUnit}}</div>
+		<div class="line">
+			<span class="line__label">Category : </span>
+			{{ aliment?.category }}
+		</div>
+	</div>
+
+	<div class="line__separator"></div>
+
+	<div class="line__containor">
+		<div class="line">
+			<span class="line__label">Expiration date :</span>
+			{{ aliment?.expirationDate | date:'longDate'  }}
+		</div>
+	</div>
+
+	<div class="line__separator"></div>
+
+	<div class="line__containor">
+		<div class="line">
+			<span class="line__label">Stored date : </span>
+			{{ aliment?.storedDate | date:'longDate'  }}
+		</div>
+	</div>
+
+	<div class="line__separator"></div>
+
+	<div class="line__containor">
+		<div class="line">
+			<span class="line__label">Quantity :</span>
+			{{aliment?.quantity}} {{aliment?.quantityUnit}}
+		</div>
 	</div>
 
 	<div class="actions">
-		<button [class]="startCrossAnimation_edit ? 'actions__icon actions__icon--clicked' : 'actions__icon'"
-			(click)="startCrossAnimation_edit = true" (animationend)="navigateToEdit()">
+		<button id="aliment-details-edit" [class]="startCrossAnimation_edit ? 'actions__icon actions__icon--clicked' : 'actions__icon'"
+			(click)="navigateToEdit()">
 			<svg viewBox="0 0 100 100" class="actions__icon__svg">
 				<use xlink:href="#icon-005-pencil-striped-symbol-for-interface-edit-buttons" />
 			</svg>
 		</button>
 
-		<button [class]="startCrossAnimation_delete ? 'actions__icon actions__icon--clicked' : 'actions__icon'"
+		<button id="aliment-details-delete" [class]="startCrossAnimation_delete ? 'actions__icon actions__icon--clicked' : 'actions__icon'"
 			(click)="delete($event)">
 			<svg viewBox="0 0 100 100" class="actions__icon__svg">
 				<use xlink:href="#icon-009-close" />

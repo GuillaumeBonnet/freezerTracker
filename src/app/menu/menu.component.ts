@@ -46,8 +46,8 @@ export class MenuComponent implements OnInit {
 	}
 
 	navigate(clickEvt: Event, route: string): void {
-		this.router.navigate([route]);
 		clickEvt.stopPropagation();
+		this.router.navigate([route]);
 		this.isOpened = false
 	}
 

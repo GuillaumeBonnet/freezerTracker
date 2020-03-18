@@ -6,6 +6,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { DataService } from '../Services/data.service';
+import { of, throwError } from 'rxjs';
 
 @Component({
 	template: `
@@ -22,12 +23,25 @@ class TestHostComponent {
 describe('LoginComponent', () => {
 	let testHost: TestHostComponent;
 	let fixture: ComponentFixture<TestHostComponent>;
+	let fakeReturnUrl: string = 'fake return url';
+	let component: HTMLElement;
+	let routerSpy;
+	let backendServiceSpy;
+	let authGuardSpy;
 
 	beforeEach(async(() => {
-		const routerSpy = jasmine.createSpyObj('Router', ['navigate', 'parseUrl']);
-		const backendServiceSpy = jasmine.createSpyObj('BackendService', ['login']);
-		const dataServiceSpy = jasmine.createSpyObj('DataService', ['getUserInfo']);
-		const authGuardSpy = jasmine.createSpyObj('AuthGuard', ['getRedirectionUrl']);
+		routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl']);
+		backendServiceSpy = jasmine.createSpyObj('BackendService', ['login']);
+		backendServiceSpy.login.and.callFake((username, password) => {
+			if(username == 'userName2' && password == 'password2') {
+				return of('fake success');
+			}
+			else {
+				return throwError(new Error('login error'));
+			}
+		});
+		authGuardSpy = jasmine.createSpyObj('AuthGuard', ['getRedirectionUrl']);
+			authGuardSpy.getRedirectionUrl.and.returnValue(fakeReturnUrl);
 
 		TestBed.configureTestingModule({
 			declarations: [
@@ -37,7 +51,6 @@ describe('LoginComponent', () => {
 			providers:[
 				{ provide: Router, useValue: routerSpy},
 				{ provide: AuthGuard, useValue: authGuardSpy},
-				{ provide: DataService, useValue: dataServiceSpy},
 				{provide: 'BackendService', useValue: backendServiceSpy},
 				FormBuilder,
 			],
@@ -49,12 +62,50 @@ describe('LoginComponent', () => {
 		.compileComponents();
 		fixture = TestBed.createComponent(TestHostComponent);
 		testHost = fixture.componentInstance;
+		component = fixture.nativeElement.querySelector('app-login');
 		fixture.detectChanges();
 	}));
 
 	it('should create', () => {
-		let component = fixture.nativeElement.querySelector('app-login')
 		expect(component).toBeTruthy();
+	});
+	it('should log in', () => {
+		let usernameInput: HTMLInputElement = component.querySelector('input#username');
+		usernameInput.value = 'userName2';
+		usernameInput.dispatchEvent(new Event('input'));
+
+		// no password -> no querry
+		let passwordInput: HTMLInputElement = component.querySelector('input#password');
+		passwordInput.value = '';
+		passwordInput.dispatchEvent(new Event('input'));
+		let logButton:HTMLElement = component.querySelector('button#log-in-button');
+		// logButton.click();
+		// expect(backendServiceSpy.login).not.toHaveBeenCalled(); //TODO
+
+		//wrong password -> error
+		passwordInput.value = 'password3';
+		passwordInput.dispatchEvent(new Event('input'));
+		logButton.click();
+		expect(backendServiceSpy.login).toHaveBeenCalled();
+		expect(routerSpy.navigateByUrl).not.toHaveBeenCalled(); // error
+
+		//good password -> succès
+		passwordInput.value = 'password2';
+		passwordInput.dispatchEvent(new Event('input'));
+		fixture.detectChanges();
+		logButton.click();
+		expect(backendServiceSpy.login).toHaveBeenCalled();
+		expect(routerSpy.navigateByUrl).toHaveBeenCalledWith(fakeReturnUrl); // success
+	});
+	it('register button should navigate to register page', () => {
+		let registerButton: HTMLElement = component.querySelector('button#register-in-button');
+		registerButton.click();
+		expect(routerSpy.navigate).toHaveBeenCalledWith(['registration']);
+	});
+	it('reset password button should navigate to its page', () => {
+		let resetPasswordButton: HTMLElement = component.querySelector('button#reset-password-button');
+		resetPasswordButton.click();
+		expect(routerSpy.navigate).toHaveBeenCalledWith(['forgot-password']);
 	});
 });
 

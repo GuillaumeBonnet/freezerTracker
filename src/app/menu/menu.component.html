@@ -1,6 +1,6 @@
 <div class="gs-shadow-backdrop" *ngIf="isOpened" (click)="isOpened = false" [@shadowing]></div>
 
-<div class="secondary-action" (click)="secondaryAction('back')">
+<div id="back-action" class="secondary-action" (click)="secondaryAction('back')">
 	<svg viewBox="0 0 100 100" class="">
 		<use xlink:href="#icon-003-arrows-1" />
 	</svg>
@@ -19,7 +19,7 @@
 	<app-menu-item #menuitem angle="{{calculateAngle({index: 3, length: 3})}}" label="Log Out" [isOpened]="isOpened" (click)="logout($event)"></app-menu-item>
 </div>
 
-<div class="secondary-action secondary-action--right" (click)="secondaryAction('forward')">
+<div id="forward-action" class="secondary-action secondary-action--right" (click)="secondaryAction('forward')">
 	<svg viewBox="0 0 100 100" class="">
 		<use xlink:href="#icon-003-arrows-1" />
 	</svg>

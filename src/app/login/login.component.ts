@@ -5,9 +5,9 @@ import { AuthGuard } from '../auth/auth.guard';
 import { BackendService } from '../Services/backend.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

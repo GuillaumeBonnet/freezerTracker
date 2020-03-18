@@ -27,8 +27,7 @@
 
 	<!-- TODO block with delete modify filter by category -->
 	<div class="crossgridcontainer">
-		<button [class]="startCrossAnimation ? 'gs-button cross cross--clicked' : 'gs-button cross'" (click)="startCrossAnimation = true"
-			(animationend)="newAliment()">
+		<button [class]="startCrossAnimation ? 'gs-button cross cross--clicked' : 'gs-button cross'" (click)="newAliment()">
 			<svg viewBox="0 0 100 100" class="cross__svg">
 				<use xlink:href="#icon-newCross" />
 			</svg>

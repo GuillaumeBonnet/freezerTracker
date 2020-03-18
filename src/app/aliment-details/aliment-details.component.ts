@@ -1,7 +1,6 @@
 import {
 	Component, OnInit, Input
 } from '@angular/core';
-import { DataService } from '../Services/data.service';
 
 
 import { Aliment } from '../Class/Aliment';
@@ -17,7 +16,7 @@ import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 })
 export class AlimentDetailsComponent implements OnInit {
 
-	//either input is aliment and this component is used as a detail showcase
+	// either input is aliment and this component is used as a detail showcase
 	// else the input is only a form group and it's used when editing or createing a new aliment
 	@Input()
 	aliment: Aliment = new Aliment();
@@ -35,9 +34,12 @@ export class AlimentDetailsComponent implements OnInit {
 	}
 
 	navigateToEdit(): void {
-		this.router.navigate(['edit-aliment', this.aliment.id], {relativeTo: this.route});
+		this.startCrossAnimation_edit = true;
+		const animationDuration: number = 0.2*1000;
+		setTimeout(() => {
+			this.router.navigate(['edit-aliment', this.aliment.id], {relativeTo: this.route});
+		}, animationDuration);
 	}
-
 	delete(event: MouseEvent): void {
 		const dialogRef = this.dialog.open(PopUpDeleteComponent, {
 			width: '200px',

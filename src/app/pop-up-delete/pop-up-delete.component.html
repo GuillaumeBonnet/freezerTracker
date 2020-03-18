@@ -1,4 +1,4 @@
-<button class="gs-button cross-button" (click)="closeDeletePopUp()">
+<button id="cross-button" class="gs-button cross-button" (click)="closeDeletePopUp()">
 	<svg viewBox="0 0 100 100" class="">
 		<use xlink:href="#icon-009-close" />
 	</svg>
@@ -8,10 +8,10 @@
 	Are you sure you want to delete this {{data.alimentId ? 'aliment' : 'freezer'}} ?
 </div>
 <div class="buttons">
-	<button class="gs-button--text" (click)="delete()">
+	<button id="delete-button" class="gs-button--text" (click)="delete()">
 		Delete
 	</button>
-	<button class="gs-button--text" (click)="closeDeletePopUp()">
+	<button id="close-button" class="gs-button--text" (click)="closeDeletePopUp()">
 		Cancel
 	</button>
 </div>

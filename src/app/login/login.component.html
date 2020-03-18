@@ -9,6 +9,7 @@
 		<div class="input">
 			<div><label class="gs-text">Username</label></div>
 			<input
+				id="username"
 				formControlName="username"
 				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
 			>
@@ -17,6 +18,7 @@
 		<div class="input">
 			<div><label class="gs-text">Password</label></div>
 			<input
+				id="password"
 				formControlName="password"
 				type="password"
 				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
@@ -24,18 +26,18 @@
 		</div>
 
 		<div class="button-group">
-			<button class="gs-button form-button">
+			<button class="gs-button form-button" id="log-in-button">
 				Log In
 			</button>
 		</div>
 	</form>
 
 	<div class="button-group">
-		<button class="gs-button form-button" (click)="goToRegistrationPage()">
+		<button class="gs-button form-button" (click)="goToRegistrationPage()" id="register-in-button">
 			Register
 		</button>
 
-		<button class="gs-button form-button" (click)="goToForgottenPasswordPage()">
+		<button class="gs-button form-button" (click)="goToForgottenPasswordPage()" id="reset-password-button">
 			Forgot Password
 		</button>
 	</div>

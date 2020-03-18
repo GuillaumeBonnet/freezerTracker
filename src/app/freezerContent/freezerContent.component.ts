@@ -31,8 +31,6 @@ export class FreezerContent implements OnInit {
 		)
 		.subscribe({
 			next: (freezerContent: Aliment[]) => {
-				console.log("gboDebug:[freezerContent]", freezerContent);
-
 				this.listAliments = freezerContent;
 				this.selectedAliment = this.listAliments && this.listAliments.length >= 1 ? this.listAliments[0] : null;
 			},
@@ -54,7 +52,11 @@ export class FreezerContent implements OnInit {
 	}
 
 	newAliment() {
-		this.router.navigate(['new-aliment'], {relativeTo: this.route});
+		const animationDuration: number = 0.2*1000;
+		this.startCrossAnimation = true;
+		setTimeout(() => {
+			this.router.navigate(['new-aliment'], {relativeTo: this.route});
+		}, animationDuration);
 	}
 
 }

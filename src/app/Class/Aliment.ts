@@ -1,10 +1,10 @@
 export class Aliment {
 	id: number;
-	name: String;
-	category: String;
-	iconicFontName: String;
+	name: string;
+	category: string;
+	iconicFontName: string;
 	quantity: Number;
-	quantityUnit: String;
+	quantityUnit: string;
 	storedDate: Date;
 	expirationDate: Date;
 

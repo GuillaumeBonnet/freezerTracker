@@ -7,6 +7,9 @@ import { AuthGuard } from '../auth/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import {Location} from '@angular/common';
+import { componentFactoryName } from '@angular/compiler';
+import { SSL_OP_NO_QUERY_MTU } from 'constants';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
 	template: `
@@ -23,13 +26,23 @@ class TestHostComponent {
 describe('MenuComponent', () => {
 	let testHost: TestHostComponent;
 	let fixture: ComponentFixture<TestHostComponent>;
-
-	beforeEach(async(() => {
-		const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-		const locationSpy = jasmine.createSpyObj('Location', ['back', 'forward']);
-		const backendServiceSpy = jasmine.createSpyObj('BackendService', ['logout']);
-		const authGuardSpy = jasmine.createSpyObj('AuthGuard', ['getIsLoggedIn']);
-		const cookieServiceSpy = jasmine.createSpyObj('CookieService', ['deleteAll']);
+	let component: HTMLElement;
+	let routerSpy;
+	let locationSpy;
+	let backendServiceSpy;
+	let authGuardSpy;
+	let cookieServiceSpy;
+	let customSetup = (context:string) => {
+		routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+		locationSpy = jasmine.createSpyObj('Location', ['back', 'forward']);
+		backendServiceSpy = jasmine.createSpyObj('BackendService', ['logout']);
+		authGuardSpy = jasmine.createSpyObj('AuthGuard', ['getIsLoggedIn', 'setIsLoggedIn']);
+		if(context == 'not-logged') {
+			authGuardSpy.getIsLoggedIn.and.returnValue(false);
+		}else {
+			authGuardSpy.getIsLoggedIn.and.returnValue(true);
+		}
+		cookieServiceSpy = jasmine.createSpyObj('CookieService', ['deleteAll']);
 		TestBed.configureTestingModule({
 			declarations: [MenuComponent, TestHostComponent, MenuItemComponent],
 			providers: [
@@ -38,17 +51,91 @@ describe('MenuComponent', () => {
 				{provide: AuthGuard, useValue: authGuardSpy},
 				{provide: CookieService, useValue: cookieServiceSpy},
 				{provide: Location, useValue: locationSpy},
+			], imports: [
+				BrowserAnimationsModule
 			]
 		})
 		.compileComponents();
 		fixture = TestBed.createComponent(TestHostComponent);
 		testHost = fixture.componentInstance;
 		fixture.detectChanges();
-	}));
+		component = fixture.nativeElement.querySelector('app-menu');
+	};
+
+
 
 	it('should create', () => {
-		let component = fixture.nativeElement.querySelector('app-menu')
+		customSetup('default');
 		expect(component).toBeTruthy();
 	});
+	it('should navigate to previous page', () => {
+		customSetup('default');
+		let backAction:HTMLElement = component.querySelector('#back-action');
+		backAction.click();
+		expect(locationSpy.back).toHaveBeenCalled();
+	});
+	it('should navigate to next page', () => {
+		customSetup('default');
+		let forwardAction:HTMLElement = component.querySelector('#forward-action');
+		forwardAction.click();
+		expect(locationSpy.forward).toHaveBeenCalled();
+	});
+	it('should open logged in menu', () => {
+		customSetup('default');
+		let opener:HTMLElement = component.querySelector('.opener');
+		let menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(0);
+
+		opener.click();
+		fixture.detectChanges();
+		menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(3);
+
+		opener.click();
+		fixture.detectChanges();
+		menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(0);
+	});
+	it('should open another menu when not logged', () => {
+		customSetup('not-logged');
+		let opener:HTMLElement = component.querySelector('div.opener');
+		let menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(0);
+
+		opener.click();
+		fixture.detectChanges();
+		menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(2);
+
+		(<HTMLElement>component.querySelector('.gs-shadow-backdrop')).click();
+		fixture.detectChanges();
+		menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(0);
+	});
+	it('should navigate to pages through the different menu item', () => {
+		customSetup('default');
+		let opener:HTMLElement = component.querySelector('.opener');
+		let menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+		expect(menuItems.length).toBe(0);
+
+
+		for(let i=0;i<2;i++) {
+			opener.click();
+			fixture.detectChanges();
+			menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+			expect(menuItems.length).toBe(3);
+
+			(<HTMLElement>menuItems[i]).click();
+			if(i==2) {
+				expect(backendServiceSpy.logout).toHaveBeenCalled();
+			} else {
+				expect(routerSpy.navigate).toHaveBeenCalled();
+			}
+			fixture.detectChanges();
+			menuItems = component.querySelectorAll('app-menu-item[ng-reflect-is-opened="true"]');
+			expect(menuItems.length).toBe(0);
+		}
+	});
+
 });
 

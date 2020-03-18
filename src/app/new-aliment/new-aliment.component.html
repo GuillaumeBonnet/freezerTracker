@@ -1,5 +1,5 @@
 <div class="mainbox">
-	<div (click)="setCurrentFormControl('icon')" [ngClass]="{
+	<div id="form-field-icon" (click)="setCurrentFormControl('icon')" [ngClass]="{
 		'mainbox__aliment':true,
 		'mainbox__aliment--selected': currentInputPage.value == 'icon',
 		'mainbox__aliment--invalid': isShowingInvalid('icon')
@@ -17,11 +17,12 @@
 			<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
 				<use xlink:href="#icon-007-checked" />
 			</svg>
-		</div><!-- icon switch end -->
+		</div>
 	</div>
 
 	<div class="mainbox__line__containor" (click)="setCurrentFormControl('name')">
 		<div
+			id="form-field-name"
 			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'name', 'mainbox__line--invalid': isShowingInvalid('name')}">
 			<span
 				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'name'}">
@@ -37,7 +38,7 @@
 				<svg viewBox="0 0 100 100" *ngSwitchCase="'VALID'" class="mainbox__line__icon--valid">
 					<use xlink:href="#icon-007-checked" />
 				</svg>
-			</div><!-- icon switch end -->
+			</div>
 		</div>
 
 	</div>
@@ -46,7 +47,8 @@
 
 	<div class="mainbox__line__containor" (click)="setCurrentFormControl('category')">
 		<div
-			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'category', 'mainbox__line--invalid': isShowingInvalid('value')}">
+			id="form-field-category"
+			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'category', 'mainbox__line--invalid': isShowingInvalid('category')}">
 			<span
 				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'category'}">
 				Category :&nbsp;</span><span class="mainbox__line__text">{{ alimentForm?.value.category }}</span>
@@ -69,6 +71,7 @@
 
 	<div class="mainbox__line__containor" (click)="setCurrentFormControl('storedDate')">
 		<div
+			id="form-field-storedDate"
 			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'storedDate', 'mainbox__line--invalid': isShowingInvalid('storedDate')}">
 			<span
 				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'storedDate'}">
@@ -93,6 +96,7 @@
 
 	<div class="mainbox__line__containor" (click)="setCurrentFormControl('expirationDate')">
 		<div
+			id="form-field-expirationDate"
 			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'expirationDate', 'mainbox__line--invalid': isShowingInvalid('expirationDate')}">
 			<span
 				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'expirationDate'}">
@@ -117,6 +121,7 @@
 
 	<div class="mainbox__line__containor" (click)="setCurrentFormControl('quantity')">
 		<div
+			id="form-field-quantity"
 			[ngClass]="{'mainbox__line': true, 'mainbox__line--selected': currentInputPage.value == 'quantity', 'mainbox__line--invalid': isShowingInvalid('quantityValue') || isShowingInvalid('quantityUnit')}">
 			<span
 				[ngClass]="{'mainbox__line__label': true, 'mainbox__line__label--selected': currentInputPage.value == 'quantity'}">
@@ -140,26 +145,25 @@
 
 <form class="form-container" (ngSubmit)="register()" [formGroup]="alimentForm">
 	<div class="buttons">
-
-		<button type="button" class="gs-button" (click)="cancelForm()">
+		<button id="cancel-button" type="button" class="gs-button" (click)="cancelForm()">
 			<svg viewBox="0 0 100 100" class="">
 				<use xlink:href="#icon-010-cancel-form" />
 			</svg>
 		</button>
 
-		<button type="button" class="gs-button" (click)="previousFromControl()">
+		<button id="previous-field-button" type="button" class="gs-button" (click)="previousFromControl()">
 			<svg viewBox="0 0 100 100" class="">
 				<use xlink:href="#icon-003-arrows-1" />
 			</svg>
 		</button>
 
-		<button type="button" class="gs-button" (click)="nextFormControl()">
+		<button id="next-field-button" type="button" class="gs-button" (click)="nextFormControl()">
 			<svg viewBox="0 0 100 100" class="rot180">
 				<use xlink:href="#icon-003-arrows-1" />
 			</svg>
 		</button>
 
-		<button type="submit" class="gs-button">
+		<button id="submit-button" type="submit" class="gs-button">
 			<svg viewBox="0 0 100 100" class="">
 				<use xlink:href="#icon-011-check-form" />
 			</svg>

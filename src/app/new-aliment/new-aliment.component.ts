@@ -33,8 +33,6 @@ export class NewAlimentComponent implements OnInit {
 	ngOnInit() {
 		this.route.params.subscribe({
 			next: (params: Params) => {
-				console.log("gboDebug:[params]", params);
-
 				this.freezerId = params.freezerId;
 				if(this.isEdit) {
 					this.alimentId = params.alimentId;
@@ -120,7 +118,7 @@ export class NewAlimentComponent implements OnInit {
 				, expirationDate: formVal.expirationDate
 			});
 
-			let dmlObserver: PartialObserver<Aliment> = {
+			let dmlObserver: PartialObserver<any> = {
 				next: () => {
 					this.router.navigate(['freezers', this.freezerId]);
 				},
@@ -172,8 +170,6 @@ export class NewAlimentComponent implements OnInit {
 	}
 
 	iconToDisplayLine(lineName: string): string {
-		let formControl: AbstractControl = null;
-
 		if (lineName == 'quantity') {
 			let valueStatus: string = this.iconToDisplayField('quantityValue');
 			let valueUnit: string = this.iconToDisplayField('quantityUnit');
