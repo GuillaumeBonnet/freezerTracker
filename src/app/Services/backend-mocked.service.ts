@@ -7,6 +7,10 @@ import { UserInfo } from '../Class/UserInfo';
 import { map } from 'rxjs/operators';
 import { BackendService } from './backend.service';
 
+/* -------------------------------------------------------------------------- */
+/*                  File is going to be a hassle to maintain                  */
+/* -------------------------------------------------------------------------- */
+
 @Injectable()
 export class BackendServiceMocked implements BackendService {
 
@@ -66,8 +70,7 @@ export class BackendServiceMocked implements BackendService {
 			password: password,
 		}
 
-		// if(username == 'mockedUsername' && password == 'mockedPassword') {
-		if(username == 'toto' && password == 'toto') {
+		if(username == 'guest' && password == 'guest-password') {
 			this.isLoggedIn = true;
 			return of(null);
 		}

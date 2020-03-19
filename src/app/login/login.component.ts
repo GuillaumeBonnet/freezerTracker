@@ -18,17 +18,6 @@ export class LoginComponent implements OnInit {
 			username: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
 			password: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
 		});
-
-		this.loginForm.setValue({
-			username: 'toto',
-			password: 'toto'
-		});
-
-		// this.loginForm.setValue({
-		// 	username: 'guest',
-		// 	password: 'guest-password'
-		// });
-		//TODO! guest account UI
 	}
 
 	ngOnInit() {
@@ -55,6 +44,13 @@ export class LoginComponent implements OnInit {
 
 	goToRegistrationPage() {
 		this.router.navigate(['registration']);
+	}
+
+	fillGuestInfo() {
+		this.loginForm.setValue({
+			username: 'guest',
+			password: 'guest-password'
+		});
 	}
 
 	goToForgottenPasswordPage() {

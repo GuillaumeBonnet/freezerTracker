@@ -33,11 +33,22 @@
 	</form>
 
 	<div class="button-group">
-		<button class="gs-button form-button" (click)="goToRegistrationPage()" id="register-in-button">
+		<button
+			id="register-in-button"
+			class="gs-button form-button"
+		(click)="goToRegistrationPage()">
 			Register
 		</button>
-
-		<button class="gs-button form-button" (click)="goToForgottenPasswordPage()" id="reset-password-button">
+		<button
+			id="guest-button"
+			class="gs-button form-button"
+		(click)="fillGuestInfo()">
+			Fill guest crendentials
+		</button>
+		<button
+			id="reset-password-button"
+			class="gs-button form-button"
+		(click)="goToForgottenPasswordPage()">
 			Forgot Password
 		</button>
 	</div>

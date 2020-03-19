@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DebugElement } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { DataService } from '../Services/data.service';
 import { of, throwError } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 @Component({
 	template: `
@@ -25,6 +26,7 @@ describe('LoginComponent', () => {
 	let fixture: ComponentFixture<TestHostComponent>;
 	let fakeReturnUrl: string = 'fake return url';
 	let component: HTMLElement;
+	let debugComponent: DebugElement;
 	let routerSpy;
 	let backendServiceSpy;
 	let authGuardSpy;
@@ -63,6 +65,7 @@ describe('LoginComponent', () => {
 		fixture = TestBed.createComponent(TestHostComponent);
 		testHost = fixture.componentInstance;
 		component = fixture.nativeElement.querySelector('app-login');
+		debugComponent = fixture.debugElement.query(By.css('app-login'));
 		fixture.detectChanges();
 	}));
 
@@ -101,6 +104,12 @@ describe('LoginComponent', () => {
 		let registerButton: HTMLElement = component.querySelector('button#register-in-button');
 		registerButton.click();
 		expect(routerSpy.navigate).toHaveBeenCalledWith(['registration']);
+	});
+	it('should fill out guest user info when guest button is clicked', () => {
+		(component.querySelector('button#guest-button') as HTMLElement).click();
+		let loginForm: FormGroup = debugComponent.componentInstance.loginForm;
+		expect(loginForm.controls.username.value).toBe('guest');
+		expect(loginForm.controls.password.value).toBe('guest-password');
 	});
 	it('reset password button should navigate to its page', () => {
 		let resetPasswordButton: HTMLElement = component.querySelector('button#reset-password-button');
