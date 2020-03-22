@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
-import { BackendService } from '../Services/backend.service';
+import { DataService } from '../Services/data.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
 	constructor(
 		private router: Router
 		, private location: Location
-		, @Inject('BackendService') private backendService: BackendService
+		, private dataService: DataService
 		, public authGuard: AuthGuard
 		, private cookieService : CookieService
 	) { }
@@ -61,8 +61,7 @@ export class MenuComponent implements OnInit {
 	}
 
 	logout(clickEvt: Event) {
-		clickEvt.stopPropagation();
-		this.backendService.logout().subscribe({
+		this.dataService.logout().subscribe({
 			complete: () => {
 				this.cookieService.deleteAll(null, environment.DOMAIN);
 				this.authGuard.setIsLoggedIn(false);

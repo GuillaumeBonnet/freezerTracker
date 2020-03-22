@@ -28,13 +28,13 @@ describe('LoginComponent', () => {
 	let component: HTMLElement;
 	let debugComponent: DebugElement;
 	let routerSpy;
-	let backendServiceSpy;
+	let dataServiceSpy;
 	let authGuardSpy;
 
 	beforeEach(async(() => {
 		routerSpy = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl']);
-		backendServiceSpy = jasmine.createSpyObj('BackendService', ['login']);
-		backendServiceSpy.login.and.callFake((username, password) => {
+		dataServiceSpy = jasmine.createSpyObj('DataService', ['login']);
+		dataServiceSpy.login.and.callFake((username, password) => {
 			if(username == 'userName2' && password == 'password2') {
 				return of('fake success');
 			}
@@ -53,7 +53,7 @@ describe('LoginComponent', () => {
 			providers:[
 				{ provide: Router, useValue: routerSpy},
 				{ provide: AuthGuard, useValue: authGuardSpy},
-				{provide: 'BackendService', useValue: backendServiceSpy},
+				{provide: DataService, useValue: dataServiceSpy},
 				FormBuilder,
 			],
 			imports: [
@@ -83,13 +83,13 @@ describe('LoginComponent', () => {
 		passwordInput.dispatchEvent(new Event('input'));
 		let logButton:HTMLElement = component.querySelector('button#log-in-button');
 		// logButton.click();
-		// expect(backendServiceSpy.login).not.toHaveBeenCalled(); //TODO
+		// expect(dataServiceSpy.login).not.toHaveBeenCalled(); //TODO
 
 		//wrong password -> error
 		passwordInput.value = 'password3';
 		passwordInput.dispatchEvent(new Event('input'));
 		logButton.click();
-		expect(backendServiceSpy.login).toHaveBeenCalled();
+		expect(dataServiceSpy.login).toHaveBeenCalled();
 		expect(routerSpy.navigateByUrl).not.toHaveBeenCalled(); // error
 
 		//good password -> succès
@@ -97,7 +97,7 @@ describe('LoginComponent', () => {
 		passwordInput.dispatchEvent(new Event('input'));
 		fixture.detectChanges();
 		logButton.click();
-		expect(backendServiceSpy.login).toHaveBeenCalled();
+		expect(dataServiceSpy.login).toHaveBeenCalled();
 		expect(routerSpy.navigateByUrl).toHaveBeenCalledWith(fakeReturnUrl); // success
 	});
 	it('register button should navigate to register page', () => {

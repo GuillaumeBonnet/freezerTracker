@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
-import { BackendService } from '../Services/backend.service';
+import { DataService } from '../Services/data.service';
 
 @Component({
 	selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 
-	constructor(public router: Router, public fb: FormBuilder, public authGuard: AuthGuard, @Inject('BackendService') private backendService: BackendService) {
+	constructor(public router: Router, public fb: FormBuilder, public authGuard: AuthGuard, private dataService: DataService) {
 		this.loginForm = this.fb.group({
 			username: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
 			password: this.fb.control('', [Validators.required, Validators.maxLength(250)]),
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
 		let formVal = this.loginForm.value;
 
-		this.backendService.login(formVal.username, formVal.password).subscribe({
+		this.dataService.login(formVal.username, formVal.password).subscribe({
 			next: () => {
 				this.router.navigateByUrl(this.authGuard.getRedirectionUrl());
 			}, error: (error) => {

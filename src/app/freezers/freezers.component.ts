@@ -74,8 +74,13 @@ export class FreezersComponent implements OnInit {
 	}
 
 	createFreezer() {
-		this.dataService.addFreezer(this.newFreezerName, () => {
-			this.isCreatingANewFreezer = false;
+		this.dataService.addFreezer(this.newFreezerName).subscribe({
+			next: () => {
+				this.isCreatingANewFreezer = false;
+			},
+			error: () => {
+				this.isCreatingANewFreezer = false;
+			}
 		});
 	}
 

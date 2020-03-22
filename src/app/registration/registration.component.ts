@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BackendService } from '../Services/backend.service';
+import { DataService } from '../Services/data.service';
 
 @Component({
 	selector: 'app-registration',
@@ -13,7 +13,7 @@ export class RegistrationComponent implements OnInit {
 	registerForm: FormGroup;
 	isAwaitingConfirmation: boolean = false;
 
-	constructor(public router: Router, fb: FormBuilder, @Inject('BackendService') private backendService: BackendService) {
+	constructor(public router: Router, fb: FormBuilder, private dataService: DataService) {
 
 		this.registerForm = fb.group({
 			username: fb.control('', [Validators.required, Validators.maxLength(250)]),
@@ -57,7 +57,7 @@ export class RegistrationComponent implements OnInit {
 			matchingPassword: formVal.passwordVerification
 		};
 
-		this.backendService.register(registrationInfo).subscribe({
+		this.dataService.register(registrationInfo).subscribe({
 			next: () => {
 				this.isAwaitingConfirmation = true;
 			}, error: (error) => {

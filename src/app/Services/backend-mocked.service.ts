@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
 import { HttpClient} from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, timer } from 'rxjs';
 import { Freezer } from '../Class/Freezer';
 import { UserInfo } from '../Class/UserInfo';
-import { map } from 'rxjs/operators';
+import { map, delay, catchError, mergeMap } from 'rxjs/operators';
 import { BackendService } from './backend.service';
 
 /* -------------------------------------------------------------------------- */
@@ -17,6 +17,7 @@ export class BackendServiceMocked implements BackendService {
 	listAliments: Aliment[];
 	apiRoot: string = 'urlMockedBackEndService';
 	options = { headers: { 'Content-Type': 'application/json' } };
+	fakeDelay: number= 700; //ms
 
 	constructor() { }
 
@@ -55,13 +56,15 @@ export class BackendServiceMocked implements BackendService {
 	getUserInfo(): Observable<UserInfo> { // UserInfo
 		console.log("========= BACK-END CALL: getUserInfo() =========");
 		if(!this.isLoggedIn) {
-			return throwError(new Error('mocked getUserInfo error 500.'));
+			return throwError(new Error('mocked getUserInfo error 500.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 		let mockedUserInfo: UserInfo = new UserInfo();
 		mockedUserInfo.email = 'mockedUserEmail@';
 		mockedUserInfo.username = 'mockedUsername';
 
-		return of( JSON.parse(JSON.stringify(mockedUserInfo)) );
+		return of( JSON.parse(JSON.stringify(mockedUserInfo)) ).pipe(delay(this.fakeDelay));
 	}
 
 	login(username: string, password: string): Observable<Object> {
@@ -72,10 +75,13 @@ export class BackendServiceMocked implements BackendService {
 
 		if(username == 'guest' && password == 'guest-password') {
 			this.isLoggedIn = true;
-			return of(null);
+
+			return of(null).pipe(delay(1000));
 		}
 		else {
-			return throwError(new Error('User mocked login failed.'));
+			return throwError(new Error('User mocked login failed.')).pipe(
+				catchError(e => timer(1000).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 
 	}
@@ -83,11 +89,11 @@ export class BackendServiceMocked implements BackendService {
 	logout(): Observable<Object> {
 		console.log("========= BACK-END CALL: logout() =========");
 		this.isLoggedIn = false;
-		return of(null);
+		return of(null).pipe(delay(this.fakeDelay));
 	}
 
 	register(registrationInfo: {username: string, password: string, matchingPassword: string, email: string}): Observable<Object> {
-		return of(null);
+		return of(null).pipe(delay(this.fakeDelay));
 	}
 
 	/* -------------------------------------------------------------------------- */
@@ -100,11 +106,14 @@ export class BackendServiceMocked implements BackendService {
 			return of( JSON.parse(JSON.stringify(this.freezers)) )
 				.pipe(
 					map( (jsonBody: Freezer[]) => jsonBody )
+					, delay(this.fakeDelay)
 				)
 			;
 		}
 		else {
-			return throwError(new Error('getFreezers() not logged in.'));
+			return throwError(new Error('getFreezers() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 
 	}
@@ -114,10 +123,12 @@ export class BackendServiceMocked implements BackendService {
 		if(this.isLoggedIn) {
 			let newFreezer: Freezer = new Freezer({name:name, id: this.freezers.length + 1});
 			this.freezers.push(newFreezer);
-			return of( JSON.parse(JSON.stringify(newFreezer)) );
+			return of( JSON.parse(JSON.stringify(newFreezer)) ).pipe(delay(this.fakeDelay));
 		}
 		else {
-			return throwError(new Error('saveFreezer() not logged in.'));
+			return throwError(new Error('saveFreezer() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
@@ -125,31 +136,39 @@ export class BackendServiceMocked implements BackendService {
 		console.log("========= BACK-END CALL: deleteFreezer() =========");
 		if(this.isLoggedIn) {
 			if( this.freezers.slice(this.freezers.findIndex((freezer: Freezer) => freezer.id == freezerToDelete.id)) ) {
-				return of(null);
+				return of(null).pipe(delay(this.fakeDelay));
 			}
 			else {
-				return throwError(new Error('Freezer could not be deleted'));
+				return throwError(new Error('Freezer could not be deleted')).pipe(
+					catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+				);
 			}
 		}
 		else {
-			return throwError(new Error('deleteFreezer() not logged in.'));
+			return throwError(new Error('deleteFreezer() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
 	updateFreezer(freezerToUpdate: Freezer): Observable<Freezer> {
 		console.log("========= BACK-END CALL: updateFreezer() =========");
 		if(this.isLoggedIn) {
-			let updateFreezerIndex = this.freezers.findIndex((freezer: Freezer) => freezer.id == freezerToUpdate.id);
-			if( updateFreezerIndex ) {
+			let updateFreezerIndex:number = this.freezers.findIndex((freezer: Freezer) => freezer.id == freezerToUpdate.id);
+			if( updateFreezerIndex != null && updateFreezerIndex != undefined ) {
 				this.freezers[updateFreezerIndex] = freezerToUpdate;
-				return of( JSON.parse(JSON.stringify(freezerToUpdate)) );
+				return of( JSON.parse(JSON.stringify(freezerToUpdate)) ).pipe(delay(this.fakeDelay));
 			}
 			else {
-				return throwError(new Error('updateFreezer() failed.'));
+				return throwError(new Error('updateFreezer() failed.')).pipe(
+					catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+				);
 			}
 		}
 		else {
-			return throwError(new Error('updateFreezer() not logged in.'));
+			return throwError(new Error('updateFreezer() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
@@ -162,14 +181,18 @@ export class BackendServiceMocked implements BackendService {
 		if(this.isLoggedIn) {
 			let content = this.freezerIdToContentMap[freezerId];
 			if(content) {
-				return of( JSON.parse(JSON.stringify(content)) );
+				return of( JSON.parse(JSON.stringify(content)) ).pipe(delay(this.fakeDelay));
 			}
 			else {
-				return throwError(new Error('could not get content'));
+				return throwError(new Error('could not get content')).pipe(
+					catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+				);
 			}
 		}
 		else {
-			return throwError(new Error('getAliments() not logged in.'));
+			return throwError(new Error('getAliments() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
@@ -183,10 +206,12 @@ export class BackendServiceMocked implements BackendService {
 			this.freezerIdToContentMap.indexAliment++;
 			alimentToSave.id = this.freezerIdToContentMap.indexAliment;
 			content.push(alimentToSave);
-			return of( JSON.parse(JSON.stringify(alimentToSave)) );
+			return of( JSON.parse(JSON.stringify(alimentToSave)) ).pipe(delay(this.fakeDelay));
 		}
 		else {
-			return throwError(new Error('saveAliment() not logged in.'));
+			return throwError(new Error('saveAliment() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
@@ -201,14 +226,18 @@ export class BackendServiceMocked implements BackendService {
 
 			if(alimentInMap) {
 				alimentInMap = alimentToUpdate;
-				return of(alimentInMap);
+				return of(alimentInMap).pipe(delay(this.fakeDelay));
 			}
 			else {
-				return throwError(new Error('error in updating aliment.'));
+				return throwError(new Error('error in updating aliment.')).pipe(
+					catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+				);
 			}
 		}
 		else {
-			return throwError(new Error('updateAliment() not logged in.'));
+			return throwError(new Error('updateAliment() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 
@@ -224,14 +253,18 @@ export class BackendServiceMocked implements BackendService {
 
 			if(typeof indexOfalimentInMap === 'number' && indexOfalimentInMap != -1) {
 				content.splice(indexOfalimentInMap, 1);
-				return of(null);
+				return of(null).pipe(delay(this.fakeDelay));
 			}
 			else {
-				return throwError(new Error('error in deleting aliment.'));
+				return throwError(new Error('error in deleting aliment.')).pipe(
+					catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+				);
 			}
 		}
 		else {
-			return throwError(new Error('updateAliment() not logged in.'));
+			return throwError(new Error('updateAliment() not logged in.')).pipe(
+				catchError(e => timer(this.fakeDelay).pipe(mergeMap(t => throwError(e))))
+			);
 		}
 	}
 }

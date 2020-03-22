@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration.component';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { DataService } from '../Services/data.service';
 
 @Component({
 	template: `
@@ -23,13 +24,13 @@ describe('RegistrationComponent', () => {
 
 	beforeEach(async(() => {
 		const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-		const backendServiceSpy = jasmine.createSpyObj('BackendService', ['logout']);
+		const dataServiceSpy = jasmine.createSpyObj('DataService', ['logout']);
 		TestBed.configureTestingModule({
 			declarations: [RegistrationComponent, TestHostComponent],
 			providers: [
 				FormBuilder,
 				{provide: Router, useValue: routerSpy},
-				{provide: 'BackendService', useValue: backendServiceSpy},
+				{provide: DataService, useValue: dataServiceSpy},
 			],
 			imports: [
 				ReactiveFormsModule

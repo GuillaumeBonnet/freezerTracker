@@ -31,6 +31,7 @@ import { FreezersComponent } from './freezers/freezers.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import  { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
 import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
@@ -82,6 +83,7 @@ import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
 		MatCardModule,
 		MatButtonModule,
 		MatDialogModule,
+		MatProgressSpinnerModule,
 	],
 	providers: [
 		MainServiceService,

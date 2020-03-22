@@ -10,6 +10,7 @@ import {Location} from '@angular/common';
 import { componentFactoryName } from '@angular/compiler';
 import { SSL_OP_NO_QUERY_MTU } from 'constants';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataService } from '../Services/data.service';
 
 @Component({
 	template: `
@@ -29,13 +30,13 @@ describe('MenuComponent', () => {
 	let component: HTMLElement;
 	let routerSpy;
 	let locationSpy;
-	let backendServiceSpy;
+	let dataServiceSpy;
 	let authGuardSpy;
 	let cookieServiceSpy;
 	let customSetup = (context:string) => {
 		routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 		locationSpy = jasmine.createSpyObj('Location', ['back', 'forward']);
-		backendServiceSpy = jasmine.createSpyObj('BackendService', ['logout']);
+		dataServiceSpy = jasmine.createSpyObj('DataService', ['logout']);
 		authGuardSpy = jasmine.createSpyObj('AuthGuard', ['getIsLoggedIn', 'setIsLoggedIn']);
 		if(context == 'not-logged') {
 			authGuardSpy.getIsLoggedIn.and.returnValue(false);
@@ -47,7 +48,7 @@ describe('MenuComponent', () => {
 			declarations: [MenuComponent, TestHostComponent, MenuItemComponent],
 			providers: [
 				{provide: Router, useValue: routerSpy},
-				{provide: 'BackendService', useValue: backendServiceSpy},
+				{provide: DataService, useValue: dataServiceSpy},
 				{provide: AuthGuard, useValue: authGuardSpy},
 				{provide: CookieService, useValue: cookieServiceSpy},
 				{provide: Location, useValue: locationSpy},
@@ -127,7 +128,7 @@ describe('MenuComponent', () => {
 
 			(<HTMLElement>menuItems[i]).click();
 			if(i==2) {
-				expect(backendServiceSpy.logout).toHaveBeenCalled();
+				expect(dataServiceSpy.logout).toHaveBeenCalled();
 			} else {
 				expect(routerSpy.navigate).toHaveBeenCalled();
 			}
