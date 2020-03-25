@@ -6,13 +6,14 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	height: 100vh;
+	height: 100%;
+	background-color: $color-custom-bluesky;
 }
 
 .page {
 		grid-column: 1 /13;
 		grid-row: 1/12;
-		overflow-y: scroll;
+		overflow-y: auto;
 		padding: $padding-page;
 }
 
@@ -33,3 +34,22 @@
 	z-index: 8000;
 	@include center;
 }
+
+.container-desktop {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	@include center;
+}
+.maincontent-desktop {
+	max-width: 340px;
+	max-height: 600px;
+	margin: auto;
+	position: relative;
+	border: solid black 5px;
+	border-radius: 26px;
+	overflow: hidden;
+}
+

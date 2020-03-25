@@ -56,7 +56,6 @@ export class NewAlimentComponent implements OnInit {
 		if (this.isEdit) {
 			this.dataService.getFreezerContent(this.freezerId).subscribe({
 				next: (freezerContent: Aliment[]) => {
-					console.log("gboDebug:[this.alimentId]", this.alimentId);
 					let alimToEdit = freezerContent.find((alim) => alim.id == this.alimentId);
 					if (alimToEdit) {
 						this.alimentForm.setValue({

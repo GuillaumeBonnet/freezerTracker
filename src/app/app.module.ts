@@ -43,6 +43,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuard } from './auth/auth.guard';
 import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
 	declarations: [
 		AppComponent,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
@@ -28,6 +28,8 @@ import { environment } from '../../environments/environment';
 export class MenuComponent implements OnInit {
 
 	isOpened: Boolean = false;
+	@Input()
+	radiusInPx: number;
 	constructor(
 		private router: Router
 		, private location: Location
