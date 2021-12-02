@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import { DataService } from '../Services/data.service';
+import { AuthGuard } from '../auth/auth.guard';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -24,20 +28,28 @@ import {Location} from '@angular/common';
 export class MenuComponent implements OnInit {
 
 	isOpened: Boolean = false;
-	constructor(private router: Router, private location: Location) { }
+	@Input()
+	radiusInPx: number;
+	constructor(
+		private router: Router
+		, private location: Location
+		, private dataService: DataService
+		, public authGuard: AuthGuard
+		, private cookieService : CookieService
+	) { }
 
 	ngOnInit() {
 	}
 
-	calculateAngle(input): number {
-		let numberOfMeniItems = input.length;
-		let deadAngle = 25;
-		return deadAngle +  (input.index - 1) * (180-deadAngle-deadAngle)  / (numberOfMeniItems-1);
+	calculateAngle(input: {index: number, length: number}): number {
+		let numberOfMenuItems: number = input.length;
+		let deadAngle: number = 25;
+		return deadAngle +  (input.index - 1) * (180-deadAngle-deadAngle)  / (numberOfMenuItems-1);
 	}
 
 	navigate(clickEvt: Event, route: string): void {
-		this.router.navigate([route]);
 		clickEvt.stopPropagation();
+		this.router.navigate([route]);
 		this.isOpened = false
 	}
 
@@ -48,6 +60,16 @@ export class MenuComponent implements OnInit {
 		else if(actionToken == 'forward') {
 			this.location.forward();
 		}
+	}
+
+	logout(clickEvt: Event) {
+		this.dataService.logout().subscribe({
+			complete: () => {
+				this.cookieService.deleteAll(null, environment.DOMAIN);
+				this.authGuard.setIsLoggedIn(false);
+				this.router.navigate(['login']);
+			}
+		});
 	}
 
 }

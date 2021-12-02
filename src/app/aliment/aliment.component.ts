@@ -3,7 +3,6 @@ import {
 	, EventEmitter
 	, Input, Output
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { Aliment } from '../Class/Aliment';
 
 
@@ -28,7 +27,7 @@ export class AlimentComponent implements OnInit, AfterViewInit {
 	posAlimentSelected = new EventEmitter<Number>();
 
 
-	constructor(@Inject(DOCUMENT) private document: any) { }
+	constructor() { }
 
 	ngOnInit() {
 	}

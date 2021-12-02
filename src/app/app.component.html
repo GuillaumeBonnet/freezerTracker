@@ -1,8 +1,32 @@
-<div class="maincontent">
+<!-- ----------------------------------------------------------------------- -->
+<!--                                 Mobile                                  -->
+<!-- ----------------------------------------------------------------------- -->
+
+<div *ngIf="screenType=='mobile'" class="maincontent">
 	<div class="page">
+		<div class="spinner-bg" *ngIf="isSpinnerDisplayed">
+			<mat-spinner color=""></mat-spinner>
+		</div>
 		<router-outlet></router-outlet>
 	</div>
 	<div class="footer">
-		<app-menu></app-menu>
+		<app-menu [radiusInPx]="radiusInPx"></app-menu>
+	</div>
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                                 Desktop                                 -->
+<!-- ----------------------------------------------------------------------- -->
+<div *ngIf="screenType=='desktop'" class="container-desktop">
+	<div #maincontent class="maincontent maincontent-desktop">
+		<div class="page">
+			<div class="spinner-bg" *ngIf="isSpinnerDisplayed">
+				<mat-spinner color=""></mat-spinner>
+			</div>
+			<router-outlet></router-outlet>
+		</div>
+		<div class="footer">
+			<app-menu [radiusInPx]="radiusInPx"></app-menu>
+		</div>
 	</div>
 </div>

@@ -1,9 +1,13 @@
-export class Freezer {
-	id: Number;
-	name: String;
+import { Aliment } from "./Aliment";
 
-	constructor(name?, id?) {
-		this.id = id;
-		this.name = name;
+export class Freezer {
+	id: number;
+	name: string;
+	content: Aliment[];
+
+	constructor(inputWrapper: {name?: string; id?: number; content?: Aliment[]}) {
+		this.id = inputWrapper.id;
+		this.name = inputWrapper.name;
+		this.content = inputWrapper.content;
 	}
 }

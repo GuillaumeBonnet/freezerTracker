@@ -1,18 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
 
 import { AppComponent } from './app.component';
 import { AlimentComponent } from './aliment/aliment.component';
-import { PageMyFreezerComponent } from './pageMyFreezer/pageMyFreezer.component';
+import { FreezerContent } from './freezerContent/freezerContent.component';
 import { SquarifyDirective } from './Directives/squarify.directive';
 import { MainServiceService } from './Services/main-service.service';
 import { DataService } from './Services/data.service';
-import { BackendService } from './Services/backend.service';
+import { environment } from '../environments/environment';
 import { AlimentDetailsComponent } from './aliment-details/aliment-details.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -31,16 +31,24 @@ import { FreezersComponent } from './freezers/freezers.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import  { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ClickStopPropagationDirective } from './Directives/click-stop-propagation.directive';
 import { PopUpFreezerMenuComponent } from './pop-up-freezer-menu/pop-up-freezer-menu.component';
-import { PopUpDeleteFreezerComponent } from './pop-up-delete-freezer/pop-up-delete-freezer.component';
-import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component'
-
+import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
+import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rename-freezer.component';
+import { LoginComponent } from './login/login.component';
+import { VerificationRedirectionComponent } from './verification-redirection/verification-redirection.component'
+import { InterceptorXsrfHeaderWritterService } from './Services/interceptor-xsrf-header-writter.service';
+import { CookieService } from 'ngx-cookie-service';
+import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from './auth/auth.guard';
+import { EditAlimentComponent } from './edit-aliment/edit-aliment.component';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
 	declarations: [
 		AppComponent,
 		AlimentComponent,
-		PageMyFreezerComponent,
+		FreezerContent,
 		SquarifyDirective,
 		AlimentDetailsComponent,
 		NewAlimentComponent,
@@ -50,12 +58,16 @@ import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rena
 		FreezersComponent,
 		ClickStopPropagationDirective,
 		PopUpFreezerMenuComponent,
-		PopUpDeleteFreezerComponent,
+		PopUpDeleteComponent,
 		PopUpRenameFreezerComponent,
+		LoginComponent,
+		VerificationRedirectionComponent,
+		RegistrationComponent,
+		EditAlimentComponent,
 	],
 	entryComponents: [
 		PopUpFreezerMenuComponent,
-		PopUpDeleteFreezerComponent,
+		PopUpDeleteComponent,
 		PopUpRenameFreezerComponent,
 	],
 	imports: [
@@ -72,8 +84,17 @@ import { PopUpRenameFreezerComponent } from './pop-up-rename-freezer/pop-up-rena
 		MatCardModule,
 		MatButtonModule,
 		MatDialogModule,
+		MatProgressSpinnerModule,
 	],
-	providers: [MainServiceService, DataService, BackendService, { provide: LOCALE_ID, useValue: 'en-US' }],
+	providers: [
+		MainServiceService,
+		DataService,
+		{provide: 'BackendService', useClass: environment.BackendService},
+		AuthGuard,
+		{ provide: LOCALE_ID, useValue: 'en-US' },
+		CookieService,
+		{ provide: HTTP_INTERCEPTORS, useClass: InterceptorXsrfHeaderWritterService, multi: true },
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

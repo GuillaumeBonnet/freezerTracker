@@ -25,9 +25,14 @@ export class PopUpRenameFreezerComponent implements OnInit {
 
 		let freezerWithUpdate = Object.assign({}, this.data.freezer);
 		freezerWithUpdate.name = lastNameInput.value;
-		this.dataService.editFreezer(freezerWithUpdate);
-		// //ToDoBetter behaviour callbacks success error
-		this.dialogRef.close(true);
+		this.dataService.editFreezer(freezerWithUpdate).subscribe({
+			next: () => {
+				this.dialogRef.close(true);
+			},
+			error: () => {
+				this.dialogRef.close(true);
+			}
+		});
 	}
 
 	closeRenamePopUp() {

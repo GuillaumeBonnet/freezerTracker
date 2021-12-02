@@ -1,155 +1,201 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, EventEmitter } from '@angular/core';
 import { Aliment } from '../Class/Aliment';
 import { BackendService } from './backend.service';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject, Subscription, of, throwError, iif, Observer, PartialObserver } from 'rxjs';
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
 import { Freezer } from '../Class/Freezer';
+import { UserInfo } from '../Class/UserInfo';
 
 
 @Injectable()
 export class DataService {
 
-	constructor(public bnService: BackendService) {
-		this.subjListFreezer = null;
-		this.subjListAliment = new Subject();
+	constructor(@Inject('BackendService') public backendService: BackendService) {
+		this.spinnerEvent = new EventEmitter<Boolean>();
 	}
 
-	listFreezers: Freezer[];
-	subjListFreezer: Subject<Freezer[]>
-	curentFreezerId: Number;
-
-	listAliments: Aliment[];
-	subjListAliment: Subject<Aliment[]>
-	alimentToEdit: Aliment;
-
-	// -- Freezer related
-
-		getFreezerSubject(): Subject<Freezer[]> {
-			if(!this.subjListFreezer) {
-				this.subjListFreezer = new Subject();
-			}
-			this.loadFreezers(); // ToDoBetter : not have the risk of loadFeezers ending before the subject is register in the client component
-			return this.subjListFreezer;
-		}
-
-		loadFreezers(): Promise<any> {
-			return new Promise((resolve, reject) => {
-				this.bnService.getFreezers()
-				.subscribe(
-					(result) => {
-						this.listFreezers = <Freezer[]>result;
-						this.subjListFreezer.next(this.listFreezers);
-						resolve();
-					},
-					error => {
-						console.log('Error Freezers not loaded:', error);
-						reject();
-					},
-					() => {
-					}
-				);
-			});
-		}
-
-		addFreezer(freezerNameToAdd: String, successCallback: Function) {
-			this.bnService.saveFreezer(freezerNameToAdd).subscribe(result => {
-				this.listFreezers.unshift(<Freezer>result);
-				successCallback();
-				this.subjListFreezer.next(this.listFreezers);
+	shutDownSpinner: Function = () => {
+		return tap({
+			next: () => {
+				this.spinnerEvent.emit(false);
 			},
-				error => {
-					console.log('Error Freezer not added:', error);
-				});
+			error: () => {
+				this.spinnerEvent.emit(false);
+			},
+		});
+	}
+
+
+	spinnerEvent :EventEmitter<Boolean>;
+
+	listFreezers: Freezer[];
+
+	mapFreezerContents: { [id: string]: Aliment[] } = {};
+
+	userInfo: UserInfo;
+
+	/* -------------------------------------------------------------------------- */
+	/*                                    Users                                   */
+	/* -------------------------------------------------------------------------- */
+	getUserInfo(): Observable<UserInfo> {
+		this.spinnerEvent.emit(true);
+		return this.backendService.getUserInfo().pipe(
+			this.shutDownSpinner(),
+			map((userInfo: UserInfo) => {
+				this.userInfo = userInfo;
+				return userInfo;
+			})
+		);
+	}
+
+	login(username:string, password:string): Observable<Object> {
+		this.spinnerEvent.emit(true);
+		return this.backendService.login(username, password).pipe(
+			this.shutDownSpinner()
+		);
+	}
+
+	logout(): Observable<Object> {
+		this.spinnerEvent.emit(true);
+		return this.backendService.logout().pipe(
+			this.shutDownSpinner()
+		);
+	}
+
+	register(registrationInfo: { username: any; email: any; password: any; matchingPassword: any; }): Observable<Object> {
+		this.spinnerEvent.emit(true);
+		return this.backendService.register(registrationInfo).pipe(
+			this.shutDownSpinner()
+		);
+	}
+
+
+
+	/* -------------------------------------------------------------------------- */
+	/*                                   Freezers                                 */
+	/* -------------------------------------------------------------------------- */
+
+		getFreezers(): Observable<Freezer[]> {
+			if(this.listFreezers) {
+				return of(this.listFreezers);
+			}
+			else {
+				this.spinnerEvent.emit(true);
+				return this.backendService.getFreezers().
+					pipe(
+						this.shutDownSpinner(),
+						tap((freezers: Freezer[])=> {
+							this.listFreezers = freezers;
+						})
+					);
+			}
 		}
 
-		editFreezer(freezerWithChanges: Freezer): void {
-			this.bnService.updateFreezer(freezerWithChanges).subscribe(
-				result => {
-					Object.assign(this.listFreezers.find(freezer => freezer.id == freezerWithChanges.id), freezerWithChanges);
-					this.subjListFreezer.next(this.listFreezers);
-				},
-				error => {
-					console.log('Error Aliment not updated:', error);
-				}
+		addFreezer(freezerNameToAdd: string): Observable<Object> {
+			this.spinnerEvent.emit(true);
+			return this.backendService.saveFreezer(freezerNameToAdd).pipe(
+				this.shutDownSpinner(),
+				tap({
+					next: (freezer: Freezer) => {
+						this.listFreezers.unshift(freezer);
+					},
+					error: (error) => {
+						console.log('Error Freezer not added:', error);
+					}
+				})
 			);
 		}
 
-		deleteFreezer(freezerIdToDelete: String): void {
-			let freezerToDelete:Freezer = new Freezer(null, freezerIdToDelete);
-			this.bnService.deleteFreezer(freezerToDelete).subscribe(result => {
-				this.listFreezers.splice(this.listFreezers.findIndex(elem => elem.id == freezerToDelete.id), 1);
-				this.subjListFreezer.next(this.listFreezers);
-			},
-				error => {
-					console.log('Error Freezer not deleted:', error);
-				});
-		}
-
-
-	// -- Aliments related
-
-		getAlimentSubject(): Subject<Aliment[]> {
-			return this.subjListAliment;
-		}
-
-		loadAliments(freezerId: Number): Promise<any> {
-			this.curentFreezerId = freezerId;
-			return new Promise((resolve, reject) => {
-				this.bnService.getAliments(freezerId)
-				.subscribe(
-					(result) => {
-						console.log('todo debug:[result]', result);
-						this.listAliments = <Aliment[]>result;
-						this.subjListAliment.next(this.listAliments);
-						resolve();
+		editFreezer(freezerWithChanges: Freezer): Observable<Freezer> {
+			this.spinnerEvent.emit(true);
+			return this.backendService.updateFreezer(freezerWithChanges).pipe(
+				this.shutDownSpinner(),
+				tap({
+					next: (result) => {
+						Object.assign(this.listFreezers.find(freezer => freezer.id == freezerWithChanges.id), freezerWithChanges);
 					},
-					error => {
-						console.log('Error Aliment not loaded:', error);
-						reject();
-					},
-					() => {
+					error: (error) => {
+						console.log('Error Aliment not updated:', error);
 					}
-				);
-			});
+				})
+			);
 		}
 
-		addAliment(alimentToAdd: Aliment): void {
-			if(!this.curentFreezerId) {
-				throw "Freezer should have been chosen before doing operation on aliments.";
-			}
-			this.bnService.saveAliment(this.curentFreezerId, alimentToAdd).subscribe(result => {
-				this.listAliments.unshift(<Aliment>result);
-				this.subjListAliment.next(this.listAliments);
-			},
-				error => {
-					console.log('Error Aliment not added:', error);
-				});
+		deleteFreezer(freezerIdToDelete: number): Observable<Object> {
+			let freezerToDelete:Freezer = new Freezer({id:freezerIdToDelete});
+
+			return this.getFreezers().pipe(
+				switchMap((freezers: Freezer[]) => {
+					this.spinnerEvent.emit(true);
+					return this.backendService.deleteFreezer(freezerToDelete).pipe(
+						this.shutDownSpinner(),
+						tap(() => {
+							freezers.splice(freezers.findIndex(elem => elem.id == freezerToDelete.id), 1);
+						})
+					);
+				})
+			);
 		}
 
-		editAliment(alimentWithChanges: Aliment): void {
-			if(!this.curentFreezerId) {
-				throw "Freezer should have been chosen before doing operation on aliments.";
+
+	/* -------------------------------------------------------------------------- */
+	/*                                  Aliments                                  */
+	/* -------------------------------------------------------------------------- */
+
+		getFreezerContent(freezerId: number): Observable<Aliment[]> {
+			if(this.mapFreezerContents[freezerId]) {
+				return of(this.mapFreezerContents[freezerId]);
 			}
-			console.log('todo debug:[alimentWithChangesABC]', alimentWithChanges);
-			this.bnService.updateAliment(this.curentFreezerId, alimentWithChanges).subscribe(result => {
-				Object.assign(this.listAliments.find(alim => alim.id == alimentWithChanges.id), alimentWithChanges);
-				this.subjListAliment.next(this.listAliments);
-			},
-				error => {
-					console.log('Error Aliment not updated:', error);
-				});
+
+			this.spinnerEvent.emit(true);
+			return this.backendService.getAliments(freezerId).pipe(
+				this.shutDownSpinner(),
+				map((aliments: Aliment[]) => {
+					return this.mapFreezerContents[freezerId] = aliments;
+				})
+			);
 		}
 
-		deleteAliment(alimentToDelete: Aliment): void {
-			if(!this.curentFreezerId) {
-				throw "Freezer should have been chosen before doing operation on aliments.";
-			}
-			this.bnService.deleteAliment(this.curentFreezerId, alimentToDelete).subscribe(result => {
-				this.listAliments.splice(this.listAliments.findIndex(elem => elem.id == alimentToDelete.id), 1);
-				this.subjListAliment.next(this.listAliments);
-			},
-				error => {
-					console.log('Error Aliment not deleted:', error);
-				});
+		addAliment(freezerId: number, alimentToAdd: Aliment): Observable<Aliment> {
+			return this.getFreezerContent(freezerId).pipe(
+				switchMap((freezerContent: Aliment[]) => {
+					this.spinnerEvent.emit(true);
+					return this.backendService.saveAliment(freezerId, alimentToAdd).pipe(
+						this.shutDownSpinner(),
+						tap((alimentWithid: Aliment) => {
+							freezerContent.unshift(alimentWithid);
+						})
+					);
+				})
+			);
+		}
+
+		editAliment(freezerId: number, alimentWithUpdates: Aliment): Observable<Aliment>  {
+			return this.getFreezerContent(freezerId).pipe(
+				switchMap((freezerContent: Aliment[]) => {
+					this.spinnerEvent.emit(true);
+					return this.backendService.updateAliment(freezerId, alimentWithUpdates).pipe(
+						this.shutDownSpinner(),
+						tap((alimentWithUpdates: Aliment) => {
+							Object.assign(freezerContent.find(alim => alim.id == alimentWithUpdates.id), alimentWithUpdates);
+						})
+					);
+				})
+			);
+
+		}
+
+		deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object> {
+			return this.getFreezerContent(freezerId).pipe(
+				switchMap((freezerContent: Aliment[]) => {
+					this.spinnerEvent.emit(true);
+					return this.backendService.deleteAliment(freezerId, alimentToDelete).pipe(
+						this.shutDownSpinner(),
+						tap((alimentWithUpdates: Aliment) => {
+							freezerContent.splice(freezerContent.findIndex(elem => elem.id == alimentToDelete.id), 1);
+						})
+					);
+				})
+			);
 		}
 }

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../Services/data.service';
-import { BackendService } from '../Services/backend.service';
 import { Freezer } from '../Class/Freezer';
-import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +27,7 @@ import { PopUpFreezerMenuComponent } from '../pop-up-freezer-menu/pop-up-freezer
 })
 export class FreezersComponent implements OnInit {
 
-	constructor(private dataService: DataService, private backendService: BackendService, private router: Router, public dialog: MatDialog) { }
+	constructor(private dataService: DataService, private router: Router, public dialog: MatDialog) { }
 
 	freezers: Freezer[];
 	isCreatingANewFreezer: Boolean = false;
@@ -37,25 +35,19 @@ export class FreezersComponent implements OnInit {
 	isNameEmpty: Boolean = false;
 
 	ngOnInit() {
-		this.dataService.getFreezerSubject().subscribe({
-			next: (data) => {
-				this.freezers = <Freezer[]>data;
+		this.dataService.getFreezers()
+		.subscribe({
+			next: (freezers: Freezer[]) => {
+				this.freezers = freezers;
 			},
 			error: (error) => {
-				console.log('todo debug:[error getFreezerSubject subscribe]', error);
+				console.log('todo debug:[error getFreezer]', error);
 			}
 		})
 	}
 
-	navigateToFreezerContent(i) {
-		console.log('navigateToFreezerContent', this.freezers[i].id);
-		this.dataService.loadAliments(this.freezers[i].id)
-			.then(() => {
-				this.router.navigate(['']);
-			})
-			.catch((error) => {
-				console.log('todo debug:[error]');
-			});
+	navigateToFreezerContent(i: number) {
+		this.router.navigate(['/freezers', this.freezers[i].id]);
 	}
 
 	initiateFreezerCreation() {
@@ -82,8 +74,13 @@ export class FreezersComponent implements OnInit {
 	}
 
 	createFreezer() {
-		this.dataService.addFreezer(this.newFreezerName, () => {
-			this.isCreatingANewFreezer = false;
+		this.dataService.addFreezer(this.newFreezerName).subscribe({
+			next: () => {
+				this.isCreatingANewFreezer = false;
+			},
+			error: () => {
+				this.isCreatingANewFreezer = false;
+			}
 		});
 	}
 

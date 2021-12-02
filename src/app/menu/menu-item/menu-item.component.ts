@@ -26,13 +26,14 @@ export class MenuItemComponent implements OnInit {
 	@Input()
 	label: string;
 	translationString: string;
-	radius: number = 30;
+	@Input()
+	radiusInPx: number = 30;
 
 	@Input()
 	isOpened: Boolean = false;
 
 	ngOnInit() {
-		this.translationString = `translateX(${(-this.radius * Math.cos(this.angle * Math.PI / 180)).toFixed(3)}vw) translateY(${(-this.radius * Math.sin(this.angle * Math.PI / 180)).toFixed(3)}vw)`
+		this.translationString = `translateX(${(-this.radiusInPx * Math.cos(this.angle * Math.PI / 180)).toFixed(3)}px) translateY(${(-this.radiusInPx * Math.sin(this.angle * Math.PI / 180)).toFixed(3)}px)`
 	}
 
 }

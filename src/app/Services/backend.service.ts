@@ -4,51 +4,47 @@ import { HttpClient, HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Freezer } from '../Class/Freezer';
+import { UserInfo } from '../Class/UserInfo';
+import { map } from 'rxjs/operators';
 
-@Injectable()
-export class BackendService {
+export interface BackendService {
 
 	listAliments: Aliment[];
-	apiRoot: string = environment.API_ROOT_URL;
-	options = { headers: { 'Content-Type': 'application/json' } };
+	apiRoot: string;
+	options:any;
+	/* -------------------------------------------------------------------------- */
+	/*                                    Users                                   */
+	/* -------------------------------------------------------------------------- */
 
-	constructor(private http: HttpClient) { }
+	getUserInfo(): Observable<UserInfo>;
 
-	// Freezers
-	getFreezers(): Observable<Object> {
-		return this.http.get(`${this.apiRoot}/freezers`, this.options)
-	}
+	login(username: string, password: string): Observable<Object>;
 
-	saveFreezer(name: String): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/freezers`, new Freezer(name), this.options)
-	}
+	logout(): Observable<Object>;
 
-	deleteFreezer(freezerToDelete: Freezer): Observable<Object> {
-		return this.http.delete(`${this.apiRoot}/freezers/${freezerToDelete.id}`, this.options)
-	}
+	register(registrationInfo: {username: string, password: string, matchingPassword: string, email: string}): Observable<Object>;
 
-	updateFreezer(freezerToUpdate: Freezer): Observable<Object> {
-		return this.http.put(`${this.apiRoot}/freezers/${freezerToUpdate.id}`, freezerToUpdate, this.options);
-	}
+	/* -------------------------------------------------------------------------- */
+	/*                                  Freezers                                  */
+	/* -------------------------------------------------------------------------- */
 
-	// Aliments
+	getFreezers(): Observable<Freezer[]>;
 
-	getAliments(freezerId: Number): Observable<Object> {
-		return this.http.get(`${this.apiRoot}/freezers/${freezerId}/aliments`, this.options)
-	}
+	saveFreezer(name: string): Observable<Freezer>;
 
-	saveAliment(freezerId: Number, alimentToSave: Aliment): Observable<Object> {
-		return this.http.post(`${this.apiRoot}/freezers/${freezerId}/aliments`, alimentToSave, this.options);
-	}
+	deleteFreezer(freezerToDelete: Freezer): Observable<Object>;
 
-	updateAliment(freezerId: Number, alimentToUpdate: Aliment): Observable<Object> {
-		console.log('todo debug:[alimentToUpdate.id]', alimentToUpdate.id);
-		console.log('todo debug:[alimentToUpdate]', alimentToUpdate);
+	updateFreezer(freezerToUpdate: Freezer): Observable<Freezer>;
 
-		return this.http.put(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToUpdate.id}`, alimentToUpdate, this.options);
-	}
+	/* -------------------------------------------------------------------------- */
+	/*                                  Aliments                                  */
+	/* -------------------------------------------------------------------------- */
 
-	deleteAliment(freezerId: Number, alimentToDelete: Aliment): Observable<Object> {
-		return this.http.delete(`${this.apiRoot}/freezers/${freezerId}/aliments/${alimentToDelete.id}`, this.options);
-	}
+	getAliments(freezerId: number): Observable<Aliment[]>;
+
+	saveAliment(freezerId: number, alimentToSave: Aliment): Observable<Aliment>;
+
+	updateAliment(freezerId: number, alimentToUpdate: Aliment): Observable<Aliment>;
+
+	deleteAliment(freezerId: number, alimentToDelete: Aliment): Observable<Object>;
 }
