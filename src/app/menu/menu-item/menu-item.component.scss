@@ -1,12 +1,12 @@
-@import "~sass/variables";
-@import "~sass/mixins";
-@import "../menu.component.scss";
+@import '~sass/variables';
+@import '~sass/mixins';
+@import '../menu.component.scss';
 
 :host {
 	@include center;
 	transform: translateX(-18px);
 	//css leaking I do not know why:
-	margin:initial;
+	margin: initial;
 	width: 0px;
 }
 .menu-item {

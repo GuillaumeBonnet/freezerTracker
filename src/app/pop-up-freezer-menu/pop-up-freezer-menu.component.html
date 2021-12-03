@@ -5,22 +5,26 @@
 </button>
 
 <h1 class="gs-text">Menu for the Freezer:</h1>
-<h2 class="gs-text">{{data.selectedFreezer.name}}</h2>
+<h2 class="gs-text">{{ data.selectedFreezer.name }}</h2>
 
 <ul class="">
 	<li>
-		<button class="gs-button--text" style="pointer-events:none;background-color: #4673a5; border: none; box-shadow: none;">
+		<button
+			class="gs-button--text"
+			style="
+				pointer-events: none;
+				background-color: #4673a5;
+				border: none;
+				box-shadow: none;
+			"
+		>
 			Set as main freezer
 		</button>
 	</li>
 	<li (click)="openRenamePopUp()">
-		<button class="gs-button--text">
-			Rename
-		</button>
+		<button class="gs-button--text">Rename</button>
 	</li>
 	<li (click)="openDeletePopUp()">
-		<button class="gs-button--text">
-			Delete
-		</button>
+		<button class="gs-button--text">Delete</button>
 	</li>
 </ul>

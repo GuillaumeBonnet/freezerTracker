@@ -1,8 +1,8 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import "~sass/variables";
-@import "~sass/mixins";
+@import '~sass/variables';
+@import '~sass/mixins';
 
-:host  {
+:host {
 	height: inherit;
 	width: 60%;
 	margin: auto;
@@ -23,8 +23,6 @@
 .input {
 	@include center;
 }
-
-
 
 .buttons {
 	display: flex;

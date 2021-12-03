@@ -1,4 +1,4 @@
-@import "~sass/variables";
+@import '~sass/variables';
 
 .grid {
 	height: 100%;
@@ -9,34 +9,34 @@
 
 	&.grid--empty {
 		grid-template-areas:
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"ept ept ept ept ept ept ept ept ept ept ept ept"
-			"new new new new new new new new new new new new"
-			"new new new new new new new new new new new new"
-			"new new new new new new new new new new new new";
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'ept ept ept ept ept ept ept ept ept ept ept ept'
+			'new new new new new new new new new new new new'
+			'new new new new new new new new new new new new'
+			'new new new new new new new new new new new new';
 	}
 
 	&.grid--not-empty {
 		grid-template-areas:
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"sel sel sel sel sel sel sel sel sel sel sel sel"
-			"lst lst lst lst lst lst lst lst lst lst lst lst"
-			"lst lst lst lst lst lst lst lst lst lst lst lst"
-			"new new new new new new new new new new new new"
-			"new new new new new new new new new new new new"
-			"new new new new new new new new new new new new";
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'sel sel sel sel sel sel sel sel sel sel sel sel'
+			'lst lst lst lst lst lst lst lst lst lst lst lst'
+			'lst lst lst lst lst lst lst lst lst lst lst lst'
+			'new new new new new new new new new new new new'
+			'new new new new new new new new new new new new'
+			'new new new new new new new new new new new new';
 	}
 }
 
@@ -89,33 +89,31 @@
 	width: 100%;
 	overflow: hidden;
 
-
-
-		&__sideshadow {
-			position: absolute;
-			z-index: 100;
-			top: -3px;
-			bottom: -3px;
-			width: 10px;
-			&--left {
-					box-shadow: inset 7px 0px 8px 1px $color-custom-bluesky;
-					left: 0;
-			}
-
-			&--right {
-					box-shadow: inset -7px 0px 8px 1px $color-custom-bluesky;
-					right: 0;
-			}
+	&__sideshadow {
+		position: absolute;
+		z-index: 100;
+		top: -3px;
+		bottom: -3px;
+		width: 10px;
+		&--left {
+			box-shadow: inset 7px 0px 8px 1px $color-custom-bluesky;
+			left: 0;
 		}
 
-		&__scrollable {
-			overflow-x: scroll;
-			display: flex;
-			align-items: center;
-			height: 100%;
-			margin: 0px;
-			padding: 0px;
+		&--right {
+			box-shadow: inset -7px 0px 8px 1px $color-custom-bluesky;
+			right: 0;
 		}
+	}
+
+	&__scrollable {
+		overflow-x: scroll;
+		display: flex;
+		align-items: center;
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
 }
 
 .icon {

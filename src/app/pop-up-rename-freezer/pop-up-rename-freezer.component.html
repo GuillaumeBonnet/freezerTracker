@@ -4,17 +4,19 @@
 	</svg>
 </button>
 
-<div class="gs-text">
-	Enter new Name:
-</div>
+<div class="gs-text">Enter new Name:</div>
 <div class="input">
-	<input #nameInput [ngClass]="{'gs-current-input__input input-name': true, 'gs-current-input__input--invalid': isNameEmpty }">
+	<input
+		#nameInput
+		[ngClass]="{
+			'gs-current-input__input input-name': true,
+			'gs-current-input__input--invalid': isNameEmpty
+		}"
+	/>
 </div>
 <div class="buttons">
 	<button class="gs-button--text" (click)="renameFreezer(nameInput)">
 		Rename
 	</button>
-	<button class="gs-button--text" (click)="closeRenamePopUp()">
-		Cancel
-	</button>
+	<button class="gs-button--text" (click)="closeRenamePopUp()">Cancel</button>
 </div>

@@ -1,4 +1,4 @@
-import { BackendServiceHttp } from "../app/Services/backend-http.service";
+import { BackendServiceHttp } from '../app/Services/backend-http.service'
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -9,5 +9,5 @@ export const environment = {
 	production: false,
 	API_ROOT_URL: 'http://localhost:8080/api',
 	DOMAIN: 'localhost',
-	BackendService: BackendServiceHttp
-};
+	BackendService: BackendServiceHttp,
+}

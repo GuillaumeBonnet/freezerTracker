@@ -1,8 +1,12 @@
-<div [ngClass]="{'grid': true, 'grid--empty': isFreezerEmpty, 'grid--not-empty': !isFreezerEmpty}">
-
+<div
+	[ngClass]="{
+		grid: true,
+		'grid--empty': isFreezerEmpty,
+		'grid--not-empty': !isFreezerEmpty
+	}"
+>
 	<div class="gs-box empty-filler" *ngIf="isFreezerEmpty">
-		This freezer is empty.
-		Add aliments.
+		This freezer is empty. Add aliments.
 	</div>
 
 	<ng-template [ngIf]="!isFreezerEmpty">
@@ -16,9 +20,16 @@
 			<div class="iconband__sideshadow iconband__sideshadow--left"></div>
 			<div class="iconband__sideshadow iconband__sideshadow--right"></div>
 			<ul class="iconband__scrollable">
-				<li *ngFor="let elem of listAliments; index as i" style="height:100%;">
-					<app-aliment [aliment]="elem" [i]="i" [isSelected]="i==indexSelectedAliment"
-						(posAlimentSelected)="posElementSelected($event)">
+				<li
+					*ngFor="let elem of listAliments; index as i"
+					style="height: 100%"
+				>
+					<app-aliment
+						[aliment]="elem"
+						[i]="i"
+						[isSelected]="i == indexSelectedAliment"
+						(posAlimentSelected)="posElementSelected($event)"
+					>
 					</app-aliment>
 				</li>
 			</ul>
@@ -27,7 +38,14 @@
 
 	<!-- TODO block with delete modify filter by category -->
 	<div class="crossgridcontainer">
-		<button [class]="startCrossAnimation ? 'gs-button cross cross--clicked' : 'gs-button cross'" (click)="newAliment()">
+		<button
+			[class]="
+				startCrossAnimation
+					? 'gs-button cross cross--clicked'
+					: 'gs-button cross'
+			"
+			(click)="newAliment()"
+		>
 			<svg viewBox="0 0 100 100" class="cross__svg">
 				<use xlink:href="#icon-newCross" />
 			</svg>

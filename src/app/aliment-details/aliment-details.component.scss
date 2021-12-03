@@ -1,5 +1,5 @@
-@import "~sass/variables";
-@import "~sass/mixins";
+@import '~sass/variables';
+@import '~sass/mixins';
 
 :host {
 	height: 100%;
@@ -34,8 +34,8 @@
 		border: solid white 1px;
 		background-color: $color-custom-bluedark;
 		&__svg {
-		fill: white !important;
-		width: 90%;
+			fill: white !important;
+			width: 90%;
 		}
 		&--clicked {
 			outline: 0;

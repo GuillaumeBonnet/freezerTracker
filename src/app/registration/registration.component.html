@@ -1,33 +1,38 @@
 <div *ngIf="isAwaitingConfirmation">
-	Thank you!
-
-	We have sent an email to {{registerForm.value.email}}.
-
-	Please click the link in that message
-	to activate your account.
+	Thank you! We have sent an email to {{ registerForm.value.email }}. Please
+	click the link in that message to activate your account.
 </div>
 
-<form *ngIf="!isAwaitingConfirmation" class="form-container gs-box" (ngSubmit)="register()" [formGroup]="registerForm">
-	<div class="gs-text">
-		Register:
-	</div>
+<form
+	*ngIf="!isAwaitingConfirmation"
+	class="form-container gs-box"
+	(ngSubmit)="register()"
+	[formGroup]="registerForm"
+>
+	<div class="gs-text">Register:</div>
 
-	<br>
+	<br />
 
 	<div class="input">
 		<div><label class="gs-text">Username</label></div>
 		<input
 			formControlName="username"
-			[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': isShowingInvalid('username') }"
-		>
+			[ngClass]="{
+				'gs-current-input__input': true,
+				'gs-current-input__input--invalid': isShowingInvalid('username')
+			}"
+		/>
 	</div>
 
 	<div class="input">
 		<div><label class="gs-text">Email</label></div>
 		<input
 			formControlName="email"
-			[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': isShowingInvalid('email') }"
-		>
+			[ngClass]="{
+				'gs-current-input__input': true,
+				'gs-current-input__input--invalid': isShowingInvalid('email')
+			}"
+		/>
 	</div>
 
 	<div class="input">
@@ -35,8 +40,11 @@
 		<input
 			formControlName="password"
 			type="password"
-			[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': isShowingInvalid('password') }"
-		>
+			[ngClass]="{
+				'gs-current-input__input': true,
+				'gs-current-input__input--invalid': isShowingInvalid('password')
+			}"
+		/>
 	</div>
 
 	<div class="input">
@@ -45,14 +53,13 @@
 			formControlName="passwordVerification"
 			type="password"
 			[ngClass]="{
-				'gs-current-input__input': true
-				, 'gs-current-input__input--invalid': isShowingInvalid('passwordVerification') || registerForm.errors?.value == 'passwordMatching'
+				'gs-current-input__input': true,
+				'gs-current-input__input--invalid':
+					isShowingInvalid('passwordVerification') ||
+					registerForm.errors?.value == 'passwordMatching'
 			}"
-		>
+		/>
 	</div>
 
-
-	<button class="gs-button form-button">
-		Register
-	</button>
+	<button class="gs-button form-button">Register</button>
 </form>

@@ -1,6 +1,6 @@
-@import "~sass/variables";
-@import "~sass/atomic-classes";
-@import "~sass/mixins";
+@import '~sass/variables';
+@import '~sass/atomic-classes';
+@import '~sass/mixins';
 
 :host {
 	height: 100%;
@@ -26,23 +26,24 @@
 		background-color: $color-custom-bluelight;
 		margin: 10px 10px 0px 10px;
 		padding: 2px;
-		transition: width 0.2s ease-in-out, height 0.2s ease-in-out, box-shadow 0.2s ease-out;
+		transition: width 0.2s ease-in-out, height 0.2s ease-in-out,
+			box-shadow 0.2s ease-out;
 		&--selected {
-		width: 52px;
-		height: 52px;
-		box-shadow: white 0px 0px 10px 0px;
+			width: 52px;
+			height: 52px;
+			box-shadow: white 0px 0px 10px 0px;
 		}
 		&--invalid {
-		border: solid red 2px;
+			border: solid red 2px;
 		}
 		&__svg {
-		width: 80%;
+			width: 80%;
 		}
 		&__formstatus {
-		position: absolute;
-		width: 20% !important;
-		left: 2px;
-		bottom: 2px;
+			position: absolute;
+			width: 20% !important;
+			left: 2px;
+			bottom: 2px;
 		}
 	}
 
@@ -60,31 +61,31 @@
 		align-items: center;
 		white-space: nowrap;
 		&__text {
-		text-overflow: ellipsis;
-		overflow: hidden;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 
 		&__icon svg {
-		fill: currentColor !important;
+			fill: currentColor !important;
 		}
 		&__icon {
-		width:1em;
-		stroke: black;
-		stroke-width: 10px;
+			width: 1em;
+			stroke: black;
+			stroke-width: 10px;
 
-		&--spacer {
-			flex-grow: 1;
-		}
+			&--spacer {
+				flex-grow: 1;
+			}
 
-		&--edit {
-			color: white;
-		}
-		&--valid{
-			color: green;
-		}
-		&--invalid{
-			color: red;
-		}
+			&--edit {
+				color: white;
+			}
+			&--valid {
+				color: green;
+			}
+			&--invalid {
+				color: red;
+			}
 		}
 	}
 	&__line__label {
@@ -92,12 +93,11 @@
 		color: $color-custom-brown;
 		transition: font-size 0.2s ease-in-out;
 		&--selected {
-		font-weight: 1000;
-		font-size: 18px;
-		text-shadow: 0 0 0.2em white;
+			font-weight: 1000;
+			font-size: 18px;
+			text-shadow: 0 0 0.2em white;
 		}
 	}
-
 
 	&__line__separator {
 		width: 90%;
@@ -125,8 +125,6 @@
 	transform: rotate(180deg);
 }
 
-
-
 .iconcard {
 	position: relative;
 	width: 50px;
@@ -141,7 +139,7 @@
 }
 
 .iconcard::before {
-	content: " ";
+	content: ' ';
 	position: absolute;
 	z-index: 1;
 	top: -4px;

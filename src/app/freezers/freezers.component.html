@@ -2,65 +2,89 @@
 	<mat-card-title>Your freezers</mat-card-title>
 	<mat-card-content>
 		<ul class="freezers-container" (click)="$event.stopPropagation()">
-
 			<!-- ----------------------------------------------------------------------- -->
 			<!--                            new freezer card                             -->
 			<!-- ----------------------------------------------------------------------- -->
 
-			<li *ngIf="!isCreatingANewFreezer"
-				appSquarify squarifyDimensionOfReference="width"
+			<li
+				*ngIf="!isCreatingANewFreezer"
+				appSquarify
+				squarifyDimensionOfReference="width"
 				class="aliment-card new-freezer"
 				(click)="initiateFreezerCreation()"
 			>
 				<svg viewBox="0 0 100 100" class="svg-white svg-stroke-white">
-						<use xlink:href="#icon-newCross"/>
+					<use xlink:href="#icon-newCross" />
 				</svg>
 			</li>
-			<li *ngIf="isCreatingANewFreezer"
-				appSquarify squarifyDimensionOfReference="width"
+			<li
+				*ngIf="isCreatingANewFreezer"
+				appSquarify
+				squarifyDimensionOfReference="width"
 				class="aliment-card new-freezer"
 			>
 				<div class="new-freezer__buttons">
-					<button class="gs-button new-freezer__button" (click)="cancelFreezerCreation()">
+					<button
+						class="gs-button new-freezer__button"
+						(click)="cancelFreezerCreation()"
+					>
 						<svg viewBox="0 0 100 100" class="">
-								<use xlink:href="#icon-009-close" />
+							<use xlink:href="#icon-009-close" />
 						</svg>
 					</button>
-					<button (click)="createFreezer()" class="gs-button new-freezer__button" [attr.disabled]="newFreezerName == '' ? 'disabled' : null">
+					<button
+						(click)="createFreezer()"
+						class="gs-button new-freezer__button"
+						[attr.disabled]="
+							newFreezerName == '' ? 'disabled' : null
+						"
+					>
 						<svg viewBox="0 0 100 100" class="">
-								<use xlink:href="#icon-007-checked" />
+							<use xlink:href="#icon-007-checked" />
 						</svg>
 					</button>
 				</div>
 
-				<input (keyup)="nameKeyUp($event)" [ngClass]="{'gs-current-input__input input-name': true, 'gs-current-input__input--invalid': isNameEmpty }">
+				<input
+					(keyup)="nameKeyUp($event)"
+					[ngClass]="{
+						'gs-current-input__input input-name': true,
+						'gs-current-input__input--invalid': isNameEmpty
+					}"
+				/>
 			</li>
 
 			<!-- ----------------------------------------------------------------------- -->
 			<!--                           freezer list cards                            -->
 			<!-- ----------------------------------------------------------------------- -->
 
-			<li *ngFor="let elem of freezers; index as i"
-				appSquarify squarifyDimensionOfReference="width"
+			<li
+				*ngFor="let elem of freezers; index as i"
+				appSquarify
+				squarifyDimensionOfReference="width"
 				class="aliment-card"
 				(click)="navigateToFreezerContent(i)"
 			>
-				<button class="gs-button button--ellipsis" (click)="openSubMenu($event)" [attr.data-index]="i">
-					<svg viewBox="0 0 100 100" class="svg-white svg-stroke-white" [attr.data-index]="i">
-							<use [attr.xlink:href]="'#' + 'icon-ellipsis'" />
+				<button
+					class="gs-button button--ellipsis"
+					(click)="openSubMenu($event)"
+					[attr.data-index]="i"
+				>
+					<svg
+						viewBox="0 0 100 100"
+						class="svg-white svg-stroke-white"
+						[attr.data-index]="i"
+					>
+						<use [attr.xlink:href]="'#' + 'icon-ellipsis'" />
 					</svg>
 				</button>
 				<svg viewBox="0 0 100 100" class="aliment-card__svg">
-						<use [attr.xlink:href]="'#' + 'icon-batch1_flour-1'" />
+					<use [attr.xlink:href]="'#' + 'icon-batch1_flour-1'" />
 				</svg>
 				<h1 class="aliment-card__title">
-						{{elem.name}}
+					{{ elem.name }}
 				</h1>
 			</li>
 		</ul>
 	</mat-card-content>
 </mat-card>
-
-
-
-

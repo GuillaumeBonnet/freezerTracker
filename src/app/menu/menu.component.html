@@ -1,34 +1,82 @@
-<div class="gs-shadow-backdrop" *ngIf="isOpened" (click)="isOpened = false" [@shadowing]></div>
+<div
+	class="gs-shadow-backdrop"
+	*ngIf="isOpened"
+	(click)="isOpened = false"
+	[@shadowing]
+></div>
 
 <div
 	id="back-action"
 	class="secondary-action"
-	(click)="secondaryAction('back')">
-
+	(click)="secondaryAction('back')"
+>
 	<svg viewBox="0 0 100 100" class="">
 		<use xlink:href="#icon-003-arrows-1" />
 	</svg>
 </div>
 
-	<div class="opener" (click)="isOpened = !isOpened" *ngIf="!authGuard.getIsLoggedIn()">
-		menu
-		<ng-template [ngIf]="radiusInPx">
-			<app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 2})}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')" [radiusInPx]="radiusInPx"></app-menu-item>
-			<app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 2})}}" label="Login" [isOpened]="isOpened" (click)="navigate($event, 'login')" [radiusInPx]="radiusInPx"></app-menu-item>
-		</ng-template>
-	</div>
+<div
+	class="opener"
+	(click)="isOpened = !isOpened"
+	*ngIf="!authGuard.getIsLoggedIn()"
+>
+	menu
+	<ng-template [ngIf]="radiusInPx">
+		<app-menu-item
+			#menuitem
+			angle="{{ calculateAngle({ index: 1, length: 2 }) }}"
+			label="About"
+			[isOpened]="isOpened"
+			(click)="navigate($event, 'about')"
+			[radiusInPx]="radiusInPx"
+		></app-menu-item>
+		<app-menu-item
+			#menuitem
+			angle="{{ calculateAngle({ index: 2, length: 2 }) }}"
+			label="Login"
+			[isOpened]="isOpened"
+			(click)="navigate($event, 'login')"
+			[radiusInPx]="radiusInPx"
+		></app-menu-item>
+	</ng-template>
+</div>
 
-	<div class="opener" (click)="isOpened = !isOpened" *ngIf="authGuard.getIsLoggedIn()">
-		menu
-		<app-menu-item #menuitem angle="{{calculateAngle({index: 1, length: 3})}}" label="About" [isOpened]="isOpened" (click)="navigate($event, 'about')" [radiusInPx]="radiusInPx"></app-menu-item>
-		<app-menu-item #menuitem angle="{{calculateAngle({index: 2, length: 3})}}" label="Freezers" [isOpened]="isOpened" (click)="navigate($event, 'freezers')" [radiusInPx]="radiusInPx"></app-menu-item>
-		<app-menu-item #menuitem angle="{{calculateAngle({index: 3, length: 3})}}" label="Log Out" [isOpened]="isOpened" (click)="logout($event)" [radiusInPx]="radiusInPx"></app-menu-item>
-	</div>
+<div
+	class="opener"
+	(click)="isOpened = !isOpened"
+	*ngIf="authGuard.getIsLoggedIn()"
+>
+	menu
+	<app-menu-item
+		#menuitem
+		angle="{{ calculateAngle({ index: 1, length: 3 }) }}"
+		label="About"
+		[isOpened]="isOpened"
+		(click)="navigate($event, 'about')"
+		[radiusInPx]="radiusInPx"
+	></app-menu-item>
+	<app-menu-item
+		#menuitem
+		angle="{{ calculateAngle({ index: 2, length: 3 }) }}"
+		label="Freezers"
+		[isOpened]="isOpened"
+		(click)="navigate($event, 'freezers')"
+		[radiusInPx]="radiusInPx"
+	></app-menu-item>
+	<app-menu-item
+		#menuitem
+		angle="{{ calculateAngle({ index: 3, length: 3 }) }}"
+		label="Log Out"
+		[isOpened]="isOpened"
+		(click)="logout($event)"
+		[radiusInPx]="radiusInPx"
+	></app-menu-item>
+</div>
 <div
 	id="forward-action"
 	class="secondary-action secondary-action--right"
-	(click)="secondaryAction('forward')">
-
+	(click)="secondaryAction('forward')"
+>
 	<svg viewBox="0 0 100 100" class="">
 		<use xlink:href="#icon-003-arrows-1" />
 	</svg>

@@ -1,4 +1,3 @@
-
 C:\Users\guillaume\Documents\programmation\freezer\front\svg\handmade>npx svgo .
 delete the fill property manually if css coloring needed
 

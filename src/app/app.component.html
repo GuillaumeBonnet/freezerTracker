@@ -2,7 +2,7 @@
 <!--                                 Mobile                                  -->
 <!-- ----------------------------------------------------------------------- -->
 
-<div *ngIf="screenType=='mobile'" class="maincontent">
+<div *ngIf="screenType == 'mobile'" class="maincontent">
 	<div class="page">
 		<div class="spinner-bg" *ngIf="isSpinnerDisplayed">
 			<mat-spinner color=""></mat-spinner>
@@ -17,7 +17,7 @@
 <!-- ----------------------------------------------------------------------- -->
 <!--                                 Desktop                                 -->
 <!-- ----------------------------------------------------------------------- -->
-<div *ngIf="screenType=='desktop'" class="container-desktop">
+<div *ngIf="screenType == 'desktop'" class="container-desktop">
 	<div #maincontent class="maincontent maincontent-desktop">
 		<div class="page">
 			<div class="spinner-bg" *ngIf="isSpinnerDisplayed">

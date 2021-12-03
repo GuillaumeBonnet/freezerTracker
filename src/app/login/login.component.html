@@ -1,18 +1,19 @@
 <div class="form-container gs-box">
 	<form (ngSubmit)="login()" [formGroup]="loginForm">
-		<div class="gs-text">
-			Log into the app:
-		</div>
+		<div class="gs-text">Log into the app:</div>
 
-		<br>
+		<br />
 
 		<div class="input">
 			<div><label class="gs-text">Username</label></div>
 			<input
 				id="username"
 				formControlName="username"
-				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
-			>
+				[ngClass]="{
+					'gs-current-input__input': true,
+					'gs-current-input__input--invalid': false
+				}"
+			/>
 		</div>
 
 		<div class="input">
@@ -21,8 +22,11 @@
 				id="password"
 				formControlName="password"
 				type="password"
-				[ngClass]="{'gs-current-input__input': true, 'gs-current-input__input--invalid': false }"
-			>
+				[ngClass]="{
+					'gs-current-input__input': true,
+					'gs-current-input__input--invalid': false
+				}"
+			/>
 		</div>
 
 		<div class="button-group">
@@ -36,21 +40,23 @@
 		<button
 			id="register-in-button"
 			class="gs-button form-button"
-		(click)="goToRegistrationPage()">
+			(click)="goToRegistrationPage()"
+		>
 			Register
 		</button>
 		<button
 			id="guest-button"
 			class="gs-button form-button"
-		(click)="fillGuestInfo()">
+			(click)="fillGuestInfo()"
+		>
 			Fill guest crendentials
 		</button>
 		<button
 			id="reset-password-button"
 			class="gs-button form-button"
-		(click)="goToForgottenPasswordPage()">
+			(click)="goToForgottenPasswordPage()"
+		>
 			Forgot Password
 		</button>
 	</div>
-
 </div>
