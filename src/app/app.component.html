@@ -1,8 +1,11 @@
 <!-- ----------------------------------------------------------------------- -->
 <!--                                 Mobile                                  -->
 <!-- ----------------------------------------------------------------------- -->
-
-<div #maincontent *ngIf="screenType == 'mobile'" class="maincontent">
+<div
+	#maincontent
+	*ngIf="screenType == 'mobile' || isInIframe()"
+	class="maincontent"
+>
 	<div class="page">
 		<div class="spinner-bg" *ngIf="isSpinnerDisplayed">
 			<mat-spinner color=""></mat-spinner>

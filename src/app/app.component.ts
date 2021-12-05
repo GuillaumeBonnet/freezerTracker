@@ -46,6 +46,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 		}, 0)
 	}
 
+	isInIframe() {
+		try {
+			return window.self !== window.top
+		} catch (e) {
+			return true
+		}
+	}
+
 	@ViewChild('maincontent', null) maincontent: ElementRef
 
 	radiusInPx: number
