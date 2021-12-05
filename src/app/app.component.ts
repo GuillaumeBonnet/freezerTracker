@@ -47,6 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 	}
 
 	@ViewChild('maincontent', null) maincontent: ElementRef
+
 	radiusInPx: number
 	title = 'app'
 	screenType: string = 'desktop'
