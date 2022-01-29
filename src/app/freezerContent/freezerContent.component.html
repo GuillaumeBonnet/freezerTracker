@@ -19,20 +19,22 @@
 		<div class="iconband">
 			<div class="iconband__sideshadow iconband__sideshadow--left"></div>
 			<div class="iconband__sideshadow iconband__sideshadow--right"></div>
-			<ul class="iconband__scrollable">
-				<li
-					*ngFor="let elem of listAliments; index as i"
-					style="height: 100%"
-				>
-					<app-aliment
-						[aliment]="elem"
-						[i]="i"
-						[isSelected]="i == indexSelectedAliment"
-						(posAlimentSelected)="posElementSelected($event)"
+			<ngx-simplebar [options]="utils.simpleBarOptions" class="">
+				<ul class="iconband__scrollable">
+					<li
+						*ngFor="let elem of listAliments; index as i"
+						style="height: 100%"
 					>
-					</app-aliment>
-				</li>
-			</ul>
+						<app-aliment
+							[aliment]="elem"
+							[i]="i"
+							[isSelected]="i == indexSelectedAliment"
+							(posAlimentSelected)="posElementSelected($event)"
+						>
+						</app-aliment>
+					</li>
+				</ul>
+			</ngx-simplebar>
 		</div>
 	</ng-template>
 

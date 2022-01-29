@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router'
 import { DataService } from '../Services/data.service'
 import { Freezer } from '../Class/Freezer'
 import { switchMap } from 'rxjs/operators'
+import { MainServiceService } from '../Services/main-service.service'
 
 @Component({
 	selector: 'app-freezerContent',
@@ -21,7 +22,8 @@ export class FreezerContent implements OnInit {
 	constructor(
 		public router: Router,
 		private dataService: DataService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		public utils: MainServiceService
 	) {}
 
 	ngOnInit() {

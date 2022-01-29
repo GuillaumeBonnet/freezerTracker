@@ -23,6 +23,7 @@ export class InterceptorXsrfHeaderWritterService implements HttpInterceptor {
 				'X-XSRF-TOKEN',
 				this.cookieService.get('XSRF-TOKEN')
 			),
+			withCredentials: true,
 		})
 		return next.handle(secureReq)
 	}

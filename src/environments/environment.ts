@@ -1,3 +1,4 @@
+import { BackendServiceHttp } from '../app/Services/backend-http.service'
 import { BackendServiceMocked } from '../app/Services/backend-mocked.service'
 
 // The file contents for the current environment will overwrite these during build.
@@ -9,5 +10,5 @@ export const environment = {
 	production: false,
 	API_ROOT_URL: 'http://localhost:8080/api',
 	DOMAIN: 'localhost',
-	BackendService: BackendServiceMocked,
+	BackendService: BackendServiceHttp,
 }
