@@ -380,19 +380,20 @@
 	<!-- buttons div -->
 
 	<div class="form-container__mainspace" [ngSwitch]="currentInputPage.value">
-		<div
-			*ngSwitchCase="'icon'"
-			class="gs-current-input gs-current-input--icons"
-		>
-			<div
-				*ngFor="let iconName of iconList"
-				class="iconcard"
-				(click)="setIcon(iconName)"
-			>
-				<svg viewBox="0 0 100 100" class="iconcard__svg">
-					<use [attr.xlink:href]="'#' + iconName" />
-				</svg>
-			</div>
+		<div *ngSwitchCase="'icon'" class="gs-current-input">
+			<ngx-simplebar [options]="utils.simpleBarOptions" class="">
+				<div class="gs-current-input--icons">
+					<div
+						*ngFor="let iconName of iconList"
+						class="iconcard"
+						(click)="setIcon(iconName)"
+					>
+						<svg viewBox="0 0 100 100" class="iconcard__svg">
+							<use [attr.xlink:href]="'#' + iconName" />
+						</svg>
+					</div>
+				</div>
+			</ngx-simplebar>
 		</div>
 
 		<div *ngSwitchCase="'name'" class="gs-current-input">

@@ -20,6 +20,7 @@ import { Aliment } from '../Class/Aliment'
 import { DataService } from '../Services/data.service'
 import { DatePipe } from '@angular/common'
 import { Observable, PartialObserver } from 'rxjs'
+import { MainServiceService } from '../Services/main-service.service'
 
 const ICON_ARRAY: any = require('../iconList.json')
 const INPUT_PAGES: string[] = [
@@ -55,7 +56,8 @@ export class NewAlimentComponent implements OnInit {
 		public router: Router,
 		private fb: FormBuilder,
 		private dataService: DataService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		public utils: MainServiceService
 	) {}
 
 	ngOnInit() {
