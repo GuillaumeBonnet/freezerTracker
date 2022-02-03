@@ -11,7 +11,7 @@
 		"prod-build": "del ..\\back\\src\\main\\resources\\public /s /q && ng build --output-path=../back/src/main/resources/public --prod",
 		"work": "ng serve --host 192.168.0.19 --port 4201",
 		"ng": "ng",
-		"start": "ng serve --port 4201",
+		"start": "ng serve",
 		"build": "ng build --prod",
 		"test": "ng test",
 		"lint": "ng lint",
