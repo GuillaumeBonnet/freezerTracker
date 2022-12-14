@@ -32,7 +32,7 @@
 		"@angular/platform-browser-dynamic": "^8.1.1",
 		"@angular/router": "^8.1.1",
 		"core-js": "2.4.1",
-		"express": "4.9.8",
+		"express": "4.17.3",
 		"ngx-cookie-service": "^2.4.0",
 		"rxjs": "^6.4.0",
 		"simplebar-angular": "^2.3.6",
